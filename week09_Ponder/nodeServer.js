@@ -5,6 +5,8 @@ var express = require('express'),
     app = express();
 var bodyParser = require('body-parser');
 
+console.log("####: " + __dirname);
+
 app.use(express.static(__dirname + '/'));
 
 app.use(bodyParser.urlencoded({ extended: false }))
