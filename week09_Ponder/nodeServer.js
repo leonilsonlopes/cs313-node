@@ -18,9 +18,7 @@ app.all('/week09_Ponder', (req, res) => {
 });
 
 app.all('/week09_Ponder/calculatedRates', (req, res) => {  
-  console.log("### mail: " + req.body.mail);
-  console.log("### weight: " + req.body.weight);
-  res.render('postalCalculator',{mail:"ttsteMail",weight:"2020"});
+  res.render('calculatedRate',{mail:req.body.mail,weight:req.body.weight});
 });
 
 
