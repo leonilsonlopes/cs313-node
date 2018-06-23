@@ -2,7 +2,7 @@ var http = require('http');
 const PORT = process.env.PORT || 5000;
 
 var express = require('express'),
-    app = express();
+app = express();
 var bodyParser = require('body-parser');
 
 console.log("####: " + __dirname);
@@ -19,7 +19,7 @@ const server = http.createServer(function onRequest (req, res) {
 		
 	if(req.url == '/week09_Ponder/home'){
 		res.writeHead(200, {'Content-Type': 'text/html'});    
-		res.sendFile("postalCalculator.html");
+		res.reder("postalCalculator.ejs");
 		//res.end("hello");
 		
 	}else if(req.url == '/week09_Ponder/getData'){
