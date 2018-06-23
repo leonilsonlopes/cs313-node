@@ -17,8 +17,8 @@ const server = http.createServer(function onRequest (req, res) {
 		
 	if(req.url == '/week09_Ponder/home'){
 		res.writeHead(200, {'Content-Type': 'text/html'});    
-		//res.sendFile("postalCalculator.html");
-		res.end("hello");
+		res.sendFile("postalCalculator.html");
+		//res.end("hello");
 		
 	}else if(req.url == '/week09_Ponder/getData'){
 		res.writeHead(200, {"Content-Type": "application/json"});
