@@ -32,7 +32,7 @@ app.all('/week09_Ponder/calculatedRates', (req, res) => {
 		else if(weight <= 3.5)
 			cost += '1.13';
 		else
-			cost = 'Letters (Stamped) cannot weight more than 3.5oz.';
+			cost = '--Letters (Stamped) cannot weight more than 3.5oz.';
 		
 	}else if(mail == 'Letters (Metered)'){
 		if(weight <= 1)
