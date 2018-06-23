@@ -97,7 +97,7 @@ app.all('/week09_Ponder/calculatedRates', (req, res) => {
 
 
 
-	res.render('calculatedRate',{mail:mail,weight:weight,cost:calculatedCost});
+	res.render('calculatedRate',{mail:mail,weight:weight,cost:cost});
 });
 
 
