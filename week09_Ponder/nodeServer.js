@@ -16,7 +16,7 @@ app.use(bodyParser.json());
 
 app.get('/week09_Ponder', (req, res) => {  
   console.log("### chamou / ");
-  res.render('./postalCalculator.ejs');
+  res.render('postalCalculator.ejs');
 });
 
 app.get('/week09_Ponder/home', (req, res) => {  
