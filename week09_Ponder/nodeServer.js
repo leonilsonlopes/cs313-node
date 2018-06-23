@@ -19,7 +19,7 @@ const server = http.createServer(function onRequest (req, res) {
 		
 	if(req.url == '/week09_Ponder/home'){
 		res.writeHead(200, {'Content-Type': 'text/html'});    
-		res.reder("postalCalculator.ejs");
+		res.render("postalCalculator.ejs");
 		//res.end("hello");
 		
 	}else if(req.url == '/week09_Ponder/getData'){
