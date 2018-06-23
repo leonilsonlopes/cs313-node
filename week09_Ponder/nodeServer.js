@@ -18,7 +18,7 @@ app.get('/', (req, res) => {
   res.render('./week09_Postal/postalCalculator.html');
 });
 
-app.get('/home', (req, res) => {  
+app.get('/week09_Ponder/home', (req, res) => {  
   res.write('TESTE');
 });
 
