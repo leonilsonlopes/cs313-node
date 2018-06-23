@@ -14,13 +14,16 @@ app.use(bodyParser.urlencoded({ extended: false }))
 
 app.use(bodyParser.json());
 
-app.get('/', (req, res) => {
-  // render `home.ejs` with the list of posts
+app.get('/', (req, res) => {  
   res.render('./week09_Postal/postalCalculator.html');
-})
+});
+
+app.get('/home', (req, res) => {  
+  res.write('TESTE');
+});
 
 
-server.listen(PORT, () => {
+app.listen(PORT, () => {
   console.log(`Server running on ${PORT}/`);
 });
 
