@@ -7,8 +7,6 @@ var bodyParser = require('body-parser');
 app.set('view engine', 'ejs');
 app.set('views', __dirname + '/');
 
-console.log("####: " + __dirname);
-
 app.use(express.static(__dirname + '/'));
 
 app.use(bodyParser.urlencoded({ extended: false }))
@@ -16,15 +14,15 @@ app.use(bodyParser.urlencoded({ extended: false }))
 app.use(bodyParser.json());
 
 app.get('/week09_Ponder', (req, res) => {  
-  console.log("### chamou / ");
   res.render('postalCalculator');
 });
 
-app.get('/week09_Ponder/home', (req, res) => {  
-	console.log("### chamou /week09_Ponder/home ");
-  res.writeHead(200, {'Content-Type': 'text/html'});
-  res.write('TESTE');
+app.get('/week09_Ponder/calculatedRates', (req, res) => {  
+  console.log("### mail: " + req.body.mail);
+  console.log("### weight: " + req.body.weight);
+  res.render('postalCalculator');
 });
+
 
 
 app.listen(PORT, () => {
