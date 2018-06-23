@@ -15,10 +15,13 @@ app.use(bodyParser.urlencoded({ extended: false }))
 app.use(bodyParser.json());
 
 app.get('/', (req, res) => {  
-  res.render('./week09_Postal/postalCalculator.html');
+  console.log("### chamou / ");
+  res.render('./week09_Postal/postalCalculator.ejs');
 });
 
 app.get('/week09_Ponder/home', (req, res) => {  
+	console.log("### chamou /week09_Ponder/home ");
+  res.writeHead(200, {'Content-Type': 'text/html'});
   res.write('TESTE');
 });
 
