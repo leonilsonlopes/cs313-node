@@ -13,11 +13,11 @@ app.use(bodyParser.urlencoded({ extended: false }))
 
 app.use(bodyParser.json());
 
-app.get('/week09_Ponder', (req, res) => {  
+app.all('/week09_Ponder', (req, res) => {  
   res.render('postalCalculator');
 });
 
-app.get('/week09_Ponder/calculatedRates', (req, res) => {  
+app.all('/week09_Ponder/calculatedRates', (req, res) => {  
   console.log("### mail: " + req.body.mail);
   console.log("### weight: " + req.body.weight);
   res.render('postalCalculator');
