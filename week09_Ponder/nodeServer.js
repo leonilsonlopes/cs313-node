@@ -5,7 +5,7 @@ var express = require('express'),
 app = express();
 var bodyParser = require('body-parser');
 app.set('view engine', 'ejs');
-app.set('views', __dirname + '\views');
+app.set('views', __dirname + '\\views');
 
 console.log("####: " + __dirname);
 
