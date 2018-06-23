@@ -14,9 +14,9 @@ app.use(bodyParser.urlencoded({ extended: false }))
 
 app.use(bodyParser.json());
 
-app.get('/', (req, res) => {  
+app.get('/week09_Ponder', (req, res) => {  
   console.log("### chamou / ");
-  res.render('./week09_Postal/postalCalculator.ejs');
+  res.render('./postalCalculator.ejs');
 });
 
 app.get('/week09_Ponder/home', (req, res) => {  
