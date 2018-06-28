@@ -5,7 +5,7 @@ console.log('#### file week09.js');
   
 router.all('/week09_ponder', function(req, res){  
 	console.log('#### router week09_ponder');
-	res.render('week09_ponder!!!');
+	res.send('week09_ponder!!!');
   //res.render('./views/week09_ponder/postalCalculator');
 });
 
