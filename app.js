@@ -13,4 +13,4 @@ app.use(bodyParser.urlencoded({ extended: false }))
 
 app.use(bodyParser.json());
 
-app.use(require('./controllers'))
+app.use(require('./controllers'));
