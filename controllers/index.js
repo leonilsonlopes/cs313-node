@@ -3,11 +3,11 @@ var express = require('express')
 
 router.use('/week09_ponder', require('./week09/week09'));
 
-router.get('/', function(req, res) {
+router.all('/', function(req, res) {
   res.send('Home page')
 })
 
-router.get('/about', function(req, res) {
+router.all('/about', function(req, res) {
   res.send('Learn about us')
 })
 
