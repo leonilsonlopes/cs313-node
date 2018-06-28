@@ -4,7 +4,7 @@ var express = require('express')
 var express = require('express')
   , app = express()
 
-app.use('/week09_ponder', require('./week09'));
+app.use('/week09_ponder', require('week09'));
 
 router.get('/', function(req, res) {
   res.send('Home page')
