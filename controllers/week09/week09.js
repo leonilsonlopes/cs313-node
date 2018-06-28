@@ -2,7 +2,8 @@ var express = require('express')
   , router = express.Router()
 
 router.all('/week09_ponder', (req, res) => {  
-  res.render('./views/week09_ponder/postalCalculator');
+	res.render('week09_ponder!!!');
+  //res.render('./views/week09_ponder/postalCalculator');
 });
 
 router.all('/week09_ponder/calculatedRates', (req, res) => {  
