@@ -3,13 +3,13 @@ var express = require('express')
 
 console.log('#### file week09.js');
   
-router.all('/week09_ponder', (req, res) => {  
+router.get('/week09_ponder', (req, res) => {  
 	console.log('#### router week09_ponder');
 	res.render('week09_ponder!!!');
   //res.render('./views/week09_ponder/postalCalculator');
 });
 
-router.all('/week09_ponder/calculatedRates', (req, res) => {  
+router.get('/week09_ponder/calculatedRates', (req, res) => {  
 	var weight = Number(req.body.weight);
 	var mail = req.body.mail;
 	var cost = "$";
