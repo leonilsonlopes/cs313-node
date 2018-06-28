@@ -1,7 +1,10 @@
 var express = require('express')
   , router = express.Router()
 
+console.lot('#### file week09.js');
+  
 router.all('/week09_ponder', (req, res) => {  
+	console.lot('#### router week09_ponder');
 	res.render('week09_ponder!!!');
   //res.render('./views/week09_ponder/postalCalculator');
 });
