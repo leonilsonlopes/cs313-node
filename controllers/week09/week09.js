@@ -1,7 +1,11 @@
 var express = require('express')
   , router = express.Router()
 
+app.use(express.static(__dirname + '/view/week09_ponder'));
 
+app.use(bodyParser.urlencoded({ extended: false }))
+
+app.use(bodyParser.json());
 
   
 router.all('/week09_ponder', function(req, res){  
