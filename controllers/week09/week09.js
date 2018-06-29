@@ -1,6 +1,6 @@
 var express = require('express'),
 app = express();
-var router = app.Router()
+var router = express.Router()
 
 
 var bodyParser = require('body-parser');
