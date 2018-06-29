@@ -7,7 +7,7 @@ app = express();
 
 
 app.set('view engine', 'ejs');
-app.set('views', __dirname + '/view/week09_ponder');
+app.set('views', __dirname + '/view');
 
 
 
