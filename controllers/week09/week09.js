@@ -3,7 +3,7 @@ var express = require('express')
 
   
 router.all('/week09_ponder', function(req, res){  
-	res.render('./views/week09_ponder/postalCalculator');
+	res.render('./view/week09_ponder/postalCalculator');
 });
 
 router.all('/week09_ponder/calculatedRates', function(req, res){  
