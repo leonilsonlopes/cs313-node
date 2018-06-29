@@ -15,7 +15,7 @@ app.use(bodyParser.json());
   
 router.all('/week09_ponder', function(req, res){  
 	console.log('#### week9_ponder');
-	res.render('./week09_ponder/postalCalculator');
+	res.render('postalCalculator');
 });
 
 router.all('/week09_ponder/calculatedRates', function(req, res){  
