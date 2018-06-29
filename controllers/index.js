@@ -7,6 +7,10 @@ router.all('/', function(req, res) {
   res.render('home/index')
 })
 
+router.all('/assignments', function(req, res) {
+  res.render('home/assignments')
+})
+
 router.all('/about', function(req, res) {
   res.send('Learn about us')
 })
