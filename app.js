@@ -7,7 +7,7 @@ app = express();
 
 var bodyParser = require('body-parser');
 app.set('view engine', 'ejs');
-app.set('views', __dirname + '/view');
+app.set('views', __dirname + '/view/week09_ponder');
 
 app.use(express.static(__dirname + '/view/week09_ponder'));
 
