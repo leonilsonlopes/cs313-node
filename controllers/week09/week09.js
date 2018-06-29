@@ -3,6 +3,7 @@ var express = require('express')
 
   
 router.all('/week09_ponder', function(req, res){  
+	console.log('#### week9_ponder');
 	res.render('./week09_ponder/postalCalculator');
 });
 
