@@ -3,10 +3,7 @@ var express = require('express')
 
   
 //router.use(express.static(__dirname + '/view/week09_ponder'));
-var bodyParser = require('body-parser');
-router.use(bodyParser.urlencoded({ extended: false }))
 
-router.use(bodyParser.json());
 
   
 router.all('/week09_ponder', function(req, res){  
