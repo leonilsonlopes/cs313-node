@@ -1,16 +1,16 @@
 var express = require('express')
   , router = express.Router()
 
-app = express();
+
 var bodyParser = require('body-parser');
-app.set('view engine', 'ejs');
-app.set('views', __dirname + '/view/week09_ponder');
+router.set('view engine', 'ejs');
+router.set('views', __dirname + '/view/week09_ponder');
 
-app.use(express.static(__dirname + '/view/week09_ponder'));
+router.use(express.static(__dirname + '/view/week09_ponder'));
 
-app.use(bodyParser.urlencoded({ extended: false }))
+router.use(bodyParser.urlencoded({ extended: false }))
 
-app.use(bodyParser.json());
+router.use(bodyParser.json());
   
   
 router.all('/week09_ponder', function(req, res){  
