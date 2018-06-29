@@ -10,7 +10,7 @@ app.set('views', __dirname + '/views');
 //app.use(express.static(__dirname + '/week09_ponder'));
 app.set('view engine', 'ejs');
 
-app.use(express.static('views/home'))
+app.use(express.static('views'))
 
 var bodyParser = require('body-parser');
 app.use(bodyParser.urlencoded({ extended: false }))
