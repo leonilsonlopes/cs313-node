@@ -5,7 +5,7 @@ var express = require('express'),
 app = express();
 
 
-app.set('views', __dirname + '/view');
+app.set('views', __dirname + '/view/');
 
 //app.use(express.static(__dirname + '/week09_ponder'));
 app.set('view engine', 'ejs');
