@@ -1,10 +1,11 @@
-var express = require('express')
-  , router = express.Router()
+var express = require('express');
+var app = express();
+var router = app.Router()
 
 
 var bodyParser = require('body-parser');
-router.set('view engine', 'ejs');
-router.set('views', __dirname + '/view/week09_ponder');
+app.set('view engine', 'ejs');
+app.set('views', __dirname + '/view/week09_ponder');
 
 router.use(express.static(__dirname + '/view/week09_ponder'));
 
