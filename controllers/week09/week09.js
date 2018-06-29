@@ -1,8 +1,8 @@
 var express = require('express')
   , router = express.Router()
 
+  
 router.use(express.static(__dirname + '/view/week09_ponder'));
-
 var bodyParser = require('body-parser');
 router.use(bodyParser.urlencoded({ extended: false }))
 
