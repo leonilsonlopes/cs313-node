@@ -2,7 +2,7 @@ var express = require('express')
   , router = express.Router()
 
   
-//router.use(express.static(__dirname + '/view/week09_ponder'));
+router.use(express.static(__dirname + '/view/week09_ponder'));
 
 
   
