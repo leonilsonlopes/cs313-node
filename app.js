@@ -8,8 +8,8 @@ app.set('view engine', 'ejs');
 app.set('views', __dirname + '/view');
 
 var bodyParser = require('body-parser');
-router.use(bodyParser.urlencoded({ extended: false }))
-router.use(bodyParser.json());
+app.use(bodyParser.urlencoded({ extended: false }))
+app.use(bodyParser.json());
 
 
 app.use(require('./controllers'));
