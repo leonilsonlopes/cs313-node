@@ -1,9 +1,6 @@
 var express = require('express')
   , router = express.Router()
 
-  
-//router.use(express.static(__dirname + '/view/week09_ponder'));
-
 
   
 router.all('/week09_ponder', function(req, res){  
@@ -91,7 +88,7 @@ router.all('/week09_ponder/calculatedRates', function(req, res){
 
 
 
-	res.render('calculatedRate',{mail:mail,weight:weight,cost:cost});
+	res.render('week09_ponder/calculatedRate',{mail:mail,weight:weight,cost:cost});
 });
 
 
