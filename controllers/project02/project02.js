@@ -11,10 +11,13 @@ const connectionString = process.env.DATABASE_URL;
 // Establish a new connection to the data source specified the connection string.
 const pool = new Pool({connectionString: connectionString});
 
+router.all('/', function(req, res){  
+	res.render('project02/cryptoInterface');
+}); 
  
 router.all('/getListOfCurrencies', function(req, res){  
 
-	var sql = "SELECT * FROM currencyt";
+	var sql = "SELECT * FROM currency";
 	var params = '';	
 	
 	pool.query(sql, params, function(err, result) {
@@ -22,13 +25,12 @@ router.all('/getListOfCurrencies', function(req, res){
 		if (err) {
 			console.log("Error in query: ")
 			console.log(err);
-			res.send("Error in query << " + sql + " >>");
+			res.send("ERROR");
 		}		
 				
 		res.send(result.rows);
 	});
-	
-	//res.render('week09_ponder/postalCalculator');
+
 });
 
 router.all('/getCoinFromCurrency', function(req, res){  
