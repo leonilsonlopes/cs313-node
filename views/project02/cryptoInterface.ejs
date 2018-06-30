@@ -1,3 +1,5 @@
+
+<!DOCTYPE html>
 <html lang="en">
 	<head>
   <meta charset="utf-8">
@@ -5,16 +7,50 @@
   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
   <meta name="description" content="">
   <meta name="author" content="">
-  <title>CS313 - Project02 - Crypto Trader</title>
+  <title>CS313 - Project01 - Crypto Trader</title>
   <!-- Bootstrap core CSS-->
-  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
-  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
-  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
-  
-  </head>
-		<body class="fixed-nav sticky-footer bg-dark" id="page-top">
+  <script type="text/javascript" language="javascript" src="https://code.jquery.com/jquery-3.3.1.js"></script>
+  <script type="text/javascript" language="javascript" src="https://cdn.datatables.net/1.10.16/js/jquery.dataTables.min.js"></script>
+  <script type="text/javascript" language="javascript" src="vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+  <link href="vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+  <!-- Custom fonts for this template-->
+  <link href="vendor/font-awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css">
+  <!-- Custom styles for this template-->
+  <link href="css/sb-admin.css" rel="stylesheet">
+  <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.10.16/css/jquery.dataTables.min.css">	
+		<!-- START CUSTOM HEAD AREA -->
+	
+		<script type="text/javascript" class="init">
+
+
+$(document).ready(function() {
+	
+	var table = $('#currencies').DataTable();
+
+	$('#currencies').on( 'click', 'tbody tr', function () {
+		if ( $(this).hasClass('selected') ) {
+			$(this).removeClass('selected');
+		}
+		else {
+			table.$('tr.selected').removeClass('selected');
+			$(this).addClass('selected');
+		}
 		
-		<!-- Navigation-->
+		$('input[name=code]').val(table.row( this ).data()[0]);
+		$('input[name=name]').val(table.row( this ).data()[1]);
+
+	} );
+
+
+} );
+
+
+	</script>
+	
+	<!-- CLOSE CUSTOM HEAD AREA -->
+	
+		</head>
+		<body class="fixed-nav sticky-footer bg-dark" id="page-top">	  <!-- Navigation-->
   <nav class="navbar navbar-expand-lg navbar-dark bg-dark fixed-top" id="mainNav">
     <a class="navbar-brand" href="index.php">Crypto Currencies Trader</a>
     <button class="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
@@ -69,27 +105,88 @@
         </li>
       </ul>
     </div>
-  </nav>
-  
+  </nav>	
   <div class="content-wrapper">
     <div class="container-fluid">
-	
 	<!-- Breadcrumbs-->
       <ol class="breadcrumb">
         <li class="breadcrumb-item">
           <a href="index.php">Intro Page</a>
         </li>
-        <li class="breadcrumb-item active"> ------ </li>
-      </ol>
-	  
-	  <!-- START CONTENT AREA -->
-	  
-	  
-	  <!-- CLOSE CONTENT AREA -->	
+        <li class="breadcrumb-item active">Crypto Currencies</li>
+      </ol>	<!-- START CONTENT AREA -->
+
+
+		<div class="container">
+			<h2>Crypto Currencies</h2>
+			<div class="panel panel-default">
+				<div class="panel-body">Manage the crypto coin you want to follow here</div>
+			</div>
+		</div>
+		
+		<br/>
+		<hr class="style18">
+		
+		<form action="cryptoCurrencies.php" method="post">
+			<input type="hidden" name="id"/>
+			<div class="w-25" class="form-group">
+				<label for="code">Coin Code:</label>
+				<input type="text" class="form-control" name="code">
+			</div>
+			<br/>
+			<div class="w-25" class="form-group">
+				<label for="name">Coin Name:</label>
+				<input type="text" class="form-control" name="name">
+			</div>
+			<br/>
+			<input type="hidden" name="clicked" value="1"/>
+			<button type="submit" class="btn btn-success" value="addCoin" name="btnSaveCoin">Add Coin</button>
+			<button type="submit" class="btn btn-primary" value="updateCoin" name="btnUpdateCoin">Update Coin</button>
+			<button type="submit" class="btn btn-danger" value="deleteCoin" name="btnDeleteCoin">Delete Coin</button>
+		</form>
+		
+		
+		
+		 
+		
+		<p><h3><b>Saved Coins:</b></h3></p>
+		<table id="currencies" class="table table-hover table-striped table-bordered" style="width:100%">
+			<thead>
+				<tr>				
+				<th scope="col">Coin Code</th>
+				<th scope="col">Coin Name</th>
+				</tr>
+			</thead>
+			<tbody>
+
+		<!-- Retrieve Data -->	
+		<tr>
+				<th scope=\"row\">BTC</th>				
+				<td>Bitcoin</td>
+				</tr><tr>
+				<th scope=\"row\">XRP</th>				
+				<td>Ripple</td>
+				</tr><tr>
+				<th scope=\"row\">XMR</th>				
+				<td>Monero</td>
+				</tr><tr>
+				<th scope=\"row\">TRX</th>				
+				<td>TRON</td>
+				</tr><tr>
+				<th scope=\"row\">MIOTA</th>				
+				<td>IOTA</td>
+				</tr><tr>
+				<th scope=\"row\">ETH</th>				
+				<td>Ethereum</td>
+				</tr>			</tbody>
+		</table>
+		
+	
+	
+	<!-- CLOSE CONTENT AREA -->	
 	
 	</div>	
-	  
-	  
+	
 	<footer class="sticky-footer">
       <div class="container">
         <div class="text-center">
@@ -118,10 +215,8 @@
           </div>
         </div>
       </div>
-    </div>
-	
-	
-		</div>
+    </div>	
+	</div>
 
 </body>
 </html>
