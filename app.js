@@ -10,7 +10,9 @@ app.set('views', __dirname + '/views');
 //app.use(express.static(__dirname + '/week09_ponder'));
 app.set('view engine', 'ejs');
 
-app.use(express.static('views/home'))
+//Path for all static files, such as css, auxiliar js etc
+//ejs/html pages must point css/js files starting from folder "views"
+app.use(express.static('views'))
 
 var bodyParser = require('body-parser');
 app.use(bodyParser.urlencoded({ extended: false }))
