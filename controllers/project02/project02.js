@@ -6,16 +6,33 @@ const { Pool } = require("pg"); // This is the postgres database connection modu
 
 // This says to use the connection string from the environment variable, if it is there,
 // otherwise, it will use a connection string that refers to a local postgres DB
-const connectionString = process.env.DATABASE_URL || "postgres://gwknfyatpvwrft:eb3fee8b0ba8f07515faa561cdde9564b9de3d0144cfa1d271c25fe04fe0a47c@ec2-54-243-61-173.compute-1.amazonaws.com:5432/d7rfo59m77npq6";
+const connectionString = process.env.DATABASE_URL;
 
 // Establish a new connection to the data source specified the connection string.
 const pool = new Pool({connectionString: connectionString});
 
-console.log("### Database url: " + process.env.DATABASE_URL);  
-  
-  
+ 
 router.all('/getListOfCurrencies', function(req, res){  
-	res.send("getListOfCurrencies");
+
+	var sql = "SELECT * FROM currency";
+	var params = '';	
+	
+	pool.query(sql, params, function(err, result) {
+		// If an error occurred...
+		if (err) {
+			console.log("Error in query: ")
+			console.log(err);
+			callback(err, null);
+		}
+
+		// Log this to the console for debugging purposes.
+		console.log("Found result: " + JSON.stringify(result.rows));
+
+		//callback(null, result.rows);
+		
+		res.send(result.rows);
+	});
+	
 	//res.render('week09_ponder/postalCalculator');
 });
 
