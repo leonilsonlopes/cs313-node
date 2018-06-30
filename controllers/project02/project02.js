@@ -14,7 +14,7 @@ const pool = new Pool({connectionString: connectionString});
  
 router.all('/getListOfCurrencies', function(req, res){  
 
-	var sql = "SELECT * FROM currency";
+	var sql = "SELECT * FROM currencyt";
 	var params = '';	
 	
 	pool.query(sql, params, function(err, result) {
@@ -22,14 +22,9 @@ router.all('/getListOfCurrencies', function(req, res){
 		if (err) {
 			console.log("Error in query: ")
 			console.log(err);
-			callback(err, null);
-		}
-
-		// Log this to the console for debugging purposes.
-		console.log("Found result: " + JSON.stringify(result.rows));
-
-		//callback(null, result.rows);
-		
+			res.send("Error in query << " + sql + " >>");
+		}		
+				
 		res.send(result.rows);
 	});
 	
