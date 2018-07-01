@@ -43,6 +43,22 @@ router.all('/getCoinFromCurrency', function(req, res){
 router.all('/saveCoinInCurrency', function(req, res){  
 	var code = req.query.code;
 	var name = req.query.name;
+	
+	var sql = "INSERT INTO currency(code, name) VALUES($1, $2)";
+	var params = [code,name];	
+	
+	
+	pool.query(sql, params, function(err, result) {
+		console.log("#### query: " + sql);
+		// If an error occurred...
+		if (err) {
+			console.log("Error in query: ")
+			console.log(err);
+			res.send(err);
+		}	
+		
+		res.send("1");
+	});
  
 
 	res.send("saveCoinInCurrency\ncode: " + code + "\nname: " + name);
