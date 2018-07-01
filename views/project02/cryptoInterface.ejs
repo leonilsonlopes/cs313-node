@@ -54,6 +54,7 @@ $(document).ready(function(){
 		$.each(data, function (i, item) {
 				//trHTML += '<tr><td>' + data[i].code + '</td><td>' + data[i].name + '</td></tr>';
 				 t.row.add([data[i].code, data[i].name]);
+				 alert([data[i].code + ":" + data[i].name)
 				//$('#currencies').append(trHTML);
 		});
 
