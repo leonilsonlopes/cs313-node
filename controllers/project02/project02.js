@@ -86,7 +86,6 @@ router.all('/isCoinInRecorded', function(req, res){
 			console.log(err);
 			res.send(err);
 		}	
-		console.log("### result: " + result.rows);
 		res.send(result.rows);
 	});
 });

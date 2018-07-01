@@ -64,6 +64,8 @@ function isCoinRecorded(code){
 		result = JSON.stringify(data);
     });
 	
+	alert("### isCoinRecorded: " + result);
+	
 	if(result == "[]")
 		return false;
 	else
