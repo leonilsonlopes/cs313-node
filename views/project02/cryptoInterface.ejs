@@ -51,9 +51,11 @@ $(document).ready(function(){
 		var trHTML = '';
 		
 		$.each(data, function (i, item) {
-				trHTML += '<tr><td>' + data[i].code + '</td><td>' + data[i].name + '</td></tr>';
-				$('#currencies').append(trHTML);
+				trHTML += '<tr><td>' + data[i].code + '</td><td>' + data[i].name + '</td></tr>';				
 		});
+		
+		$('#currencies').append(trHTML);
+		
 		/*DataTables instantiation.*/
 		$( "#currencies" ).DataTable();	
 		
