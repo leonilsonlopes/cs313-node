@@ -52,7 +52,8 @@ $(document).ready(function(){
 		
 		var trHTML = '';
 		
-		$.each(data.Code, function (i, item) {
+		$.each(data.code, function (i, item) {
+			alert("## each");
 				console.log("<tr><td>' + data.code[i] + '</td><td>' + data.name[i] + '</td></tr>");
 				trHTML += '<tr><td>' + data.code[i] + '</td><td>' + data.name[i] + '</td></tr>';
 		});
