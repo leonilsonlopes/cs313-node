@@ -50,19 +50,41 @@ $(document).ready(function(){
 		
 		var trHTML = '';
 		var t = $('#currencies').DataTable();
-		
 		$.each(data, function (i, item) {
 				//trHTML += '<tr><td>' + data[i].code + '</td><td>' + data[i].name + '</td></tr>';
-				 t.row.add([data[i].code, data[i].name]);
-				 alert(data[i].code + ":" + data[i].name)
-				//$('#currencies').append(trHTML);
+				t.row.add([data.code, data.name]).draw(false);
 		});
-
-		
+			
+		//$('#currencies').append(trHTML);
     });
 });	
 
 	
+	$ ( document ).ready(function() {
+		$.ajax({
+			type: 'GET',
+			url: 'https://peaceful-lowlands-49839.herokuapp.com/project02/getListOfCurrencies',
+			mimeType: 'json',
+			success: function(data) {
+				$.each(data, function(i, data) {
+					var body = "<tr>";
+					body    += "<td>" + data[i].code + "</td>";	
+					body    += "<td>" + data[i].name + "</td>";	
+					body    += "</tr>";
+					$( "#currencies tbody" ).append(body);
+				});
+				/*DataTables instantiation.*/
+				$( "#currencies" ).DataTable();
+			},
+			error: function() {
+				alert('Failure while building currency table!');
+			}
+		});
+	});
+	
+	
+	
+
 
 
 
