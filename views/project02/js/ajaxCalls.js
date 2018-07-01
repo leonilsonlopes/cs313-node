@@ -42,7 +42,7 @@ function saveCurrencyTable(code, name){
 }
 
 function isCoinRecorded(code){
-	$.get("https://peaceful-lowlands-49839.herokuapp.com/project02/saveCoinInCurrency?code=" + code, function(data, status){
+	$.get("https://peaceful-lowlands-49839.herokuapp.com/project02/isCoinInRecorded?code=" + code, function(data, status){
 		alert("### data: " + JSON.stringify(data));
 
     });
