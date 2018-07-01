@@ -17,7 +17,13 @@ router.all('/', function(req, res){
  
 router.all('/getListOfCurrencies', function(req, res){  
 
-	res.send(getListOfCurrencies());
+	var currencies = getListOfCurrencies();
+
+	for (var key in currencies) {
+		console.log(key, currencies[key]);
+	}
+
+	res.send();
 
 });
 
