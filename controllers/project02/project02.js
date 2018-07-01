@@ -57,7 +57,7 @@ router.all('/saveCoinInCurrency', function(req, res){
 			res.send(err);
 		}	
 		
-		res.send("1");
+		//res.send("1");
 	});
  
 
