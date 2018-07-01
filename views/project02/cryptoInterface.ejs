@@ -50,7 +50,6 @@ $(document).ready(function(){
 
 	
 function buildCurrencyTable(){
-	$("#currencies > tbody").html("");
 	$.get("https://peaceful-lowlands-49839.herokuapp.com/project02/getListOfCurrencies", function(data, status){
 		var t = $('#currencies').DataTable();
 		$.each(data, function (i, item) {
@@ -131,9 +130,29 @@ function buildCurrencyTable(){
           <a href="index.php">Intro Page</a>
         </li>
         <li class="breadcrumb-item active">Crypto Currencies</li>
-      </ol>	<!-- START CONTENT AREA -->
+      </ol>
+	  
+<!---------------------------------------------------------------------------------------------------->		  
+	  
+	  <!-- INTRO PAGE START CONTENT AREA -->
+	  
+	  <div class="container">
+			<h2>Welcome to Crypto Currency Trader</h2>
+			<div class="panel panel-default">
+				<div class="panel-body">This tool will help you control and track your trades in the Crypto Currencies world.</div>
+			</div>
+		</div>
+	  
+	  
+	  
+	  <!-- INTRO PAGE CLOSE CONTENT AREA -->	
+	  
+<!---------------------------------------------------------------------------------------------------->		  
+	  
 
+	  <!-- CRYPTOCURRENCIES START CONTENT AREA -->
 
+<hr class="hr-primary" />
 		<div class="container">
 			<h2>Crypto Currencies</h2>
 			<div class="panel panel-default">
@@ -161,10 +180,7 @@ function buildCurrencyTable(){
 			<button type="submit" class="btn btn-primary" value="updateCoin" name="btnUpdateCoin">Update Coin</button>
 			<button type="submit" class="btn btn-danger" value="deleteCoin" name="btnDeleteCoin">Delete Coin</button>
 
-		
-		
-		
-		 
+				 
 		
 		<p><h3><b>Saved Coins:</b></h3></p>
 		<table id="currencies" class="table table-hover table-striped table-bordered" style="width:100%">
@@ -179,7 +195,321 @@ function buildCurrencyTable(){
 		
 	
 	
-	<!-- CLOSE CONTENT AREA -->	
+	<!-- CRYPTOCURRENCIES CLOSE CONTENT AREA -->	
+	
+	
+<!---------------------------------------------------------------------------------------------------->	
+	
+	<!-- PRICES PAGE START CONTENT AREA -->
+	
+	<hr class="hr-primary" />
+	<div class="container">
+			<h2>Prices</h2>
+			<div class="panel panel-default">
+				<div class="panel-body">Follow up the lastest price of your coins here.</div>
+			</div>
+		</div>
+				<br/>
+		<hr class="style18">
+
+		<p><h4><b>Price Information:</b></h4></p>
+		<p>New information available each 5 minutes.</p>
+		
+		
+		<form action="prices.php" method="post">			
+			<button type="submit" class="btn btn-success" value="addCoin" name="btnSaveCoin">Refresh Price Information</button>			
+		</form>
+		<br/>
+		<br/>
+		
+		<table id="priceCurrencies" class="table table-hover table-striped table-bordered" style="width:100%">
+			<thead>
+				<tr>				
+				<th scope="col">Coin Code</th>
+				<th scope="col">Coin Name</th>
+				<th scope="col">USD Price</th>
+				<th scope="col">Last Hour Variation</th>
+				<th scope="col">Last 24hs Variation</th>
+				<th scope="col">Last 7 days Variation</th>
+				<th scope="col">Last Update</th>
+				</tr>
+			</thead>
+			<tbody>
+
+
+			</tbody>
+		</table>
+	
+	  
+	  
+	<!-- PRICES PAGE CLOSE CONTENT AREA -->	
+	  
+<!---------------------------------------------------------------------------------------------------->		  
+	  
+	<!-- TRADING START CONTENT AREA -->
+	  <hr class="hr-primary" />
+	  <div class="container">
+			<h2>Trading Area</h2>
+			<div class="panel panel-default">
+				<div class="panel-body">Manage your wallet and record your Buy and Sell orders here</div>
+			</div>
+		</div>
+		<br/>
+		<br/>
+		<hr class="style18">
+
+		<form action="trading.php" method="post">
+		
+		<!------------------------------------------- START WALLET AREA ------------------------------------------->
+		<p><h3><b>YOUR WALLET</b></h3></p>
+			<table id="wallet" class="table table-hover table-striped table-bordered" style="width:100%">
+				<thead>
+					<tr>	
+					<th scope="col">Coin Code</th>
+					<th scope="col">Coin Name</th>
+					<th scope="col">Quantity</th>
+					<th scope="col">Total Paid Value</th>
+					<th scope="col">Current Price Per Unit</th>
+					<th scope="col">Total Current Value</th>
+					<th scope="col">Result</th>
+					</tr>
+				</thead>
+
+			</table>
+			
+			
+		<!------------------------------------------- END WALLET AREA ------------------------------------------->
+			
+		<br/>
+		<hr class="style18">
+
+		
+		<!------------------------------------------- START BUY ORDER AREA ------------------------------------------->
+		<p><h3><b>BUY ORDERS</b></h3></p>
+		
+
+		
+			<div class="btn-group">	
+				<button type="button" class="btn btn-primary dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+					Select a Coin to BUY
+				</button>		
+				<div class="dropdown-menu">
+				
+		
+				
+				</div>				
+			</div>	
+
+
+		
+	
+		<p><h5><b>Selected coin information:</b></h5></p>
+		<table id="tableSelectedBuyCoin" class="table table-hover table-striped table-bordered" style="width:100%">
+			<thead>
+				<tr>				
+				<th scope="col">Coin Code</th>
+				<th scope="col">Coin Name</th>
+				<th scope="col">USD Price</th>
+				<th scope="col">Last Hour Variation</th>
+				<th scope="col">Last 24hs Variation</th>
+				<th scope="col">Last 7 days Variation</th>
+				<th scope="col">Last Update</th>
+				</tr>
+			</thead>
+			<tbody>
+
+			</tbody>
+		</table>	
+		
+		
+				<input type="hidden" id="selectedCoin" name="selectedCoin"/>
+				
+		<?php 
+		
+			if($_POST['btnBuyCoin'] != ""){				
+				
+				$quantity = round(floatval($_POST['qtty']),4);
+				$coinInfo = getCoinInfoRaw($_POST['btnBuyCoin']);				
+				$lastPrice = round(floatval($coinInfo['price_usd']),4);
+				
+
+				if($quantity > 0){					
+					saveBuyOrder($_POST['btnBuyCoin'], $lastPrice, $quantity);						
+				}else{
+					showAlert("cannot be empty or 0", "Quantity ", "danger");
+				}			
+			}
+							
+		?>
+						
+				<div class="input-group mb-3">
+						<div class="input-group-prepend">
+						<span class="input-group-text" id="inputGroup-sizing-default">Enter quantity:</span>
+						</div>
+						<input type="text" name="qtty" class="form-control" aria-label="Default" aria-describedby="inputGroup-sizing-default">
+						<?php echo "<button type=\"submit\" class=\"btn btn-success\" name=\"btnBuyCoin\" value=\"" . $selectedCoin . "\">Buy <b>" .  $selectedCoin . "</b> Coin</button>"?>
+				</div>	
+
+
+		
+		<!------------------------------------------- END BUY ORDER AREA ------------------------------------------->
+		
+		
+		<br/>
+		<hr class="style18">
+	
+		
+		
+		<!------------------------------------------- START SELL ORDER AREA ------------------------------------------->
+		
+		
+		<p><h3><b>SELL ORDERS</b></h3></p>
+		<form action="trading.php" method="post">
+
+		
+			<div class="btn-group">	
+				<button type="button" class="btn btn-primary dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+					Select a Coin to SELL
+				</button>		
+				<div class="dropdown-menu">
+				
+	
+				
+				</div>				
+			</div>	
+
+
+		
+	
+		<p><h5><b>Selected coin information:</b></h5></p>
+		<table id="tableSelectedSellCoin" class="table table-hover table-striped table-bordered" style="width:100%">
+			<thead>
+				<tr>				
+				<th scope="col">Coin Code</th>
+				<th scope="col">Coin Name</th>
+				<th scope="col">USD Price</th>
+				<th scope="col">Last Hour Variation</th>
+				<th scope="col">Last 24hs Variation</th>
+				<th scope="col">Last 7 days Variation</th>
+				<th scope="col">Last Update</th>
+				</tr>
+			</thead>
+			<tbody>
+
+			</tbody>
+		</table>
+		
+				<input type="hidden" id="selectedSellCoin" name="selectedSellCoin"/>
+				
+		<?php 
+		
+			if($_POST['btnSellCoin'] != ""){				
+				
+				$quantity = round(floatval($_POST['qttySell']),4);
+				$coinInfo = getCoinInfoRaw($_POST['btnSellCoin']);				
+				$lastPrice = round(floatval($coinInfo['price_usd']),4);
+				
+
+				if($quantity > 0){					
+					saveSellOrder($_POST['btnSellCoin'], $lastPrice, $quantity);						
+				}else{
+					showAlert("cannot be empty or 0", "Quantity ", "danger");
+				}			
+			}
+							
+		?>
+						
+				<div class="input-group mb-3">
+						<div class="input-group-prepend">
+						<span class="input-group-text" id="inputGroup-sizing-default">Enter quantity:</span>
+						</div>
+						<input type="text" name="qttySell" class="form-control" aria-label="Default" aria-describedby="inputGroup-sizing-default">
+						<?php echo "<button type=\"submit\" class=\"btn btn-success\" name=\"btnSellCoin\" value=\"" . $selectedSellCoin . "\">Sell <b>" .  $selectedSellCoin . "</b> Coin</button>"?>
+				</div>	
+		
+		
+		
+		
+		<!------------------------------------------- END SELL ORDER AREA ------------------------------------------->
+	
+
+	</form>
+	  
+	  
+	  
+	  
+	<!-- TRADING PAGE CLOSE CONTENT AREA -->	
+	  
+<!---------------------------------------------------------------------------------------------------->	
+
+	  
+	<!-- HISTORY START CONTENT AREA -->
+	<hr class="hr-primary" />
+	
+	<div class="container">
+			<h2>History Results</h2>
+			<div class="panel panel-default">
+				<div class="panel-body">Verify your trading history and results here.</div>
+			</div>
+		</div>
+	
+		<br/>
+		<hr class="style18">
+		
+		
+		<p><h3><b>BUY ORDERS</b></h3></p>
+		
+		<table id="tableShowBuyOrders" class="table table-hover table-striped table-bordered" style="width:100%">
+			<thead>
+				<tr>				
+				<th scope="col">Coin Code</th>
+				<th scope="col">Coin Name</th>
+				<th scope="col">Sell Price</th>
+				<th scope="col">Quantity</th>
+				<th scope="col">Total Value</th>
+				<th scope="col">Date</th>
+				</tr>
+			</thead>
+			<tbody>
+
+		<!-- Retrieve Data	-->
+
+			</tbody>
+		</table>
+		
+		
+		<br/>
+		<hr class="style18">
+		
+		
+		<p><h3><b>SELL ORDERS</b></h3></p>
+		
+		<table id="tableShowSellOrders" class="table table-hover table-striped table-bordered" style="width:100%">
+			<thead>
+				<tr>									
+				<th scope="col">Coin Code</th>
+				<th scope="col">Coin Name</th>
+				<th scope="col">Wallet Price (Buy Price)</th>
+				<th scope="col">Sell Price</th>
+				<th scope="col">Quantity</th>
+				<th scope="col">Total Value</th>
+				<th scope="col">Result</th>
+				<th scope="col">Percent Result</th>
+				<th scope="col">Date</th>
+				</tr>
+			</thead>
+			<tbody>
+
+
+			</tbody>
+		</table>
+
+	
+	  
+	  
+	<!-- HISTORY CLOSE CONTENT AREA -->	
+	
+<!---------------------------------------------------------------------------------------------------->		
 	
 	</div>	
 	
