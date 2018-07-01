@@ -49,15 +49,14 @@ $(document).ready(function(){
 	$.get("https://peaceful-lowlands-49839.herokuapp.com/project02/getListOfCurrencies", function(data, status){
 		
 		var trHTML = '';
+		var t = $('#currencies').DataTable();
 		
 		$.each(data, function (i, item) {
-				trHTML += '<tr><td>' + data[i].code + '</td><td>' + data[i].name + '</td></tr>';				
+				//trHTML += '<tr><td>' + data[i].code + '</td><td>' + data[i].name + '</td></tr>';
+				 t.row.add([data[i].code, data[i].name]);
+				//$('#currencies').append(trHTML);
 		});
-		
-		$('#currencies').append(trHTML);
-		
-		/*DataTables instantiation.*/
-		$( "#currencies" ).DataTable();	
+
 		
     });
 });	
