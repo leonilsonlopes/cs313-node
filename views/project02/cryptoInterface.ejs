@@ -48,11 +48,11 @@ $(document).ready(function(){
 	console.log("### Ready");
 	
 	$.get("https://peaceful-lowlands-49839.herokuapp.com/project02/getListOfCurrencies", function(data, status){
-        alert("Data: " + data + "\nStatus: " + status);
+        alert("Data: " + data.code[0] + "\nStatus: " + status);
 		
 		var trHTML = '';
 		
-		$.each(data.code, function (i, item) {
+		$.each(data, function (i, item) {
 			alert("## each");
 				console.log("<tr><td>' + data.code[i] + '</td><td>' + data.name[i] + '</td></tr>");
 				trHTML += '<tr><td>' + data.code[i] + '</td><td>' + data.name[i] + '</td></tr>';
