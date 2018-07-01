@@ -17,19 +17,7 @@ router.all('/', function(req, res){
  
 router.all('/getListOfCurrencies', function(req, res){  
 
-	var sql = "SELECT * FROM currency";
-	var params = '';	
-	
-	pool.query(sql, params, function(err, result) {
-		// If an error occurred...
-		if (err) {
-			console.log("Error in query: ")
-			console.log(err);
-			res.send("ERROR");
-		}		
-				
-		res.send(result.rows);
-	});
+	res.send(getListOfCurrencies());
 
 });
 
@@ -93,6 +81,22 @@ router.all('/isCoinInRecorded', function(req, res){
 	//res.render('week09_ponder/postalCalculator');
 });
 
+
+function getListOfCurrencies(){
+	var sql = "SELECT * FROM currency";
+	var params = '';	
+	
+	pool.query(sql, params, function(err, result) {
+		// If an error occurred...
+		if (err) {
+			console.log("Error in query: ")
+			console.log(err);
+			res.send("ERROR");
+		}		
+				
+		return(result.rows);
+	});
+}
 
 
 module.exports = router

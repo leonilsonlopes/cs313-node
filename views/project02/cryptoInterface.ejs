@@ -45,16 +45,6 @@ $(document).ready(function() {
 
 } );
 
-var ajax = require("node.ajax");
-
-function getListOfCurrencies(){
-	console.log("### called function: getListOfCurrencies");
-	var res = yield ajax("https://peaceful-lowlands-49839.herokuapp.com/project02/getListOfCurrencies","GET",{
-    params: value
-	},{'Content-Type': 'application/x-www-form-urlencoded'},"utf8");
-	
-	return res;
-}
 
 	</script>
 	
@@ -138,7 +128,7 @@ function getListOfCurrencies(){
 		<br/>
 		<hr class="style18">
 		
-
+		<form action="cryptoInterface.ejs" method="post">
 			<input type="hidden" name="id"/>
 			<div class="w-25" class="form-group">
 				<label for="code">Coin Code:</label>
@@ -150,11 +140,11 @@ function getListOfCurrencies(){
 				<input type="text" class="form-control" name="name">
 			</div>
 			<br/>
-			<input type="hidden" name="clicked" value="1"/> 
-			<button onclick="getListOfCurrencies()" class="btn btn-success" value="addCoin" name="btnSaveCoin">Add Coin</button>
+			<input type="hidden" name="clicked" value="1"/>
+			<button type="submit" class="btn btn-success" value="addCoin" name="btnSaveCoin">Add Coin</button>
 			<button type="submit" class="btn btn-primary" value="updateCoin" name="btnUpdateCoin">Update Coin</button>
 			<button type="submit" class="btn btn-danger" value="deleteCoin" name="btnDeleteCoin">Delete Coin</button>
-
+		</form>
 		
 		
 		
