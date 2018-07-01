@@ -43,20 +43,16 @@ $(document).ready(function() {
 
 
 } );
-/**
+
 $(document).ready(function(){	
-	$.get("https://peaceful-lowlands-49839.herokuapp.com/project02/getListOfCurrencies", function(data, status){
-		var t = $('#currencies').DataTable();
-		$.each(data, function (i, item) {
-				t.row.add([data[i].code, data[i].name]).draw(false);
-		});
-    });
+	buildCurrencyTable();
 });	
-**/
+
 	
-function test(){
+function buildCurrencyTable(){
 	$.get("https://peaceful-lowlands-49839.herokuapp.com/project02/getListOfCurrencies", function(data, status){
 		var t = $('#currencies').DataTable();
+		t.empty();
 		$.each(data, function (i, item) {
 				t.row.add([data[i].code, data[i].name]).draw(false);
 		});
@@ -161,7 +157,7 @@ function test(){
 			</div>
 			<br/>
 			<input type="hidden" name="clicked" value="1"/>
-			<button id="b2" onclick="test()" class="btn btn-success" value="addCoin" name="btnSaveCoin">Add Coin</button>
+			<button id="b2" onclick="buildCurrencyTable()" class="btn btn-success" value="addCoin" name="btnSaveCoin">Add Coin</button>
 			<button type="submit" class="btn btn-primary" value="updateCoin" name="btnUpdateCoin">Update Coin</button>
 			<button type="submit" class="btn btn-danger" value="deleteCoin" name="btnDeleteCoin">Delete Coin</button>
 
