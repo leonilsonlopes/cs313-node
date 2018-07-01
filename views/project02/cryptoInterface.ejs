@@ -12,6 +12,7 @@
   <script type="text/javascript" language="javascript" src="https://code.jquery.com/jquery-3.3.1.js"></script>
   <script type="text/javascript" language="javascript" src="https://cdn.datatables.net/1.10.16/js/jquery.dataTables.min.js"></script>
   <script type="text/javascript" language="javascript" src="vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+  <script type="text/javascript" language="javascript" src="js/ajaxCalls.js"></script>
   <link href="vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
   <!-- Custom fonts for this template-->
   <link href="vendor/font-awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css">
@@ -23,41 +24,7 @@
 		<script type="text/javascript" class="init">
 
 
-$(document).ready(function() {
-	
-	var table = $('#currencies').DataTable();
 
-	$('#currencies').on( 'click', 'tbody tr', function () {
-		if ( $(this).hasClass('selected') ) {
-			$(this).removeClass('selected');
-		}
-		else {
-			table.$('tr.selected').removeClass('selected');
-			$(this).addClass('selected');
-		}
-		
-		$('input[name=code]').val(table.row( this ).data()[0]);
-		$('input[name=name]').val(table.row( this ).data()[1]);
-
-	} );
-
-
-} );
-
-$(document).ready(function(){	
-	buildCurrencyTable();
-});	
-
-	
-function buildCurrencyTable(){
-	$.get("https://peaceful-lowlands-49839.herokuapp.com/project02/getListOfCurrencies", function(data, status){
-		var t = $('#currencies').DataTable();
-		$.each(data, function (i, item) {
-			t.row.add([data[i].code, data[i].name]).draw(false);
-		});
-    });
-
-}
 
 
 
@@ -66,40 +33,41 @@ function buildCurrencyTable(){
 	<!-- CLOSE CUSTOM HEAD AREA -->
 	
 		</head>
-		<body class="fixed-nav sticky-footer bg-dark" id="page-top">	  <!-- Navigation-->
+		<body class="fixed-nav sticky-footer bg-dark" id="page-top" >	  <!-- Navigation-->
+		<div id="intro" />
   <nav class="navbar navbar-expand-lg navbar-dark bg-dark fixed-top" id="mainNav">
-    <a class="navbar-brand" href="index.php">Crypto Currencies Trader</a>
+    <a class="navbar-brand" href="#intro">Crypto Currencies Trader</a>
     <button class="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
       <span class="navbar-toggler-icon"></span>
     </button>
     <div class="collapse navbar-collapse" id="navbarResponsive">
       <ul class="navbar-nav navbar-sidenav" id="exampleAccordion">
         <li class="nav-item" data-toggle="tooltip" data-placement="right" title="introPage">
-          <a class="nav-link" href="index.php">
+          <a class="nav-link" href="#intro">
             <i class="fa fa-exclamation-circle"></i>
             <span class="nav-link-text">Intro Page</span>
           </a>
         </li>
         <li class="nav-item" data-toggle="tooltip" data-placement="right" title="Crypto Currencies">
-          <a class="nav-link" href="cryptoCurrencies.php">
+          <a class="nav-link" href="#cryptocurrencies">
             <i class="fa fa-diamond"></i>
             <span class="nav-link-text">Crypto Currencies</span>
           </a>
         </li>
         <li class="nav-item" data-toggle="tooltip" data-placement="right" title="Prices">
-          <a class="nav-link" href="prices.php">
+          <a class="nav-link" href="#prices">
             <i class="fa fa-money"></i>
             <span class="nav-link-text">Prices</span>
           </a>
         </li>
 		<li class="nav-item" data-toggle="tooltip" data-placement="right" title="Trading">
-          <a class="nav-link" href="trading.php">
+          <a class="nav-link" href="#trading">
             <i class="fa fa-line-chart"></i>
             <span class="nav-link-text">Trading</span>
           </a>
         </li>
 		<li class="nav-item" data-toggle="tooltip" data-placement="right" title="History">
-          <a class="nav-link" href="history.php">
+          <a class="nav-link" href="#history">
             <i class="fa fa-navicon"></i>
             <span class="nav-link-text">History</span>
           </a>
@@ -127,7 +95,7 @@ function buildCurrencyTable(){
 	<!-- Breadcrumbs-->
       <ol class="breadcrumb">
         <li class="breadcrumb-item">
-          <a href="index.php">Intro Page</a>
+          <a href="#intro">Intro Page</a>
         </li>
         <li class="breadcrumb-item active">Crypto Currencies</li>
       </ol>
@@ -136,8 +104,8 @@ function buildCurrencyTable(){
 	  
 	  <!-- INTRO PAGE START CONTENT AREA -->
 	  
-	  <div class="container">
-			<h2>Welcome to Crypto Currency Trader</h2>
+	  <div >
+			<h1><b>Welcome to Crypto Currency Trader</b></h1>
 			<div class="panel panel-default">
 				<div class="panel-body">This tool will help you control and track your trades in the Crypto Currencies world.</div>
 			</div>
@@ -152,16 +120,21 @@ function buildCurrencyTable(){
 
 	  <!-- CRYPTOCURRENCIES START CONTENT AREA -->
 
-<hr class="hr-primary" />
-		<div class="container">
-			<h2>Crypto Currencies</h2>
+<br /><hr class="hr-primary" />
+<hr class="hr-primary" id="cryptocurrencies"/>
+<hr class="hr-primary" /><br />
+
+<div style="background: #ebffed" >
+
+		<div >
+			<h1><b>Crypto Currencies</b></h1>
 			<div class="panel panel-default">
 				<div class="panel-body">Manage the crypto coin you want to follow here</div>
 			</div>
 		</div>
 		
 		<br/>
-		<hr class="style18">
+		
 		
 
 			<input type="hidden" name="id"/>
@@ -193,7 +166,7 @@ function buildCurrencyTable(){
 
 		</table>
 		
-	
+</div>	
 	
 	<!-- CRYPTOCURRENCIES CLOSE CONTENT AREA -->	
 	
@@ -202,23 +175,25 @@ function buildCurrencyTable(){
 	
 	<!-- PRICES PAGE START CONTENT AREA -->
 	
-	<hr class="hr-primary" />
-	<div class="container">
-			<h2>Prices</h2>
+	<br/><hr class="hr-primary" />
+<hr class="hr-primary" id="prices" />
+<hr class="hr-primary" /><br/>
+	<div >
+			<h1><b>Prices</b></h1>
 			<div class="panel panel-default">
 				<div class="panel-body">Follow up the lastest price of your coins here.</div>
 			</div>
 		</div>
 				<br/>
-		<hr class="style18">
+		
 
 		<p><h4><b>Price Information:</b></h4></p>
 		<p>New information available each 5 minutes.</p>
 		
 		
-		<form action="prices.php" method="post">			
+		
 			<button type="submit" class="btn btn-success" value="addCoin" name="btnSaveCoin">Refresh Price Information</button>			
-		</form>
+		
 		<br/>
 		<br/>
 		
@@ -247,18 +222,21 @@ function buildCurrencyTable(){
 <!---------------------------------------------------------------------------------------------------->		  
 	  
 	<!-- TRADING START CONTENT AREA -->
-	  <hr class="hr-primary" />
-	  <div class="container">
-			<h2>Trading Area</h2>
+	  <br/><hr class="hr-primary" />
+<hr class="hr-primary" id="trading" />
+<hr class="hr-primary"  /><br/>
+<div style="background: #ebffed">
+
+	  <div >
+			<h1><b>Trading Area</b></h1>
 			<div class="panel panel-default">
 				<div class="panel-body">Manage your wallet and record your Buy and Sell orders here</div>
 			</div>
 		</div>
 		<br/>
 		<br/>
-		<hr class="style18">
+		
 
-		<form action="trading.php" method="post">
 		
 		<!------------------------------------------- START WALLET AREA ------------------------------------------->
 		<p><h3><b>YOUR WALLET</b></h3></p>
@@ -281,7 +259,7 @@ function buildCurrencyTable(){
 		<!------------------------------------------- END WALLET AREA ------------------------------------------->
 			
 		<br/>
-		<hr class="style18">
+		
 
 		
 		<!------------------------------------------- START BUY ORDER AREA ------------------------------------------->
@@ -356,7 +334,7 @@ function buildCurrencyTable(){
 		
 		
 		<br/>
-		<hr class="style18">
+		
 	
 		
 		
@@ -364,7 +342,6 @@ function buildCurrencyTable(){
 		
 		
 		<p><h3><b>SELL ORDERS</b></h3></p>
-		<form action="trading.php" method="post">
 
 		
 			<div class="btn-group">	
@@ -433,9 +410,9 @@ function buildCurrencyTable(){
 		<!------------------------------------------- END SELL ORDER AREA ------------------------------------------->
 	
 
-	</form>
+	
 	  
-	  
+</div>	  
 	  
 	  
 	<!-- TRADING PAGE CLOSE CONTENT AREA -->	
@@ -444,17 +421,19 @@ function buildCurrencyTable(){
 
 	  
 	<!-- HISTORY START CONTENT AREA -->
-	<hr class="hr-primary" />
+	<br/><hr class="hr-primary" />
+<hr class="hr-primary" id="history" />
+<hr class="hr-primary" /><br/>
 	
-	<div class="container">
-			<h2>History Results</h2>
+	<div >
+			<h1><b>History Results</b></h1>
 			<div class="panel panel-default">
 				<div class="panel-body">Verify your trading history and results here.</div>
 			</div>
 		</div>
 	
 		<br/>
-		<hr class="style18">
+		
 		
 		
 		<p><h3><b>BUY ORDERS</b></h3></p>
@@ -479,7 +458,7 @@ function buildCurrencyTable(){
 		
 		
 		<br/>
-		<hr class="style18">
+		
 		
 		
 		<p><h3><b>SELL ORDERS</b></h3></p>
@@ -514,7 +493,7 @@ function buildCurrencyTable(){
 	</div>	
 	
 	<footer class="sticky-footer">
-      <div class="container">
+      <div >
         <div class="text-center">
           <small>Copyright © CS313 Project01 Leonilson Lopes</small>
         </div>
