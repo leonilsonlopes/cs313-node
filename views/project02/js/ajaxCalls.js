@@ -36,7 +36,7 @@ function buildCurrencyTable(){
 
 function saveCurrencyTable(code, name){
 	
-	if(code == "" || name = ""){
+	if(code == "" || name == ""){
 		alert("Please insert CODE and NAME!");		
 		return;
 	}
