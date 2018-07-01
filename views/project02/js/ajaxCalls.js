@@ -41,48 +41,19 @@ function saveCurrencyTable(code, name){
 		return;
 	}
 	
-	var alreadyRecorded = isCoinRecorded(code);
-	
-	alert("isCoinRecorded: " + alreadyRecorded)
-	
-	if(!alreadyRecorded){
-	
-		$.post("https://peaceful-lowlands-49839.herokuapp.com/project02/saveCoinInCurrency?code=" + code + "&name=" + name, function(data, status){
-
-		});
-	}else{
-		alert("Code \"" + code.toUpperCase() + "\" already exists!" );
-	}
-
-}
-
-function isCoinRecorded(code){	
-
-	$.ajax({
-    url : "https://peaceful-lowlands-49839.herokuapp.com/project02/isCoinInRecorded?code=" + code,
-    type : "get",
-    async: false,
-    success : function(data, status) {
-      var result = JSON.stringify(data);
+	$.get("https://peaceful-lowlands-49839.herokuapp.com/project02/isCoinRecorded?code=" + code, function(data, status){
+		var result = JSON.stringify(data);
 		
-		alert("### isCoinRecorded: " + result);
-	
-		if(result == "[]")
-			return false;
-		else
-			return true;
-    },
-    error: function() {
-       connectionError();
-    }
- });
+		if(result == "[]"){
+			$.post("https://peaceful-lowlands-49839.herokuapp.com/project02/saveCoinInCurrency?code=" + code + "&name=" + name, function(data, status){
 
-	/**
-	$.get("https://peaceful-lowlands-49839.herokuapp.com/project02/isCoinInRecorded?code=" + code, function(data, status){
-		
+			});
+			
+		}else{
+			
+			alert("Code \"" + code.toUpperCase() + "\" already exists!" );
+		}
 		
     });
-	
-	**/
 
 }

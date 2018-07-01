@@ -72,7 +72,7 @@ router.all('/deleteCoinFromCurrency', function(req, res){
 	//res.render('week09_ponder/postalCalculator');
 });
 
-router.all('/isCoinInRecorded', function(req, res){  
+router.all('/isCoinRecorded', function(req, res){  
 
 	var sql = "SELECT * FROM currency WHERE code = $1";
 		
