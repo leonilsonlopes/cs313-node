@@ -96,6 +96,8 @@ function getListOfCurrencies(){
 	var sql = "SELECT * FROM currency";
 	var params = '';	
 	
+	var finalResult;
+	
 	pool.query(sql, params, function(err, result) {
 		// If an error occurred...
 		if (err) {
@@ -104,8 +106,12 @@ function getListOfCurrencies(){
 			res.send("ERROR");
 		}		
 		console.log("### FUNCTION: " + result.rows);		
-		return(result.rows);
+		finalResult = result.rows;
 	});
+	
+	console.log("### FUNCTION FINAL RESULT: " + finalResult);
+	
+	return finalResult;
 }
 
 
