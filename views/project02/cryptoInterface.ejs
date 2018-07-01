@@ -61,7 +61,7 @@ $(document).ready(function(){
 			var trHTML = '';
 					
 			$.each(data.Code, function (i, item) {
-				
+				console.log("<tr><td>' + data.code[i] + '</td><td>' + data.name[i] + '</td></tr>");
 				trHTML += '<tr><td>' + data.code[i] + '</td><td>' + data.name[i] + '</td></tr>';
 			});
 			
