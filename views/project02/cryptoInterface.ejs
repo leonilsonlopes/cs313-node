@@ -43,7 +43,7 @@ $(document).ready(function() {
 
 
 } );
-/*
+
 $(document).ready(function(){
 	
 	$.get("https://peaceful-lowlands-49839.herokuapp.com/project02/getListOfCurrencies", function(data, status){
@@ -51,40 +51,17 @@ $(document).ready(function(){
 		var trHTML = '';
 		
 		$.each(data, function (i, item) {
-				//trHTML += '<tr><td>' + data[i].code + '</td><td>' + data[i].name + '</td></tr>';
+				trHTML += '<tr><td>' + data[i].code + '</td><td>' + data[i].name + '</td></tr>';
 				$('#currencies').row.add([data.code, data.name]);
+				$('#currencies').append(trHTML);
 		});
-			
-		//$('#currencies').append(trHTML);
+		/*DataTables instantiation.*/
+		$( "#currencies" ).DataTable();	
+		
     });
 });	
-	*/
-	
-	$ ( document ).ready(function() {
-		$.ajax({
-			type: 'GET',
-			url: 'https://peaceful-lowlands-49839.herokuapp.com/project02/getListOfCurrencies',
-			mimeType: 'json',
-			success: function(data) {
-				$.each(data, function(i, data) {
-					var body = "<tr>";
-					body    += "<td>" + data[i].code + "</td>";	
-					body    += "<td>" + data[i].name + "</td>";	
-					body    += "</tr>";
-					$( "#currencies tbody" ).append(body);
-				});
-				/*DataTables instantiation.*/
-				$( "#currencies" ).DataTable();
-			},
-			error: function() {
-				alert('Failure while building currency table!');
-			}
-		});
-	});
-	
-	
-	
 
+	
 
 
 
