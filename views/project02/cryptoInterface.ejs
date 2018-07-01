@@ -46,6 +46,18 @@ $(document).ready(function() {
 
 $(document).ready(function(){
 	console.log("### Ready");
+	
+	$.get("demo_test.asp", function(data, status){
+        alert("Data: " + data + "\nStatus: " + status);
+		$.each(data.Code, function (i, item) {
+				console.log("<tr><td>' + data.code[i] + '</td><td>' + data.name[i] + '</td></tr>");
+				trHTML += '<tr><td>' + data.code[i] + '</td><td>' + data.name[i] + '</td></tr>';
+		});
+			
+		$('#currencies').append(trHTML);
+    });
+	
+	
     $("#b2").click(function(){
         jQuery.support.cors = true;
 		console.log("### click");
@@ -61,7 +73,7 @@ $(document).ready(function(){
 				
 			var trHTML = '';
 					
-			$.each(data.Code, function (i, item) {
+			$.each(data.code, function (i, item) {
 				console.log("<tr><td>' + data.code[i] + '</td><td>' + data.name[i] + '</td></tr>");
 				trHTML += '<tr><td>' + data.code[i] + '</td><td>' + data.name[i] + '</td></tr>';
 			});
