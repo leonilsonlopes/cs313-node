@@ -106,7 +106,7 @@ function getListOfCurrencies(){
 			res.send("ERROR");
 		}		
 		console.log("### FUNCTION: " + result.rows);		
-		finalResult = result.rows;
+		callback(result.rows);
 	});
 	
 	console.log("### FUNCTION FINAL RESULT: " + finalResult);
