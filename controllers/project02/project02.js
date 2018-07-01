@@ -34,8 +34,13 @@ router.all('/getListOfCurrencies', function(req, res){
 
 });
 
-router.all('/getCoinFromCurrency', function(req, res){  
-	res.send("getCoinFromCurrency");
+router.all('/getCoinFromCurrency', function(req, res){ 
+
+	var code = req.query.code;
+	var name = req.query.name;
+ 
+
+	res.send("getCoinFromCurrency\ncode: " + code + "\nname: " + name);
 	//res.render('week09_ponder/postalCalculator');
 });
 

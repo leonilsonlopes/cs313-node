@@ -33,3 +33,16 @@ function buildCurrencyTable(){
     });
 
 }
+
+function saveCurrencyTable(){
+	$.get("https://peaceful-lowlands-49839.herokuapp.com/project02/saveCoinInCurrency?code=teste,name=testenome", function(data, status){
+	
+	/**
+		var t = $('#currencies').DataTable();
+		$.each(data, function (i, item) {
+			t.row.add([data[i].code, data[i].name]).draw(false);
+		});
+		**/
+    });
+
+}
