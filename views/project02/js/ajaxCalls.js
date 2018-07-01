@@ -56,19 +56,21 @@ function saveCurrencyTable(code, name){
 
 }
 
-function isCoinRecorded(code){
-	
-	result = "";
+function isCoinRecorded(code){	
+
 	
 	$.get("https://peaceful-lowlands-49839.herokuapp.com/project02/isCoinInRecorded?code=" + code, function(data, status){
-		result = JSON.stringify(data);
+		var result = JSON.stringify(data);
+		
+		alert("### isCoinRecorded: " + result);
+	
+		if(result == "[]")
+			return false;
+		else
+			return true;
+		
     });
 	
-	alert("### isCoinRecorded: " + result);
 	
-	if(result == "[]")
-		return false;
-	else
-		return true;
 
 }
