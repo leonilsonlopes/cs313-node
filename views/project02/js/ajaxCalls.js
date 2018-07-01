@@ -35,7 +35,7 @@ function buildCurrencyTable(){
 }
 
 function saveCurrencyTable(code, name){
-	$.post("https://peaceful-lowlands-49839.herokuapp.com/project02/saveCoinInCurrency?code=" + code = "&name=" + name, function(data, status){
+	$.post("https://peaceful-lowlands-49839.herokuapp.com/project02/saveCoinInCurrency?code=" + code + "&name=" + name, function(data, status){
 
     });
 
