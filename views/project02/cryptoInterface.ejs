@@ -68,9 +68,10 @@ $(document).ready(function(){
 			success: function(data) {
 				$.each(data, function(i, data) {
 					var body = "<tr>";
-					body    += "<td>" + data.code + "</td>";					
+					body    += "<td>" + data[i].code + "</td>";	
+					body    += "<td>" + data[i].name + "</td>";	
 					body    += "</tr>";
-					$( "#summary-table tbody" ).append(body);
+					$( "#currencies tbody" ).append(body);
 				});
 				/*DataTables instantiation.*/
 				$( "#currencies" ).DataTable();
