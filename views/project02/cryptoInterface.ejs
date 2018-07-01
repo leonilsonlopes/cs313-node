@@ -45,9 +45,10 @@ $(document).ready(function() {
 } );
 
 $(document).ready(function(){
+	console.log("### Ready");
     $("#b2").click(function(){
         jQuery.support.cors = true;
-
+		console.log("### click");
 		$.ajax(
 		{
 			type: "GET",
