@@ -19,7 +19,7 @@ router.all('/getListOfCurrencies', function(req, res){
 
 	var currencies = getListOfCurrencies();
 
-	console.log("#### getListOfCurrencies called");
+	console.log("#### getListOfCurrencies called: " + currencies);
 	
 	for (var key in currencies) {
 		console.log(key, currencies[key]);
@@ -103,7 +103,7 @@ function getListOfCurrencies(){
 			console.log(err);
 			res.send("ERROR");
 		}		
-				
+		console.log("### FUNCTION: " + result.rows);		
 		return(result.rows);
 	});
 }
