@@ -35,16 +35,38 @@ function buildCurrencyTable(){
 }
 
 function saveCurrencyTable(code, name){
-	$.post("https://peaceful-lowlands-49839.herokuapp.com/project02/saveCoinInCurrency?code=" + code + "&name=" + name, function(data, status){
+	
+	if(code == "" || name = ""){
+		alert("Please insert CODE and NAME!");		
+		return;
+	}
+	
+	var alreadyRecorded = isCoinRecorded(code);
+	
+	alert("isCoinRecorded: " + alreadyRecorded)
+	
+	if(!alreadyRecorded){
+	
+		$.post("https://peaceful-lowlands-49839.herokuapp.com/project02/saveCoinInCurrency?code=" + code + "&name=" + name, function(data, status){
 
-    });
+		});
+	}else{
+		alert("Code \"" + code.toUpperCase() + "\" already exists!" );
+	}
 
 }
 
 function isCoinRecorded(code){
+	
+	result = "";
+	
 	$.get("https://peaceful-lowlands-49839.herokuapp.com/project02/isCoinInRecorded?code=" + code, function(data, status){
-		alert("### data: " + JSON.stringify(data));
-
+		result = JSON.stringify(data));
     });
+	
+	if(result == "[]")
+		return false;
+	else
+		return true;
 
 }
