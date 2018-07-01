@@ -19,6 +19,8 @@ router.all('/getListOfCurrencies', function(req, res){
 
 	var currencies = getListOfCurrencies();
 
+	console.log("#### getListOfCurrencies called");
+	
 	for (var key in currencies) {
 		console.log(key, currencies[key]);
 	}
@@ -89,6 +91,8 @@ router.all('/isCoinInRecorded', function(req, res){
 
 
 function getListOfCurrencies(){
+	
+	console.log("#### getListOfCurrencies FUNCTION called");
 	var sql = "SELECT * FROM currency";
 	var params = '';	
 	
