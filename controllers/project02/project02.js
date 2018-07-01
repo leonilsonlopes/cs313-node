@@ -17,13 +17,16 @@ router.all('/', function(req, res){
  
 router.all('/getListOfCurrencies', function(req, res){  
 
-	var currencies = getListOfCurrencies();
+	getListOfCurrencies(function(error, result){
+		console.log("#### getListOfCurrencies called: " + result);		
+		
+		for (var key in result) {
+			console.log(key, result[key]);
+		}
+	});
 
-	console.log("#### getListOfCurrencies called: " + currencies);
+		
 	
-	for (var key in currencies) {
-		console.log(key, currencies[key]);
-	}
 
 	res.send();
 
@@ -90,7 +93,7 @@ router.all('/isCoinInRecorded', function(req, res){
 });
 
 
-function getListOfCurrencies(){
+function getListOfCurrencies(callback){
 	
 	console.log("#### getListOfCurrencies FUNCTION called");
 	var sql = "SELECT * FROM currency";
@@ -103,10 +106,10 @@ function getListOfCurrencies(){
 		if (err) {
 			console.log("Error in query: ")
 			console.log(err);
-			res.send("ERROR");
+			callback(err, null);
 		}		
 		console.log("### FUNCTION: " + result.rows);		
-		callback(result.rows);
+		callback(null,result.rows);
 	});
 	
 	console.log("### FUNCTION FINAL RESULT: " + finalResult);
