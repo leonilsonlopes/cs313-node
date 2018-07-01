@@ -17,18 +17,20 @@ router.all('/', function(req, res){
  
 router.all('/getListOfCurrencies', function(req, res){  
 
-	getListOfCurrencies(function(error, result){
-		console.log("#### getListOfCurrencies called: " + result);		
-		
-		for (var key in result) {
-			console.log(key, result[key]);
-		}
-	});
-
-		
+	var sql = "SELECT * FROM currency";
+	var params = '';	
 	
-
-	res.send();
+	
+	pool.query(sql, params, function(err, result) {
+		// If an error occurred...
+		if (err) {
+			console.log("Error in query: ")
+			console.log(err);
+			res.send(err);
+		}	
+		
+		res.send(result.rows);
+	});
 
 });
 
@@ -92,14 +94,12 @@ router.all('/isCoinInRecorded', function(req, res){
 	//res.render('week09_ponder/postalCalculator');
 });
 
-
-function getListOfCurrencies(callback){
+/*
+function getListOfCurrencies(callback){	
 	
-	console.log("#### getListOfCurrencies FUNCTION called");
 	var sql = "SELECT * FROM currency";
 	var params = '';	
 	
-	var finalResult;
 	
 	pool.query(sql, params, function(err, result) {
 		// If an error occurred...
@@ -107,15 +107,12 @@ function getListOfCurrencies(callback){
 			console.log("Error in query: ")
 			console.log(err);
 			callback(err, null);
-		}		
-		console.log("### FUNCTION: " + result.rows);		
+		}	
+		
 		callback(null,result.rows);
-	});
+	});	
 	
-	console.log("### FUNCTION FINAL RESULT: " + finalResult);
-	
-	return finalResult;
 }
 
-
+*/
 module.exports = router
