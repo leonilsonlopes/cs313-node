@@ -43,24 +43,26 @@ $(document).ready(function() {
 
 
 } );
-
-$(document).ready(function(){
-	
+/**
+$(document).ready(function(){	
 	$.get("https://peaceful-lowlands-49839.herokuapp.com/project02/getListOfCurrencies", function(data, status){
-		
-		var trHTML = '';
 		var t = $('#currencies').DataTable();
 		$.each(data, function (i, item) {
-				//trHTML += '<tr><td>' + data[i].code + '</td><td>' + data[i].name + '</td></tr>';
 				t.row.add([data[i].code, data[i].name]).draw(false);
 		});
-			
-		//$('#currencies').append(trHTML);
     });
 });	
-
+**/
 	
+function test(){
+	$.get("https://peaceful-lowlands-49839.herokuapp.com/project02/getListOfCurrencies", function(data, status){
+		var t = $('#currencies').DataTable();
+		$.each(data, function (i, item) {
+				t.row.add([data[i].code, data[i].name]).draw(false);
+		});
+    });
 
+}
 
 
 
@@ -159,7 +161,7 @@ $(document).ready(function(){
 			</div>
 			<br/>
 			<input type="hidden" name="clicked" value="1"/>
-			<button id="b2"  class="btn btn-success" value="addCoin" name="btnSaveCoin">Add Coin</button>
+			<button id="b2" onclick="test" class="btn btn-success" value="addCoin" name="btnSaveCoin">Add Coin</button>
 			<button type="submit" class="btn btn-primary" value="updateCoin" name="btnUpdateCoin">Update Coin</button>
 			<button type="submit" class="btn btn-danger" value="deleteCoin" name="btnDeleteCoin">Delete Coin</button>
 
