@@ -61,7 +61,7 @@ function isCoinRecorded(code){
 	result = "";
 	
 	$.get("https://peaceful-lowlands-49839.herokuapp.com/project02/isCoinInRecorded?code=" + code, function(data, status){
-		result = JSON.stringify(data));
+		result = JSON.stringify(data);
     });
 	
 	if(result == "[]")
