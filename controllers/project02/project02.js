@@ -15,6 +15,8 @@ router.all('/', function(req, res){
 	res.render('project02/cryptoInterface');
 }); 
  
+//--------------------- START CURRENCY TABLE OPERATIONS ----------------------------
+ 
 router.all('/getListOfCurrencies', function(req, res){  
 
 	var sql = "SELECT * FROM currency";
@@ -70,6 +72,29 @@ router.all('/deleteCoinFromCurrency', function(req, res){
 	//res.render('week09_ponder/postalCalculator');
 });
 
+router.all('/isCoinInRecorded', function(req, res){  
+
+	var sql = "SELECT * FROM currency WHERE code = $1";
+		
+	var code = req.query.code;
+	var params = [code];
+		
+	pool.query(sql, params, function(err, result) {
+		// If an error occurred...
+		if (err) {
+			console.log("Error in query: ")
+			console.log(err);
+			res.send(err);
+		}	
+		console.log("### result: " + result.rows);
+		res.send(result.rows);
+	});
+});
+
+
+//--------------------- END CURRENCY TABLE OPERATIONS ----------------------------
+
+
 router.all('/getAllBuyOrders', function(req, res){  
 	res.send("getAllBuyOrders");
 	//res.render('week09_ponder/postalCalculator');
@@ -110,30 +135,7 @@ router.all('/getCoinFromWallet', function(req, res){
 	//res.render('week09_ponder/postalCalculator');
 });
 
-router.all('/isCoinInRecorded', function(req, res){  
-	res.send("isCoinInRecorded");
-	//res.render('week09_ponder/postalCalculator');
-});
 
-/*
-function getListOfCurrencies(callback){	
-	
-	var sql = "SELECT * FROM currency";
-	var params = '';	
-	
-	
-	pool.query(sql, params, function(err, result) {
-		// If an error occurred...
-		if (err) {
-			console.log("Error in query: ")
-			console.log(err);
-			callback(err, null);
-		}	
-		
-		callback(null,result.rows);
-	});	
-	
-}
 
-*/
+
 module.exports = router

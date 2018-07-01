@@ -140,16 +140,16 @@
 			<input type="hidden" name="id"/>
 			<div class="w-25" class="form-group">
 				<label for="code">Coin Code:</label>
-				<input type="text" class="form-control" name="code">
+				<input type="text" class="form-control" name="code" id="currencyCode">
 			</div>
 			<br/>
 			<div class="w-25" class="form-group">
 				<label for="name">Coin Name:</label>
-				<input type="text" class="form-control" name="name">
+				<input type="text" class="form-control" name="name" id="currencyName">
 			</div>
 			<br/>
 			<input type="hidden" name="clicked" value="1"/>
-			<button id="b2" onclick="buildCurrencyTable()" class="btn btn-success" value="addCoin" name="btnSaveCoin">Add Coin</button>
+			<button onclick="saveCurrencyTable(document.getElementById('currencyCode').value, document.getElementById('currencyName').value)" class="btn btn-success" value="addCoin" name="btnSaveCoin">Add Coin</button>
 			<button type="submit" class="btn btn-primary" value="updateCoin" name="btnUpdateCoin">Update Coin</button>
 			<button type="submit" class="btn btn-danger" value="deleteCoin" name="btnDeleteCoin">Delete Coin</button>
 
