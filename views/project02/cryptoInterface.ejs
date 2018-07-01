@@ -45,60 +45,19 @@ $(document).ready(function() {
 } );
 
 $(document).ready(function(){
-	console.log("### Ready");
 	
 	$.get("https://peaceful-lowlands-49839.herokuapp.com/project02/getListOfCurrencies", function(data, status){
-        alert("Data: " + JSON.stringify(data) + "\nStatus: " + status);
 		
 		var trHTML = '';
 		
 		$.each(data, function (i, item) {
-			alert("## each");
 				trHTML += '<tr><td>' + data[i].code + '</td><td>' + data[i].name + '</td></tr>';
 		});
 			
 		$('#currencies').append(trHTML);
     });
 	
-	
-    $("#b2").click(function(){
-        jQuery.support.cors = true;
-		console.log("### click");
-		$.ajax(
-		{
-			type: "GET",
-			url: 'https://peaceful-lowlands-49839.herokuapp.com/project02/getListOfCurrencies',
-			data: "{}",
-			contentType: "application/json; charset=utf-8",
-			dataType: "json",
-			cache: false,
-			success: function (data) {
-				
-			var trHTML = '';
-					
-			$.each(data.code, function (i, item) {
-				console.log("<tr><td>' + data.code[i] + '</td><td>' + data.name[i] + '</td></tr>");
-				trHTML += '<tr><td>' + data.code[i] + '</td><td>' + data.name[i] + '</td></tr>';
-			});
-			
-			$('#currencies').append(trHTML);
-			
-			},
-			
-			error: function (msg) {
-				
-				alert(msg.responseText);
-			}
-		});
-    });
 });
-
-
-$(document).ready(function(){
-
-
-})
-
 
 
 
@@ -214,14 +173,7 @@ $(document).ready(function(){
 				<th scope="col">Coin Name</th>
 				</tr>
 			</thead>
-			<tbody>
 
-		<!-- Retrieve Data -->	
-
-				
-			
-			
-			</tbody>
 		</table>
 		
 	
