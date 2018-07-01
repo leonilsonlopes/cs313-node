@@ -36,16 +36,16 @@ router.all('/getListOfCurrencies', function(req, res){
 
 router.all('/getCoinFromCurrency', function(req, res){ 
 
-	var code = req.query.code;
-	var name = req.query.name;
- 
 
-	res.send("getCoinFromCurrency\ncode: " + code + "\nname: " + name);
 	//res.render('week09_ponder/postalCalculator');
 });
 
 router.all('/saveCoinInCurrency', function(req, res){  
-	res.send("saveCoinInCurrency");
+	var code = req.query.code;
+	var name = req.query.name;
+ 
+
+	res.send("saveCoinInCurrency\ncode: " + code + "\nname: " + name);
 	//res.render('week09_ponder/postalCalculator');
 });
 
