@@ -29,6 +29,7 @@ $(document).ready(function() {
 
 	
 function buildCurrencyTable(){
+	alert("service: " + SERVICE);
 	$.get(SERVICE + "getListOfCurrencies", function(data, status){
 		/**
 		var t = $('#currencies').DataTable();
@@ -36,6 +37,8 @@ function buildCurrencyTable(){
 			t.row.add([data[i].code, data[i].name]).draw(false);
 		});
 		**/
+		alert("### data: " + JSON.stringify(data));
+		
 		var currenciesTable = $('#currencies').DataTable();
 		$.each(data, function (i, item) {
 			currenciesTable.row.add(data[i].code,data[i].name);
