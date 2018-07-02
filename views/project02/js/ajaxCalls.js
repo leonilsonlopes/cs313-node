@@ -23,13 +23,24 @@ $(document).ready(function(){
 	buildCurrencyTable();
 });	
 
+function addRowInTable(tableRef, code, name){
+	var t = $(tableRef).DataTable();
+	t.row.add([code, name]).draw(false);
+}
+
 	
 function buildCurrencyTable(){
 	$.get("https://peaceful-lowlands-49839.herokuapp.com/project02/getListOfCurrencies", function(data, status){
+		/**
 		var t = $('#currencies').DataTable();
 		$.each(data, function (i, item) {
 			t.row.add([data[i].code, data[i].name]).draw(false);
 		});
+		**/
+		$.each(data, function (i, item) {
+			addRowInTable('#currencies',data[i].code,data[i].name]);
+		});
+		
     });
 
 }
@@ -49,7 +60,7 @@ function saveCurrencyTable(code, name){
 		if(result == "[]"){
 			$.post("https://peaceful-lowlands-49839.herokuapp.com/project02/saveCoinInCurrency?code=" + code + "&name=" + name, function(data, status){
 				alert("saved: " + JSON.stringify(data) + "\nstatus: " + JSON.stringify(status));
-				location.reload();
+				addRowInTable('#currencies',data.code,data.name]);
 			});
 			
 		}else{			
