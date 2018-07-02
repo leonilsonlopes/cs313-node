@@ -29,6 +29,9 @@ $(document).ready(function() {
 
 	
 function buildCurrencyTable(){
+	
+	$('#currencies tr').remove();
+	
 	$.get(SERVICE + "getListOfCurrencies", function(data, status){
 
 		var t = $('#currencies').DataTable();
@@ -56,8 +59,8 @@ function saveCurrencyTable(code, name){
 		if(result == "[]"){
 			$.post(SERVICE + "saveCoinInCurrency?code=" + code + "&name=" + name, function(data, status){				
 				if(status == "success"){
-					 $('#currencies').DataTable().row.add([code, name]).draw(false);
-					 $('#currencies tr').remove();
+					 //$('#currencies').DataTable().row.add([code, name]).draw(false);
+					 buildCurrencyTable();
 					 alert("Coin " + code + " | " + name + " successfully saved");
 				}else{
 					alert("Coin " + code + " | " + name + " could not be saved!");
