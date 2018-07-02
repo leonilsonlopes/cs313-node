@@ -31,18 +31,12 @@ $(document).ready(function() {
 function buildCurrencyTable(){
 	alert("service: " + SERVICE);
 	$.get(SERVICE + "getListOfCurrencies", function(data, status){
-		/**
+
 		var t = $('#currencies').DataTable();
 		$.each(data, function (i, item) {
 			t.row.add([data[i].code, data[i].name]).draw(false);
 		});
-		**/
-		alert("### data: " + JSON.stringify(data));
-		
-		var currenciesTable = $('#currencies').DataTable();
-		$.each(data, function (i, item) {
-			currenciesTable.row.add(data[i].code,data[i].name);
-		});
+
 		
     });
 
@@ -60,13 +54,14 @@ function saveCurrencyTable(code, name){
 	$.get(SERVICE + "isCoinRecorded?code=" + code, function(data, status){
 		var result = JSON.stringify(data);
 		
-		alert("## result: " + result);
-		
 		if(result == "[]"){
-			$.post(SERVICE + "saveCoinInCurrency?code=" + code + "&name=" + name, function(data, status){
-				alert("code/name: " + data + "\nstatus: " + JSON.stringify(status));
-				if(status == "success")
+			$.post(SERVICE + "saveCoinInCurrency?code=" + code + "&name=" + name, function(data, status){				
+				if(status == "success"){
 					 $('#currencies').DataTable().row.add(code, name);
+					 alert("Coin " + code + " | " + name + " successfully saved");
+				}else{
+					alert("Coin " + code + " | " + name + " could not be saved!");
+				}
 			});
 			
 		}else{			
@@ -75,4 +70,30 @@ function saveCurrencyTable(code, name){
 		
     });
 
+}
+
+function deleteCurrencyTable(code){
+	if(code == ""){
+		alert("Please select or type a coin!");		
+		return;
+	}
+	
+	$.get(SERVICE + "isCoinRecorded?code=" + code, function(data, status){
+		var result = JSON.stringify(data);
+		
+		if(result == "[]"){
+			alert("Coin " + code + " does not exist!");
+			
+		}else{			
+			$.post(SERVICE + "deleteCoinFromCurrency?code=" + code, function(data, status){				
+				if(status == "success"){
+					$('#currencies').DataTable().row('.selected').remove().draw( false );					
+					alert("Coin " + code + " successfully deleted");
+				}else{
+					alert("Coin " + code + " | " + name + " could not be saved!");
+				}
+			});
+		}
+		
+    });
 }

@@ -51,7 +51,6 @@ router.all('/saveCoinInCurrency', function(req, res){
 	
 	
 	pool.query(sql, params, function(err, result) {
-		console.log("#### query: " + sql);
 		// If an error occurred...
 		if (err) {
 			console.log("Error in query: ")
@@ -59,17 +58,26 @@ router.all('/saveCoinInCurrency', function(req, res){
 			res.send(err);
 		}	
 		
-		//res.send("1");
 	});
  
 
-	res.send("saveCoinInCurrency\ncode: " + code + "\nname: " + name);
-	//res.render('week09_ponder/postalCalculator');
 });
 
 router.all('/deleteCoinFromCurrency', function(req, res){  
-	res.send("deleteCoinFromCurrency");
-	//res.render('week09_ponder/postalCalculator');
+	var code = (req.query.code).toUpperCase();
+	
+	var sql = "DELETE FROM currency WHERE code = $1";
+	var params = [code];	
+		
+	pool.query(sql, params, function(err, result) {
+		// If an error occurred...
+		if (err) {
+			console.log("Error in query: ")
+			console.log(err);
+			res.send(err);
+		}	
+		
+	});
 });
 
 router.all('/isCoinRecorded', function(req, res){  
