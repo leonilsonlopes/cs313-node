@@ -1,10 +1,9 @@
-var SERVICE;
-var CURRENCY_TABLE;
+var SERVICE = "https://peaceful-lowlands-49839.herokuapp.com/project02/";
 
 $(document).ready(function() {
-	//set global parameters
-	SERVICE = "https://peaceful-lowlands-49839.herokuapp.com/project02/";
-	CURRENCY_TABLE = $('#currencies').DataTable();
+
+	
+	var table = $('#currencies').DataTable();
 	
 
 	// Handle Currency table selection
@@ -13,12 +12,12 @@ $(document).ready(function() {
 			$(this).removeClass('selected');
 		}
 		else {
-			CURRENCY_TABLE.$('tr.selected').removeClass('selected');
+			table.$('tr.selected').removeClass('selected');
 			$(this).addClass('selected');
 		}
 		
-		$('input[name=code]').val(CURRENCY_TABLE.row( this ).data()[0]);
-		$('input[name=name]').val(CURRENCY_TABLE.row( this ).data()[1]);
+		$('input[name=code]').val(table.row( this ).data()[0]);
+		$('input[name=name]').val(table.row( this ).data()[1]);
 
 	} );
 
@@ -27,10 +26,6 @@ $(document).ready(function() {
 	
 } );
 
-
-function addRowInTable(table, code, name){
-	table.row.add([code, name]).draw(false);
-}
 
 	
 function buildCurrencyTable(){
@@ -41,8 +36,9 @@ function buildCurrencyTable(){
 			t.row.add([data[i].code, data[i].name]).draw(false);
 		});
 		**/
+		var currenciesTable = $('#currencies').DataTable();
 		$.each(data, function (i, item) {
-			addRowInTable(CURRENCY_TABLE,data[i].code,data[i].name);
+			currenciesTable.row.add(data[i].code,data[i].name);
 		});
 		
     });
@@ -67,7 +63,7 @@ function saveCurrencyTable(code, name){
 			$.post(SERVICE + "saveCoinInCurrency?code=" + code + "&name=" + name, function(data, status){
 				alert("code/name: " + data + "\nstatus: " + JSON.stringify(status));
 				if(status == "success")
-					addRowInTable('#currencies',code,name);
+					 $('#currencies').DataTable().row.add(code, name);
 			});
 			
 		}else{			
