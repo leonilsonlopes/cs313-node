@@ -63,7 +63,8 @@ function saveCurrencyTable(code, name){
 		if(result == "[]"){
 			$.post(SERVICE + "saveCoinInCurrency?code=" + code + "&name=" + name, function(data, status){
 				alert("code/name: " + data + "\nstatus: " + JSON.stringify(status));
-				addRowInTable('#currencies',code,name);
+				if(status == "success")
+					addRowInTable('#currencies',code,name);
 			});
 			
 		}else{			
