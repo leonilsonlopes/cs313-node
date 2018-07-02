@@ -56,7 +56,9 @@ router.all('/saveCoinInCurrency', function(req, res){
 			console.log("Error in query: ")
 			console.log(err);
 			res.send(err);
-		}	
+		}
+
+		res.send(result);
 		
 	});
  
@@ -75,7 +77,9 @@ router.all('/deleteCoinFromCurrency', function(req, res){
 			console.log("Error in query: ")
 			console.log(err);
 			res.send(err);
-		}	
+		}
+
+		res.send(result);
 		
 	});
 });
@@ -93,7 +97,9 @@ router.all('/updateCoinFromCurrency', function(req, res){
 			console.log("Error in query: ")
 			console.log(err);
 			res.send(err);
-		}	
+		}
+		
+		res.send(result);
 		
 	});
 });
