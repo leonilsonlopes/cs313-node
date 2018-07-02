@@ -77,15 +77,14 @@ function updateCurrencyTable(code, name){
 		return;
 	}
 	
-	$.get(SERVICE + "isCoinRecorded?code=" + code + "&name=" + name, function(data, status){
+	$.get(SERVICE + "isCoinRecorded?code=" + code, function(data, status){
 		var result = JSON.stringify(data);
 		
 		if(result == "[]"){
 			alert("Coin " + code + " does not exist!");
 			
 		}else{			
-			$.post(SERVICE + "updateCoinFromCurrency?code=" + code, function(data, status){		
-				alert("## update status: " + status);
+			$.post(SERVICE + "updateCoinFromCurrency?code=" + code + "&name=" + name, function(data, status){					
 				if(status == "success"){
 					alert("Coin " + code + " successfully updated");
 				}else{
@@ -110,8 +109,7 @@ function deleteCurrencyTable(code){
 			alert("Coin " + code + " does not exist!");
 			
 		}else{			
-			$.post(SERVICE + "deleteCoinFromCurrency?code=" + code, function(data, status){	
-				alert("## delete status: " + status);
+			$.post(SERVICE + "deleteCoinFromCurrency?code=" + code, function(data, status){					
 				if(status == "success"){
 					$('#currencies').DataTable().row('.selected').remove().draw( false );					
 					alert("Coin " + code + " successfully deleted");
