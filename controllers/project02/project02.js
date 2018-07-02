@@ -66,7 +66,7 @@ router.all('/saveCoinInCurrency', function(req, res){
 });
 
 router.all('/deleteCoinFromCurrency', function(req, res){  
-	var code = (req.query.code).toUpperCase();
+	var code = req.query.code;
 	
 	var sql = "DELETE FROM currency WHERE code = $1";
 	var params = [code];	
