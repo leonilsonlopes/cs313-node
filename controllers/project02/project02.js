@@ -78,7 +78,7 @@ router.all('/deleteCoinFromCurrency', function(req, res){
 			console.log(err);
 			res.send(err);
 		}
-
+		alert("### delete result: " + JSON.stringify(result));
 		res.send(result);
 		
 	});
