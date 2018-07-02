@@ -3,19 +3,18 @@ var CURRENCY_TABLE = $('#currencies').DataTable();
 
 $(document).ready(function() {
 	
-	var table = $(CURRENCY_TABLE).DataTable();
 
 	$('#currencies').on( 'click', 'tbody tr', function () {
 		if ( $(this).hasClass('selected') ) {
 			$(this).removeClass('selected');
 		}
 		else {
-			table.$('tr.selected').removeClass('selected');
+			CURRENCY_TABLE.$('tr.selected').removeClass('selected');
 			$(this).addClass('selected');
 		}
 		
-		$('input[name=code]').val(table.row( this ).data()[0]);
-		$('input[name=name]').val(table.row( this ).data()[1]);
+		$('input[name=code]').val(CURRENCY_TABLE.row( this ).data()[0]);
+		$('input[name=name]').val(CURRENCY_TABLE.row( this ).data()[1]);
 
 	} );
 
@@ -26,8 +25,8 @@ $(document).ready(function(){
 	buildCurrencyTable();
 });	
 
-function addRowInTable(tableRef, code, name){
-	t.row.add([code, name]).draw(false);
+function addRowInTable(table, code, name){
+	table.row.add([code, name]).draw(false);
 }
 
 	
