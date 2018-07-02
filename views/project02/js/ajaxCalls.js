@@ -1,9 +1,13 @@
-var SERVICE = "https://peaceful-lowlands-49839.herokuapp.com/project02/";
-var CURRENCY_TABLE = $('#currencies').DataTable();
+var SERVICE;
+var CURRENCY_TABLE;
 
 $(document).ready(function() {
+	//set global parameters
+	SERVICE = "https://peaceful-lowlands-49839.herokuapp.com/project02/";
+	CURRENCY_TABLE = $('#currencies').DataTable();
 	
 
+	// Handle Currency table selection
 	$('#currencies').on( 'click', 'tbody tr', function () {
 		if ( $(this).hasClass('selected') ) {
 			$(this).removeClass('selected');
@@ -18,12 +22,11 @@ $(document).ready(function() {
 
 	} );
 
-
+	//Build currency table
+	buildCurrencyTable();
+	
 } );
 
-$(document).ready(function(){	
-	buildCurrencyTable();
-});	
 
 function addRowInTable(table, code, name){
 	table.row.add([code, name]).draw(false);
