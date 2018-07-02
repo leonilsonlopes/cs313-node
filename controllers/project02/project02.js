@@ -80,6 +80,24 @@ router.all('/deleteCoinFromCurrency', function(req, res){
 	});
 });
 
+router.all('/updateCoinFromCurrency', function(req, res){  
+	var code = (req.query.code).toUpperCase();
+	var name = (req.query.name);
+	
+	var sql = "UPDATE currency SET code=$1, name=$2 WHERE code = $1";
+	var params = [code,name];	
+		
+	pool.query(sql, params, function(err, result) {
+		// If an error occurred...
+		if (err) {
+			console.log("Error in query: ")
+			console.log(err);
+			res.send(err);
+		}	
+		
+	});
+});
+
 router.all('/isCoinRecorded', function(req, res){  
 
 	var sql = "SELECT * FROM currency WHERE code = $1";

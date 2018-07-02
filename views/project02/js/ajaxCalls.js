@@ -71,6 +71,31 @@ function saveCurrencyTable(code, name){
 
 }
 
+function updateCurrencyTable(code, name){
+	if(code == ""){
+		alert("Please select or type a coin!");		
+		return;
+	}
+	
+	$.get(SERVICE + "isCoinRecorded?code=" + code + "&name=" + name, function(data, status){
+		var result = JSON.stringify(data);
+		
+		if(result == "[]"){
+			alert("Coin " + code + " does not exist!");
+			
+		}else{			
+			$.post(SERVICE + "updateCoinFromCurrency?code=" + code, function(data, status){				
+				if(status == "success"){
+					alert("Coin " + code + " successfully updated");
+				}else{
+					alert("Coin " + code + " | " + name + " could not be updated!");
+				}
+			});
+		}
+		
+    });
+}
+
 function deleteCurrencyTable(code){
 	if(code == ""){
 		alert("Please select or type a coin!");		
@@ -89,7 +114,7 @@ function deleteCurrencyTable(code){
 					$('#currencies').DataTable().row('.selected').remove().draw( false );					
 					alert("Coin " + code + " successfully deleted");
 				}else{
-					alert("Coin " + code + " | " + name + " could not be saved!");
+					alert("Coin " + code + " could not be deleted!");
 				}
 			});
 		}
