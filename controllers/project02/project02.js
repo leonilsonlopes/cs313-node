@@ -108,7 +108,7 @@ router.all('/isCoinRecorded', function(req, res){
 
 	var sql = "SELECT * FROM currency WHERE code = $1";
 		
-	var code = (req.query.code).toUpperCase();
+	var code = (req.query.code);
 	var params = [code];
 		
 	pool.query(sql, params, function(err, result) {
