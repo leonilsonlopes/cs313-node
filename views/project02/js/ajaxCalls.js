@@ -1,6 +1,9 @@
+var SERVICE = "https://peaceful-lowlands-49839.herokuapp.com/project02/";
+var CURRENCY_TABLE = $('#currencies').DataTable();
+
 $(document).ready(function() {
 	
-	var table = $('#currencies').DataTable();
+	var table = $(CURRENCY_TABLE).DataTable();
 
 	$('#currencies').on( 'click', 'tbody tr', function () {
 		if ( $(this).hasClass('selected') ) {
@@ -24,13 +27,12 @@ $(document).ready(function(){
 });	
 
 function addRowInTable(tableRef, code, name){
-	var t = $(tableRef).DataTable();
 	t.row.add([code, name]).draw(false);
 }
 
 	
 function buildCurrencyTable(){
-	$.get("https://peaceful-lowlands-49839.herokuapp.com/project02/getListOfCurrencies", function(data, status){
+	$.get(SERVICE + "getListOfCurrencies", function(data, status){
 		/**
 		var t = $('#currencies').DataTable();
 		$.each(data, function (i, item) {
@@ -38,7 +40,7 @@ function buildCurrencyTable(){
 		});
 		**/
 		$.each(data, function (i, item) {
-			addRowInTable('#currencies',data[i].code,data[i].name);
+			addRowInTable(CURRENCY_TABLE,data[i].code,data[i].name);
 		});
 		
     });
@@ -54,13 +56,13 @@ function saveCurrencyTable(code, name){
 	
 	code = code.toUpperCase();
 	
-	$.get("https://peaceful-lowlands-49839.herokuapp.com/project02/isCoinRecorded?code=" + code, function(data, status){
+	$.get(SERVICE + "isCoinRecorded?code=" + code, function(data, status){
 		var result = JSON.stringify(data);
 		
 		alert("## result: " + result);
 		
 		if(result == "[]"){
-			$.post("https://peaceful-lowlands-49839.herokuapp.com/project02/saveCoinInCurrency?code=" + code + "&name=" + name, function(data, status){
+			$.post(SERVICE + "saveCoinInCurrency?code=" + code + "&name=" + name, function(data, status){
 				alert("code/name: " + data + "\nstatus: " + JSON.stringify(status));
 				addRowInTable('#currencies',code,name);
 			});
