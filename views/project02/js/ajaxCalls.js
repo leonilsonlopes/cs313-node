@@ -61,8 +61,8 @@ function saveCurrencyTable(code, name){
 		
 		if(result == "[]"){
 			$.post("https://peaceful-lowlands-49839.herokuapp.com/project02/saveCoinInCurrency?code=" + code + "&name=" + name, function(data, status){
-				alert("code/name: " + data.code + "/" + data.name + "\nstatus: " + JSON.stringify(status));
-				addRowInTable('#currencies',data.code,data.name);
+				alert("code/name: " + data + "\nstatus: " + JSON.stringify(status));
+				addRowInTable('#currencies',code,name);
 			});
 			
 		}else{			
