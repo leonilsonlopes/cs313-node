@@ -29,7 +29,6 @@ $(document).ready(function() {
 
 	
 function buildCurrencyTable(){
-	alert("service: " + SERVICE);
 	$.get(SERVICE + "getListOfCurrencies", function(data, status){
 
 		var t = $('#currencies').DataTable();
