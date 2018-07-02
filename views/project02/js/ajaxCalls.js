@@ -57,7 +57,7 @@ function saveCurrencyTable(code, name){
 			$.post(SERVICE + "saveCoinInCurrency?code=" + code + "&name=" + name, function(data, status){				
 				if(status == "success"){
 					 $('#currencies').DataTable().row.add([code, name]).draw(false);
-					 $('#currencies').DataTable().empty();
+					 $('#currencies tr').DataTable().remove();
 					 alert("Coin " + code + " | " + name + " successfully saved");
 				}else{
 					alert("Coin " + code + " | " + name + " could not be saved!");
