@@ -1,7 +1,7 @@
 var express = require('express')
   , router = express.Router();
   
-var $ = require('jquery');
+var request = require("request");
 
 const { Pool } = require("pg"); // This is the postgres database connection module.
 
@@ -19,12 +19,16 @@ router.all('/', function(req, res){
 
 //--------------------- START BINANCE CALLS ----------------------------
 
+
+
 router.all('/tickerPrice', function(req, res){  
 	var ticker = (req.query.ticker).toUpperCase();
 	
 	console.log("### ticker: " +ticker);
 
-	$.getJSON("https://api.coinmarketcap.com/v1/ticker/", function(data, status){
+	request("http://www.sitepoint.com", function(error, response, body) {
+		
+		console.log("### body: " + body);
 				
 		for (coin in data) {
 			console.log("### symbol: " + coin.symbol);
