@@ -13,7 +13,7 @@ function buildPriceTable(){
 			var code = data[i].code;
 			var name = data[i].name;
 			
-			$.get(SERVICE + "tickerPrice", function(data, status){			
+			$.get(SERVICE + "tickerPrice?ticker=" + code, function(data, status){			
 				var d = new Date(data.last_updated);
 				t.row.add([
 						code, 
