@@ -1,7 +1,7 @@
 var express = require('express')
   , router = express.Router();
   
-var $ = require('jQuery');
+var $ = require('jquery');
 
 const { Pool } = require("pg"); // This is the postgres database connection module.
 
