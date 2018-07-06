@@ -11,9 +11,30 @@ const connectionString = process.env.DATABASE_URL;
 // Establish a new connection to the data source specified the connection string.
 const pool = new Pool({connectionString: connectionString});
 
+const binance = require('node-binance-api');
+
 router.all('/', function(req, res){  
 	res.render('project02/cryptoInterface');
 }); 
+
+//--------------------- START BINANCE CALLS ----------------------------
+
+binance.prices('BNBBTC', (error, ticker) => {
+  console.log("Price of BNB: ", ticker.BNBBTC);
+});
+
+router.all('/tickerPrice', function(req, res){  
+
+
+	binance.prices('BNBBTC', (error, ticker) => {
+		console.log("Price of BNB: ", ticker.BNBBTC);
+	});
+
+});
+
+
+//--------------------- END BINANCE CALLS ----------------------------
+
  
 //--------------------- START CURRENCY TABLE OPERATIONS ----------------------------
  

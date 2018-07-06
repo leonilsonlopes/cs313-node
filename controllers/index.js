@@ -3,6 +3,7 @@ var express = require('express')
 
 router.use('/week09', require('./week09/week09'));
 router.use('/project02', require('./project02/project02'));
+router.use('/project02', require('./project02/binanceCalls'));
 
 router.all('/', function(req, res) {
   res.render('home/index')
