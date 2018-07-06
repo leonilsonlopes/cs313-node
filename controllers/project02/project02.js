@@ -21,6 +21,8 @@ router.all('/', function(req, res){
 
 router.all('/tickerPrice', function(req, res){  
 	var ticker = (req.query.ticker).toUpperCase();
+	
+	console.log("### ticker: " +ticker);
 
 	$.get("https://api.binance.com/api/v1/ticker/24hr?symbol=USDT" + ticker, function(data, status){
 				
