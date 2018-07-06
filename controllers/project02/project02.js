@@ -26,7 +26,7 @@ router.all('/tickerPrice', function(req, res){
 
 	$.get("https://api.coinmarketcap.com/v1/ticker/", function(data, status){
 				
-		for coin in data {
+		for (coin in data) {
 			console.log("### symbol: " + coin.symbol);
 			if(coin.symbol == ticker){
 				res.send(coin);
