@@ -19,14 +19,10 @@ router.all('/', function(req, res){
 
 //--------------------- START BINANCE CALLS ----------------------------
 
-binance.prices('BNBBTC', (error, ticker) => {
-  console.log("Price of BNB: ", ticker.BNBBTC);
-});
-
 router.all('/tickerPrice', function(req, res){  
 
 
-	binance.prices('BNBBTC', (error, ticker) => {
+	binance.prices('BNBBTC', function(error, ticker){
 		console.log("Price of BNB: ", ticker.BNBBTC);
 	});
 
