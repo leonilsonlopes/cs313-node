@@ -11,7 +11,12 @@ function buildPriceTable(){
 		$.each(data, function (i, item) {
 			t.row.add([
 						data[i].code, 
-						data[i].name
+						data[i].name,
+						1,
+						1,
+						1,
+						1,
+						1
 					]).draw(false);
 		});
 
