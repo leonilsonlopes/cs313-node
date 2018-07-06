@@ -29,9 +29,9 @@ router.all('/tickerPrice', function(req, res){
 	request("https://api.coinmarketcap.com/v1/ticker/", function(error, response, body) {		
 		body = JSON.parse(body);		
 		for (var i=0; i < body.length; i++) {
-			console.log("### coin: " + body[i]);
+			console.log("### coin: " + JSON.stringify(body[i]));
 			if(body[i].symbol == ticker){
-				res.send(coin);
+				res.send(body[i]);
 			}
 		}
 		
