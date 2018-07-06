@@ -1,6 +1,7 @@
 var express = require('express')
   , router = express.Router()
 
+const binance = require('node-binance-api');
 
 const { Pool } = require("pg"); // This is the postgres database connection module.
 
@@ -11,7 +12,6 @@ const connectionString = process.env.DATABASE_URL;
 // Establish a new connection to the data source specified the connection string.
 const pool = new Pool({connectionString: connectionString});
 
-const binance = require('node-binance-api');
 
 router.all('/', function(req, res){  
 	res.render('project02/cryptoInterface');
@@ -20,7 +20,7 @@ router.all('/', function(req, res){
 //--------------------- START BINANCE CALLS ----------------------------
 
 router.all('/tickerPrice', function(req, res){  
-
+	console.log("called tickerPrice");
 
 	binance.prices('BNBBTC', function(error, ticker){
 		console.log("Price of BNB: ", ticker.BNBBTC);
