@@ -19,8 +19,6 @@ function buildPriceTable(){
 			t.row.add([
 						data[i].code, 
 						data[i].name
-						data
-							
 					]).draw(false);
 		});
 
