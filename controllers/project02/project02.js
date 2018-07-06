@@ -1,7 +1,7 @@
 var express = require('express')
-  , router = express.Router()
-
-const binance = require('node-binance-api');
+  , router = express.Router();
+  
+var $ = require('jQuery');
 
 const { Pool } = require("pg"); // This is the postgres database connection module.
 
