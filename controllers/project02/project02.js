@@ -31,7 +31,6 @@ router.all('/tickerPrice', function(req, res){
 		console.log("### body: " + body);
 				
 		for (coin in body) {
-			console.log("### symbol: " + coin.symbol);
 			if(coin.symbol == ticker){
 				res.send(coin);
 			}
