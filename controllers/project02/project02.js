@@ -20,11 +20,13 @@ router.all('/', function(req, res){
 //--------------------- START BINANCE CALLS ----------------------------
 
 router.all('/tickerPrice', function(req, res){  
-	console.log("called tickerPrice");
+	var ticker = (req.query.ticker).toUpperCase();
 
-	binance.prices('BNBBTC', function(error, ticker){
-		console.log("Price of BNB: ", ticker.BNBBTC);
-	});
+	$.get("https://api.binance.com/api/v1/ticker/24hr?symbol=USDT" + ticker, function(data, status){
+				
+		console.log("### symbol: " + data.symbol);
+		
+    });
 
 });
 
