@@ -24,7 +24,7 @@ router.all('/tickerPrice', function(req, res){
 	
 	console.log("### ticker: " +ticker);
 
-	$.ajax("https://api.coinmarketcap.com/v1/ticker/", function(data, status){
+	$.getJSON("https://api.coinmarketcap.com/v1/ticker/", function(data, status){
 				
 		for (coin in data) {
 			console.log("### symbol: " + coin.symbol);
