@@ -25,7 +25,7 @@ $(document).ready(function() {
 	buildCurrencyTable();
 	
 	//Build price table
-	builtPriceTable();
+	buildPriceTable();
 	
 } );
 

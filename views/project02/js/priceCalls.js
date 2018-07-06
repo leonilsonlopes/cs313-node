@@ -4,13 +4,15 @@ const binance = require('node-binance-api');
 
 function buildPriceTable(){
 	
+	binance.prevDay("BNBBTC", function(error, prevDay, symbol) {
+			console.log(symbol+" previous day:", prevDay);
+			console.log("BNB change since yesterday: "+prevDay.priceChangePercent+"%")
+	});
+	
 	
 	$.get(SERVICE + "getListOfCurrencies", function(data, status){
 		
-		binance.prevDay("BNBBTC", (error, prevDay, symbol) => {
-			console.log(symbol+" previous day:", prevDay);
-			console.log("BNB change since yesterday: "+prevDay.priceChangePercent+"%")
-		});
+		
 
 		var t = $('#priceCurrencies').DataTable();
 		$.each(data, function (i, item) {
