@@ -26,11 +26,11 @@ router.all('/tickerPrice', function(req, res){
 	
 	console.log("### ticker: " +ticker);
 
-	request("http://www.sitepoint.com", function(error, response, body) {
+	request("https://api.coinmarketcap.com/v1/ticker/", function(error, response, body) {
 		
 		console.log("### body: " + body);
 				
-		for (coin in data) {
+		for (coin in body) {
 			console.log("### symbol: " + coin.symbol);
 			if(coin.symbol == ticker){
 				res.send(coin);
