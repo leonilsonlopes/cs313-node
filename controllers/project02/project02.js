@@ -24,9 +24,14 @@ router.all('/tickerPrice', function(req, res){
 	
 	console.log("### ticker: " +ticker);
 
-	$.get("https://api.binance.com/api/v1/ticker/24hr?symbol=USDT" + ticker, function(data, status){
+	$.get("https://api.coinmarketcap.com/v1/ticker/", function(data, status){
 				
-		console.log("### symbol: " + data.symbol);
+		for coin in data {
+			console.log("### symbol: " + coin.symbol);
+			if(coin.symbol == ticker){
+				res.send(coin);
+			}
+		}
 		
     });
 
