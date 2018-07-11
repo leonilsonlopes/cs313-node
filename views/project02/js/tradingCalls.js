@@ -9,7 +9,7 @@ function buildBuyDropDown(){
 			var code = data[i].code;
 			var name = data[i].name;
 
-			$('#buyDropDownList').append("<div class='dropdown-divider'></div><a class='dropdown-item' onclick='buildBuySelectedCoin(\' -- " + 'xxxx' + " -- \')'>" + code + ' - ' + name + '</a>');
+			$('#buyDropDownList').append("<div class='dropdown-divider'></div><a class='dropdown-item' onclick='buildBuySelectedCoin(\' -- -- \')'>" + code + ' - ' + name + '</a>');
 			
 
 		});
