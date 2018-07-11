@@ -2,6 +2,7 @@ var SERVICE = "https://peaceful-lowlands-49839.herokuapp.com/project02/";
 
 function buildBuyDropDown(){
 	
+	alert("called buildBuyDropDown");
 	
 	$.get(SERVICE + "getListOfCurrencies", function(data, status){
 				
