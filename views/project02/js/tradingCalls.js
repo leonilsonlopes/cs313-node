@@ -11,8 +11,8 @@ function buildBuyDropDown(){
 			
 			var code = data[i].code;
 			var name = data[i].name;
-			
-			t.append("<div class='dropdown-divider'></div><a class='dropdown-item'>" . code . ' - ' . name .'</a>';";
+			alert("building drop down: " + code + " | " + name);
+			t.append("<div class='dropdown-divider'></div><a class='dropdown-item'>" + code + ' - ' + name + '</a>');
 			
 
 		});
