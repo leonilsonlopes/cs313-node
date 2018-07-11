@@ -28,7 +28,7 @@ $(document).ready(function() {
 	buildPriceTable();
 	
 	//Build Buy DropDown list
-	buildBuyDropDown():
+	buildBuyDropDown();
 	
 } );
 
