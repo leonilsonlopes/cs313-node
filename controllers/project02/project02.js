@@ -32,6 +32,8 @@ router.all('/tickerPrice', function(req, res){
 			}
 		}
 		
+		res.send("NOT FOUND");
+		
     });
 
 });
