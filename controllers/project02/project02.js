@@ -155,9 +155,8 @@ router.all('/isCoinRecorded', function(req, res){
 
 router.all('/post/buyorder/coin', function(req, res){  
 
-	console.log("#### from ws: " + req.query.code);
+	console.log("#### from ws: " + JSON.stringigy(req.query));
 
-	/**
 	var code = (req.query.code).toUpperCase();
 	var name = (req.query.name);
 	var price = (req.query.price);
@@ -178,7 +177,7 @@ router.all('/post/buyorder/coin', function(req, res){
 		res.send(result);
 		
 	});
-	**/
+
 
 });
 

@@ -33,30 +33,51 @@ function buildBuySelectedCoin(selected){
 		var t = $('#tableSelectedBuyCoin').DataTable();
 		t.clear();
 			
-			$.get(SERVICE + "tickerPrice?ticker=" + code, function(data, status){
-				var d = new Date(Number(data.last_updated)*1000);
-				t.row.add([
-						code, 
-						name,
-						"$" + data.price_usd,
-						data.percent_change_1h + "%",
-						data.percent_change_24h + "%",
-						data.percent_change_7d + "%",
-						(d.getMonth()+1) + '/' + d.getDate() + '/' + d.getFullYear() + " - " + d.getHours() + ':' + d.getMinutes() + ':' + d.getSeconds()
+		$.get(SERVICE + "tickerPrice?ticker=" + code, function(data, status){
+			var d = new Date(Number(data.last_updated)*1000);
+			t.row.add([
+					code, 
+					name,
+					"$" + data.price_usd,
+					data.percent_change_1h + "%",
+					data.percent_change_24h + "%",
+					data.percent_change_7d + "%",
+					(d.getMonth()+1) + '/' + d.getDate() + '/' + d.getFullYear() + " - " + d.getHours() + ':' + d.getMinutes() + ':' + d.getSeconds()
 					
-					]).draw(false);
+			]).draw(false);
 					
-			});
+		});
 
 }
 
-function buyCoin(coinCode){
+function buyCoin(coinCode, quantity){
 	
-	alert("#### buyCoinCalled - Param: " + coinCode);
-
-	$.post(SERVICE + "/post/buyorder/coin?code=" + coinCode, function(data, status){
+	try{
+		quantity = Number(quantity);
 		
-					
+		if(!(number > 0)){
+			throw;
+		}
+		
+	}catch(er){
+		alert("Insert a valid number higher than 0");
+		return;
+	}
+	
+	$.get(SERVICE + "tickerPrice?ticker=" + code, function(data, status){
+			var currentPrice = Number(data.price_usd);
+			var totalPaid = currentPrice * quantity;
+			
+			console.log("### ticker: " + JSON.stringify(data));
+			
+			$.post(SERVICE + "/post/buyorder/coin?code=" + coinCode + "&?name=" + data.name + "&?price=" + currentPrice + "&?quantity=" + quantity + "&?totalPaid=" + totalPaid, function(data, status){
+				if(status != "success"){
+					alert("Could not save your BUY ORDER!");
+				}
+			});
+				
 	});
+
+	
 
 }
