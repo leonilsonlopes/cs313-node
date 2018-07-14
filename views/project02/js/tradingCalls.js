@@ -259,7 +259,7 @@ function buildWalletTable(){
 
 
 function updateWallet(coinCode, quantity, total, operation){
-	
+	/**
 	quantity = Number(quantity);
 	total = Number(total);
 	
@@ -334,5 +334,5 @@ function updateWallet(coinCode, quantity, total, operation){
 	
 	});
 
-	
+	**/
 }
