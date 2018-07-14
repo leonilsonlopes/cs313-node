@@ -22,7 +22,7 @@ function buildBuyDropDown(){
 
 function buildBuySelectedCoin(selected){
 	
-		$('#buyDropDownList').click(function(e){
+		$('#buyDropDownList li > a').click(function(e){
 			alert("selected: " + this.innerHTML);
 		});
 		
