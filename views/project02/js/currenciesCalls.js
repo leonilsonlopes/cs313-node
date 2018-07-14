@@ -34,7 +34,7 @@ $(document).ready(function() {
 	buildBuyOrderHistory();
 	
 	//Build wallet table;
-	buildWalletTable;
+	buildWalletTable();
 	
 	
 } );
