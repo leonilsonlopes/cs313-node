@@ -131,15 +131,16 @@ function buildWalletTable(){
 			$.get(SERVICE + "tickerPrice?ticker=" + code, function(data, status){
 				var currentPrice = Number(data.price_usd).toFixed(2);				
 				var totalCurrentPrice = currentPrice * quantity;
-				var percentResult = ((totalCurrentPrice / totalPaidValue) - 1)*100;
+				var percentResult = (((totalCurrentPrice / totalPaidValue) - 1)*100).toFixed(2);
 				
 				t.row.add([
 						code, 
 						name,
 						quantity,
-						totalPaidValue,
-						totalCurrentPrice,
-						percentResult
+						"$" + totalPaidValue,
+						"$" + currentPrice,
+						"$" + totalCurrentPrice,
+						percentResult + "%"
 					]).draw(false);	
 				
 			});			
