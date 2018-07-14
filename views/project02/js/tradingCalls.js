@@ -54,7 +54,7 @@ function buyCoin(coinCode){
 	
 	alert("#### buyCoinCalled - Param: " + coinCode);
 
-	$.get(SERVICE + "/post/buyorder/:" + coinCode, function(data, status){
+	$.post(SERVICE + "/post/buyorder/?" + coinCode, function(data, status){
 		
 					
 	});
