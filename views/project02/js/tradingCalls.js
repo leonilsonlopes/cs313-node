@@ -56,7 +56,7 @@ function buyCoin(coinCode, quantity){
 		quantity = Number(quantity);
 		
 		if(!(number > 0)){
-			throw;
+			
 		}
 		
 	}catch(er){
