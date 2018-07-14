@@ -149,7 +149,7 @@ function deleteCurrencyTable(code){
 			
 		}else{	
 
-			$.get(SERVICE + "/get/wallet/coin?code=" + coinCode, function(data, status){
+			$.get(SERVICE + "/get/wallet/coin?code=" + code, function(data, status){
 				
 				var isCoinInWallet = JSON.stringify(data);
 			
