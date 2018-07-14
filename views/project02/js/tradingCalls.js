@@ -268,7 +268,7 @@ function updateWallet(coinCode, quantity, total, operation){
 		total = total * -1;
 	}
 
-	/**
+
 	
 	//Check if coin is already present in wallet
 	$.get(SERVICE + "/get/wallet/coin?code=" + coinCode, function(data, status){
@@ -286,7 +286,7 @@ function updateWallet(coinCode, quantity, total, operation){
 				var newTotalPaid = (total + currentTotalPaid).toFixed(2);	
 
 				//If quantity gets 0 - DELETE coin from wallet
-				if(newQuantity =< 0){
+				if(newQuantity <= 0){
 					
 					$.get(SERVICE + "/delete/wallet/coin?code=" + coinCode, function(data, status){
 						
@@ -336,5 +336,5 @@ function updateWallet(coinCode, quantity, total, operation){
 	
 	});
 
-	**/
+
 }
