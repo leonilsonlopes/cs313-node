@@ -180,9 +180,9 @@ function sellCoin(coinCode, quantity){
 			
 					$.get(SERVICE + "/get/wallet/coin?code=" + coinCode, function(data, status){
 						
-						var priceWallet = Number(data[0].paid_value);
+						var priceWallet = (Number(data[0].paid_value)).toFixed(2);
 						var resultUsd = (totalPaid - (priceWallet * quantity)).toFixed(2);
-						var percentResult = ((totalPaid / (priceWallet * quantity)) - 1) * 100;
+						var percentResult = (((totalPaid / (priceWallet * quantity)) - 1) * 100).toFixed(2);
 										
 						$.post(SERVICE + "/post/sellorder/coin?code=" + coinCode + "&name=" + name + "&price_wallet=" + priceWallet + "&price_sell" + priceSell + "&quantity=" + quantity + "&total=" + totalPaid + "&result=" + resultUsd + "&percent_result=" + percentResult, function(data, status){
 							if(status = "success"){
