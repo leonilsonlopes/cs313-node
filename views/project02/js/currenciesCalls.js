@@ -140,6 +140,7 @@ function deleteCurrencyTable(code){
 				if(status == "success"){
 					$('#currencies').DataTable().row('.selected').remove().draw( false );					
 					alert("Coin " + code + " successfully deleted");
+					buildPriceTable();
 				}else{
 					alert("Coin " + code + " could not be deleted!");
 				}
