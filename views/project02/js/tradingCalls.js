@@ -259,7 +259,7 @@ function buildWalletTable(){
 
 
 function updateWallet(coinCode, quantity, total, operation){
-	/**
+	
 	quantity = Number(quantity);
 	total = Number(total);
 	
@@ -268,6 +268,8 @@ function updateWallet(coinCode, quantity, total, operation){
 		total = total * -1;
 	}
 
+	/**
+	
 	//Check if coin is already present in wallet
 	$.get(SERVICE + "/get/wallet/coin?code=" + coinCode, function(data, status){
 		
