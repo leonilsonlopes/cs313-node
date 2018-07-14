@@ -163,7 +163,7 @@ router.all('/post/buyorder/coin', function(req, res){
 	var quantity = (req.query.quantity);
 	var totalPaid = (req.query.totalPaid);
 	
-	var sql = "INSERT INTO buy_order(code, name, price, quantity, total) VALUES($1, :$2, :$3, :$4, :$5)";
+	var sql = "INSERT INTO buy_order(code, name, price, quantity, total) VALUES($1, $2, $3, $4, $5)";
 	var params = [code, name, price, quantity, totalPaid];	
 		
 	pool.query(sql, params, function(err, result) {
