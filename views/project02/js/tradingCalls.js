@@ -9,7 +9,7 @@ function buildBuyDropDown(){
 			var code = data[i].code;
 			var name = data[i].name;			
 			
-			$('#buyDropDownList').append("<div class='dropdown-divider'></div><li class='dropdown-item' onclick='buildBuySelectedCoin(this.innerHTML)'><a>" + code + ' - ' + name + '</a></li>');
+			$('#buyDropDownList').append("<div class='dropdown-divider'></div><li class='dropdown-item' onclick='buildBuySelectedCoin(this.innerHTML)'>" + code + ' - ' + name + '</li>');
 			
 
 		});
@@ -19,9 +19,6 @@ function buildBuyDropDown(){
 
 }
 
-		$('#buyDropDownList li > a').click(function(e){
-			alert("selected: " + this.innerHTML);
-		});
 
 
 function buildBuySelectedCoin(selected){
