@@ -65,13 +65,15 @@ function buyCoin(coinCode, quantity){
 	}
 	
 	$.get(SERVICE + "tickerPrice?ticker=" + coinCode, function(data, status){
-			var currentPrice = Number(data.price_usd);
-			var totalPaid = currentPrice * quantity;
+			var currentPrice = Number(data.price_usd).toFixed(2);
+			var totalPaid = (currentPrice * quantity).toFixed(2);
 			
 			console.log("### ticker: " + JSON.stringify(data));
 			
 			$.post(SERVICE + "/post/buyorder/coin?code=" + coinCode + "&name=" + data.name + "&price=" + currentPrice + "&quantity=" + quantity + "&totalPaid=" + totalPaid, function(data, status){
-				if(status != "success"){
+				if(status = "success"){
+					alert("Buy Order Successfully saved!\nTicker: " + coinCode + "\Name: " + data.name + "\nPaid Price: " + currentPrice + "\nQuantity: " + quantity + "\nTotal Paid: " + totalPaid);
+				}else{
 					alert("Could not save your BUY ORDER!");
 				}
 			});
