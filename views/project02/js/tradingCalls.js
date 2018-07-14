@@ -195,7 +195,7 @@ function updateWallet(coinCode, quantity, totalPaid, operation){
 				
 				console.log("### get coin in wallet - id: " + id + " | newQuantity: " + newQuantity + " | newTotalPaid: " + newTotalPaid);
 				
-				$.get(SERVICE + "/patch/wallet/coin?id=" + id + "&newQuantity=" + newQuantity + "&totalPaid=" + newTotalPaid, function(data, status){
+				$.get(SERVICE + "/patch/wallet/coin?id=" + id + "&quantity=" + newQuantity + "&totalPaid=" + newTotalPaid, function(data, status){
 					if(status = "success"){
 						alert("Wallet Successfully Updated! Existing coin updated in your wallet.\nCoin: " + coinCode + "\nQuantity: " + quantity + "\nTotal Paid: " + totalPaid);					
 						buildWalletTable();
