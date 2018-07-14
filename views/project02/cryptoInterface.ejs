@@ -325,11 +325,11 @@
 				<button type="button" class="btn btn-primary dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
 					Select a Coin to SELL
 				</button>		
-				<div class="dropdown-menu">
+				<ul class="dropdown-menu" id="sellDropDownList">
 				
-	
+		
 				
-				</div>				
+				</ul>				
 			</div>	
 
 
@@ -353,32 +353,15 @@
 			</tbody>
 		</table>
 		
-				<input type="hidden" id="selectedSellCoin" name="selectedSellCoin"/>
+				<input type="hidden" id="selectedCoinToSell" name="selectedCoinToSell"/>
 				
-		<?php 
-		
-			if($_POST['btnSellCoin'] != ""){				
-				
-				$quantity = round(floatval($_POST['qttySell']),4);
-				$coinInfo = getCoinInfoRaw($_POST['btnSellCoin']);				
-				$lastPrice = round(floatval($coinInfo['price_usd']),4);
-				
-
-				if($quantity > 0){					
-					saveSellOrder($_POST['btnSellCoin'], $lastPrice, $quantity);						
-				}else{
-					showAlert("cannot be empty or 0", "Quantity ", "danger");
-				}			
-			}
-							
-		?>
 						
 				<div class="input-group mb-3">
 						<div class="input-group-prepend">
 						<span class="input-group-text" id="inputGroup-sizing-default">Enter quantity:</span>
 						</div>
 						<input type="text" name="qttySell" class="form-control" aria-label="Default" aria-describedby="inputGroup-sizing-default">
-						<?php echo "<button type=\"submit\" class=\"btn btn-success\" name=\"btnSellCoin\" value=\"" . $selectedSellCoin . "\">Sell <b>" .  $selectedSellCoin . "</b> Coin</button>"?>
+						<button class="btn btn-success" name="btnSellCoin" onclick='sellCoin(document.getElementById("selectedCoinToSell").value,document.getElementById("qttySell").value)'>SELL</button>
 				</div>	
 		
 		

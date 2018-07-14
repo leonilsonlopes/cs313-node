@@ -83,6 +83,55 @@ function buyCoin(coinCode, quantity){
 	
 }
 
+function buildSellDropDown(){
+	
+	$.get(SERVICE + "/get/wallet/coin", function(data, status){
+				
+		$.each(data, function (i, item) {
+			
+			var code = data[i].code;
+			var name = data[i].name;			
+			
+			$('#sellDropDownList').append("<div class='dropdown-divider'></div><li class='dropdown-item' onclick='buildSellSelectedCoin(this.innerHTML)'>" + code + ' - ' + name + '</li>');
+			
+
+		});
+
+		
+    });
+
+}
+
+function buildSellSelectedCoin(selected){
+	
+		
+		selected = selected.split(" - ");
+		var code = selected[0];
+		var name = selected[1];
+		
+		$('#selectedCoinToSell').val(code);
+		
+		var t = $('#tableSelectedSellCoin').DataTable();
+		t.clear();
+			
+		$.get(SERVICE + "tickerPrice?ticker=" + code, function(data, status){
+			var d = new Date(Number(data.last_updated)*1000);
+			t.row.add([
+					code, 
+					name,
+					"$" + data.price_usd,
+					data.percent_change_1h + "%",
+					data.percent_change_24h + "%",
+					data.percent_change_7d + "%",
+					(d.getMonth()+1) + '/' + d.getDate() + '/' + d.getFullYear() + " - " + d.getHours() + ':' + d.getMinutes() + ':' + d.getSeconds()
+					
+			]).draw(false);
+					
+		});
+
+}
+
+
 function buildWalletTable(){
 	
 	$.get(SERVICE + "/get/wallet/coin", function(data, status){

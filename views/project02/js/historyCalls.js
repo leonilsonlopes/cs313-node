@@ -35,22 +35,12 @@ function buildSellOrderHistory(){
 	
 	$.get(SERVICE + "/get/sellorder", function(data, status){
 		
-			var code = (req.query.code).toUpperCase();
-	var name = req.query.name;
-	var priceWallet = req.query.price_wallet;
-	var priceSell = req.query.price_sell;
-	var quantity = req.query.quantity;
-	var total = req.query.total
-	var resultUsd = req.query.result_usd;
-	var percentResult = req.query.result_percent;
-				
-
 		var t = $('#tableShowSellOrders').DataTable();
 		t.clear();
 		$.each(data, function (i, item) {
 			
 			var code = data[i].code;
-			var name = data[i]..name;
+			var name = data[i].name;
 			var priceWallet = data[i].price_wallet;
 			var priceSell = data[i].price_sell;
 			var quantity = data[i].quantity;
