@@ -53,10 +53,10 @@ function buildCurrencyTable(){
 
 }
 
-function saveCurrencyTable(code, name){
+function saveCurrencyTable(code){
 	
-	if(code == "" || name == ""){
-		alert("Please insert CODE and NAME!");		
+	if(code == ""){
+		alert("Please insert a CODE!");		
 		return;
 	}
 	
@@ -72,6 +72,7 @@ function saveCurrencyTable(code, name){
 				if(data == "NOT FOUND"){
 					alert("Coin code \"" + code + "\" does not exist! Please refer to https://coinmarketcap.com/ for valid crypto coins.");
 				}else{
+					var name = data.name;
 					$.post(SERVICE + "saveCoinInCurrency?code=" + code + "&name=" + name, function(data, status){				
 						if(status == "success"){
 							$('#currencies').DataTable().row.add([code, name]).draw(false);					 
