@@ -175,7 +175,7 @@ function isCoinInWallet(code){
 function updateWallet(coinCode, quantity, totalPaid, operation){
 	
 	quantity = Number(quantity);
-	totalPaid = (Number(totalPaid)).toFixed(2);
+	totalPaid = Number(totalPaid);
 	
 	var coinInWallet = isCoinInWallet(coinCode);
 	
@@ -190,8 +190,8 @@ function updateWallet(coinCode, quantity, totalPaid, operation){
 				var id = data[0].id + "";
 				var currentQuantity = Number(data[0].quantity);
 				var newQuantity = currentQuantity + quantity;
-				var currentTotalPaid = (Number(data[0].paid_value)).toFixed(2);
-				var newTotalPaid = totalPaid + currentTotalPaid;
+				var currentTotalPaid = Number(data[0].paid_value);
+				var newTotalPaid = (totalPaid + currentTotalPaid).toFixed(2);
 				
 				console.log("### get coin in wallet - id: " + id + " | newQuantity: " + newQuantity + " | newTotalPaid: " + newTotalPaid);
 				
