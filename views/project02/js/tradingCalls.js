@@ -34,7 +34,7 @@ function buildBuySelectedCoin(selected){
 		t.clear();
 			
 			$.get(SERVICE + "tickerPrice?ticker=" + code, function(data, status){
-				var d = new Date(data.last_updated);
+				var d = new Date(Number(data.last_updated)*1000);
 				t.row.add([
 						code, 
 						name,
@@ -42,8 +42,8 @@ function buildBuySelectedCoin(selected){
 						data.percent_change_1h + "%",
 						data.percent_change_24h + "%",
 						data.percent_change_7d + "%",
-						//(d.getMonth()+1) + '/' + d.getDate() + '/' + d.getFullYear()
-						(data.last_updated)
+						(d.getMonth()+1) + '/' + d.getDate() + '/' + d.getFullYear()
+						//(data.last_updated)
 					]).draw(false);
 					
 			});
