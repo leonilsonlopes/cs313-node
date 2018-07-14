@@ -161,8 +161,7 @@ function isCoinInWallet(code){
 	var ret = false;
 
 	$.get(SERVICE + "/get/wallet/coin?code=" + code, function(data, status){
-		var result = JSON.stringify(data);
-		
+		var result = JSON.stringify(data);		
 		if(!result == "[]"){
 			ret = true;			
 		}
@@ -177,25 +176,33 @@ function updateWallet(coinCode, quantity, totalPaid, operation){
 	
 	var coinInWallet = isCoinInWallet(coinCode);
 	
-	if(coinInWallet){
+	//Check if coin is already present in wallet
+	$.get(SERVICE + "/get/wallet/coin?code=" + code, function(data, status){
 		
-	}else{
-		
-		if(operation == "buy"){
-		
-			$.get(SERVICE + "/post/wallet/coin?code=" + coinCode + "&quantity=" + quantity + "&totalPaid=" + totalPaid, function(data, status){
-				if(status = "success"){
-						alert("Wallet Successfully Updated!\Coin: " + coinCode + "\nQuantity: " + quantity + "\nTotal Paid: " + totalPaid);					
-						buildWalletTable();
-				}else{
-						alert("Could not save your BUY ORDER!");
-				}		
-			});
+		var isCoinInWallet = JSON.stringify(data);		
+		if(isCoinInWallet != "[]"){
+			console.log("### existing coin: " + JSON.stringify(data));
 			
 		}else{
-			alert("Coin does not exist in wallet! Cannot be sold!");
-		}
-	}
+			
+			if(operation == "buy"){
 		
+				$.get(SERVICE + "/post/wallet/coin?code=" + coinCode + "&quantity=" + quantity + "&totalPaid=" + totalPaid, function(data, status){
+					if(status = "success"){
+						alert("Wallet Successfully Updated!\Coin: " + coinCode + "\nQuantity: " + quantity + "\nTotal Paid: " + totalPaid);					
+						buildWalletTable();
+					}else{
+						alert("Could not save your BUY ORDER!");
+					}		
+				});
+			
+			}else{
+				alert("Coin does not exist in wallet! Cannot be sold!");
+			}
+			
+		}
+	
+	 });
+
 	
 }
