@@ -192,7 +192,7 @@ function updateWallet(coinCode, quantity, totalPaid, operation){
 				
 				$.get(SERVICE + "/patch/wallet/coin?id=" + id + "&quantity=" + (quantity + currentQuantity) + "&totalPaid=" + (totalPaid + currentTotalPaid) , function(data, status){
 					if(status = "success"){
-						alert("Wallet Successfully Updated! Existing coin updated.\Coin: " + coinCode + "\nQuantity: " + quantity + "\nTotal Paid: " + totalPaid);					
+						alert("Wallet Successfully Updated! Existing coin updated in your wallet.\nCoin: " + coinCode + "\nQuantity: " + quantity + "\nTotal Paid: " + totalPaid);					
 						buildWalletTable();
 					}else{
 						alert("Could not save your BUY ORDER!");
