@@ -186,7 +186,7 @@ function sellCoin(coinCode, quantity){
 										
 						$.post(SERVICE + "/post/sellorder/coin?code=" + coinCode + "&name=" + name + "&price_wallet=" + priceWallet + "&price_sell" + priceSell + "&quantity=" + quantity + "&total=" + totalPaid + "&result=" + resultUsd + "&percent_result=" + percentResult, function(data, status){
 							if(status = "success"){
-								alert("Sell Order Successfully saved!\nTicker: " + coinCode + "\nName: " + name + "\nPrice Wallet: " + priceWallet + "\nPrice Sell: " + priceSell + "\nQuantity: " + quantity + "\nTotal Sell: " + total + "\nResult USD: $" + resultUsd + "\nPercent Result: " + percentResult + "%");
+								alert("Sell Order Successfully saved!\nTicker: " + coinCode + "\nName: " + name + "\nPrice Wallet: " + priceWallet + "\nPrice Sell: " + priceSell + "\nQuantity: " + quantity + "\nTotal Sell: " + totalPaid + "\nResult USD: $" + resultUsd + "\nPercent Result: " + percentResult + "%");
 								updateWallet(coinCode, quantity, totalPaid, "sell");
 								buildBuyOrderHistory();
 							}else{
