@@ -33,6 +33,9 @@ $(document).ready(function() {
 	//Build Buy Order History table
 	buildBuyOrderHistory();
 	
+	//Build Sell Order History table
+	buildSellOrderHistory();
+	
 	//Build wallet table;
 	buildWalletTable();
 	

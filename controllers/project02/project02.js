@@ -185,9 +185,31 @@ router.all('/post/buyorder/coin', function(req, res){
 
 
 
-router.all('/saveSellOrder', function(req, res){  
-	res.send("saveSellOrder");
-	//res.render('week09_ponder/postalCalculator');
+router.all('/post/sellorder/coin', function(req, res){  
+
+	var code = (req.query.code).toUpperCase();
+	var name = req.query.name;
+	var priceWallet = req.query.price_wallet;
+	var priceSell = req.query.price_sell;
+	var quantity = req.query.quantity;
+	var total = req.query.total
+	var resultUsd = req.query.result_usd;
+	var percentResult = req.query.result_percent;
+	
+	var sql = "INSERT INTO sell_order(code, name, price_wallet, price_sell, quantity, total, result, percent_result) VALUES($1, $2, $3, $4, $5, $6, $7, $8)";
+	var params = [code, name, priceWallet, priceSell, quantity, total, resultUsd, percentResult];	
+		
+	pool.query(sql, params, function(err, result) {
+		// If an error occurred...
+		if (err) {
+			console.log("Error in query: ")
+			console.log(err);
+			res.send(err);
+		}
+		
+		res.send(result);
+		
+	});
 });
 
 router.all('/get/wallet/coin', function(req, res){ 
@@ -284,7 +306,7 @@ router.all('/get/buyorder', function(req, res){
 	});
 });
 
-router.all('/getAllSellOrders', function(req, res){  
+router.all('/get/sellorder', function(req, res){  
 	var sql = "SELECT * FROM sell_order";
 	var params = '';	
 	
