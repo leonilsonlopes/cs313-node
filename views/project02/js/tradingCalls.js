@@ -33,13 +33,15 @@ function buildBuyOrderHistory(){
 			var price = data[i].price;
 			var quantity = data[i].quantity;
 			var total = data[i].total;
+			var date = data[i].date;
 			
 			t.row.add([
 						code, 
 						name,
 						price,
 						quantity,
-						total
+						total,
+						date
 					]).draw(false);			
 
 		});
