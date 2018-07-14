@@ -23,9 +23,6 @@ function buildBuyDropDown(){
 
 function buildBuySelectedCoin(selected){
 	
-		alert("inside function: " + selected);
-		
-		/**
 		
 		selected = selected.split(" - ");
 		var code = selected[0];
@@ -48,8 +45,6 @@ function buildBuySelectedCoin(selected){
 					
 			});
 
-**/
-		
 
 
 }
