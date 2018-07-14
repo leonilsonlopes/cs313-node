@@ -55,8 +55,8 @@ function buyCoin(coinCode, quantity){
 	try{
 		quantity = Number(quantity);
 		
-		if(!(number > 0)){
-			
+		if(!(quantity > 0)){
+			throw new Error('not valid quantity');
 		}
 		
 	}catch(er){
