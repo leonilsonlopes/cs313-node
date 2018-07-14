@@ -240,7 +240,7 @@ router.all('/patch/wallet/coin', function(req, res){
  
 	var id = (req.query.id).toUpperCase();
 	var quantity = (req.query.quantity);
-	var totalPaid = (req.query.totalPaid).toString();
+	var totalPaid = (req.query.totalPaid);
 	
 	console.log("### patch wallet - id: " + id + " | quantity: " + quantity + " | totalPaid: " + totalPaid);
 	
