@@ -24,7 +24,7 @@ function buildBuySelectedCoin(selected){
 	
 		$('#buyDropDownList').click(function(e){
 			alert("selected: " + this.innerHTML);
-		);
+		});
 		
 		selected = selected.split(" - ");
 		var code = selected[0];
