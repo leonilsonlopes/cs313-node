@@ -155,7 +155,7 @@ router.all('/isCoinRecorded', function(req, res){
 
 router.all('/post/buyorder/:code', function(req, res){  
 
-	alert("from ws: " + req.query.code);
+	console.log("#### from ws: " + req.query.code);
 
 	/**
 	var code = (req.query.code).toUpperCase();

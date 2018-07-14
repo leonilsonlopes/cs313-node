@@ -52,7 +52,7 @@ function buildBuySelectedCoin(selected){
 
 function buyCoin(coinCode){
 	
-	console.log("buyCoinCalled - Param: " + coinCode);
+	console.log("#### buyCoinCalled - Param: " + coinCode);
 
 	$.get(SERVICE + "/post/buyorder/:" + coinCode, function(data, status){
 		
