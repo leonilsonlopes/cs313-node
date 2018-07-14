@@ -238,13 +238,13 @@ router.all('/post/wallet/coin', function(req, res){
 
 router.all('/patch/wallet/coin', function(req, res){ 
  
-	var id = (req.query.id).toUpperCase();
+	var id = (req.query.id);
 	var quantity = (req.query.quantity);
 	var totalPaid = (req.query.totalPaid);
 	
 	console.log("### patch wallet - id: " + id + " | quantity: " + quantity + " | totalPaid: " + totalPaid);
 	
-	var sql = "UPDATE wallet SET quantity=$2, paid_value=$3 WHERE currency_code = $1";
+	var sql = "UPDATE wallet SET quantity=$2, paid_value=$3 WHERE id = $1";
 	var params = [id, quantity, totalPaid];	
 		
 	pool.query(sql, params, function(err, result) {
