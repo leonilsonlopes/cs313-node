@@ -25,14 +25,16 @@ router.all('/tickerPrice', function(req, res){
 	var ticker = (req.query.ticker).toUpperCase();
 
 	request("https://api.coinmarketcap.com/v1/ticker/", function(error, response, body) {		
-		body = JSON.parse(body);		
+		body = JSON.parse(body);
+		var foundTicker = "NOT FOUND";		
 		for (var i=0; i < body.length; i++) {
 			if(body[i].symbol == ticker){
-				res.send(body[i]);
+				foundTicker = body[i];
+				break;
 			}
 		}
 		
-		res.send("NOT FOUND");
+		res.send(foundTicker);
 		
     });
 
