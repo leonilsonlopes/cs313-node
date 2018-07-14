@@ -282,6 +282,25 @@ router.all('/patch/wallet/coin', function(req, res){
 	});
 });
 
+router.all('/delete/wallet/coin', function(req, res){  
+	var code = req.query.code;
+	
+	var sql = " delete from wallet where id = (select w.id from wallet w join currency c on w.currency_code = c.id where c.code = $1)";
+	var params = [code];	
+		
+	pool.query(sql, params, function(err, result) {
+		// If an error occurred...
+		if (err) {
+			console.log("Error in query: ")
+			console.log(err);
+			res.send(err);
+		}
+		
+		res.send(result);
+		
+	});
+});
+
 
 
 //--------------------- END TRADING TABLES OPERATIONS ----------------------------

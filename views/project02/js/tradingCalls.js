@@ -1,5 +1,8 @@
 var SERVICE = "https://peaceful-lowlands-49839.herokuapp.com/project02/";
 
+//--------------------------- BUY ORDER FUNCTIONS ------------------------------------------------
+
+
 function buildBuyDropDown(){
 	
 	$('#buyDropDownList').empty();
@@ -85,6 +88,10 @@ function buyCoin(coinCode, quantity){
 	
 }
 
+
+//--------------------------- SELL ORDER FUNCTIONS ------------------------------------------------
+
+
 function buildSellDropDown(){
 	
 	$('#sellDropDownList').empty();
@@ -135,6 +142,79 @@ function buildSellSelectedCoin(selected){
 
 }
 
+function sellCoin(coinCode, quantity){
+	
+	try{
+		quantity = Number(quantity);
+		
+		if(!(quantity > 0)){
+			throw new Error('not valid quantity');
+		}
+		
+	}catch(er){
+		alert("Quantity must be a valid number higher than 0!");
+		return;
+	}
+	
+	//Get coin from wallet
+	$.get(SERVICE + "/get/wallet/coin?code=" + coinCode, function(data, status){
+		
+		var isCoinInWallet = JSON.stringify(data);
+			
+		if(isCoinInWallet != "[]"){
+			var id = data[0].id + "";
+			var currentQuantity = Number(data[0].quantity);
+			var currentTotalPaid = Number(data[0].paid_value);
+			
+			if(quantity > currentQuantity){
+				alert("You cannot sell more coin than you have! Insert a valid amount!");
+				return;
+				
+			}else{
+				
+				$.get(SERVICE + "tickerPrice?ticker=" + coinCode, function(data, status){
+					
+					var priceSell = Number(data.price_usd);
+					var totalPaid = (priceSell * quantity);
+					var name = data.name;	
+			
+					$.get(SERVICE + "/get/wallet/coin?code=" + coinCode, function(data, status){
+						
+						var priceWallet = data[0].price_wallet;
+						var resultUsd = (totalPaid - (priceWallet * quantity)).toFixed(2);
+						var percentResult = ((totalPaid / (priceWallet * quantity)) - 1) * 100;
+										
+						$.post(SERVICE + "/post/sellorder/coin?code=" + coinCode + "&name=" + name + "&price_wallet=" + priceWallet + "&price_sell" + priceSell + "&quantity=" + quantity + "&total=" + totalPaid + "&result=" + resultUsd + "&percent_result=" + percentResult, function(data, status){
+							if(status = "success"){
+								alert("Sell Order Successfully saved!\nTicker: " + coinCode + "\nName: " + name + "\nPrice Wallet: " + priceWallet + "\nPrice Sell: " + priceSell + "\nQuantity: " + quantity + "\nTotal Sell: " + total + "\nResult USD: $" + resultUsd + "\nPercent Result: " + percentResult + "%");
+								updateWallet(coinCode, quantity, totalPaid, "sell");
+								buildBuyOrderHistory();
+							}else{
+								alert("Could not save your SELL ORDER!");
+							}
+						});
+				
+					});
+				
+				});
+				
+			}
+			
+			
+			
+	
+		}else{
+			alert("Coin " + coinCode + " does not exist in your wallet! You can't sell what you don't have!");
+		}
+	});
+	
+	
+}
+
+
+
+//--------------------------- WALLET FUNCTIONS ------------------------------------------------
+
 
 function buildWalletTable(){
 	
@@ -178,63 +258,81 @@ function buildWalletTable(){
 }
 
 
-function updateWallet(coinCode, quantity, totalPaid, operation){
+function updateWallet(coinCode, quantity, total, operation){
 	
 	quantity = Number(quantity);
-	totalPaid = Number(totalPaid);
+	total = Number(total);
 	
+	if(operation == "sell"){
+		quantity = quantity * -1;
+		total = total * -1;
+	}
 
 	//Check if coin is already present in wallet
 	$.get(SERVICE + "/get/wallet/coin?code=" + coinCode, function(data, status){
 		
 		var isCoinInWallet = JSON.stringify(data);
+		
+		//Coin Already present in wallet - UPDATE existing coin
+		if(isCoinInWallet != "[]"){			
 			
-		if(isCoinInWallet != "[]"){
-			if(operation == "buy"){	
 
 				var id = data[0].id + "";
 				var currentQuantity = Number(data[0].quantity);
 				var newQuantity = currentQuantity + quantity;
 				var currentTotalPaid = Number(data[0].paid_value);
-				var newTotalPaid = (totalPaid + currentTotalPaid).toFixed(2);
+				var newTotalPaid = (total + currentTotalPaid).toFixed(2);	
+
+				//If quantity gets 0 - DELETE coin from wallet
+				if(newQuantity =< 0){
+					
+					$.get(SERVICE + "/delete/wallet/coin?code=" + coinCode, function(data, status){
+						
+						if(status = "success"){
+							alert("Wallet Successfully Updated! Coin removed from your wallet.\nCoin: " + coinCode + "\nQuantity: " + quantity + "\nTotal Sell: " + total);					
+							buildWalletTable();
+							buildSellDropDown();
+						}else{
+							alert("Could not save your BUY ORDER!");
+						}
+						
+					});	
 				
-				console.log("### get coin in wallet - id: " + id + " | newQuantity: " + newQuantity + " | newTotalPaid: " + newTotalPaid);
+				//If quantity higher than 0 - UPDATE coin
+				}else{		
+					
 				
-				$.get(SERVICE + "/patch/wallet/coin?id=" + id + "&quantity=" + newQuantity + "&totalPaid=" + newTotalPaid, function(data, status){
-					if(status = "success"){
-						alert("Wallet Successfully Updated! Existing coin updated in your wallet.\nCoin: " + coinCode + "\nQuantity: " + quantity + "\nTotal Paid: " + totalPaid);					
-						buildWalletTable();
-					}else{
-						alert("Could not save your BUY ORDER!");
-					}		
-				});
+					$.get(SERVICE + "/patch/wallet/coin?id=" + id + "&quantity=" + newQuantity + "&totalPaid=" + newTotalPaid, function(data, status){
+						if(status = "success"){
+							alert("Wallet Successfully Updated! Existing coin updated in your wallet.\nCoin: " + coinCode + "\nQuantity: " + quantity + "\nTotal Paid: " + total);					
+							buildWalletTable();
+						}else{
+							alert("Could not save your BUY ORDER!");
+						}		
+					});
 				
-			}else{
+				}			
 				
 				
-			}
 			
-		}else{
-			
-			if(operation == "buy"){
 		
-				$.get(SERVICE + "/post/wallet/coin?code=" + coinCode + "&quantity=" + quantity + "&totalPaid=" + totalPaid, function(data, status){
+		//Coin not present in wallet - INSERT new coin
+		}else{			
+		
+				$.get(SERVICE + "/post/wallet/coin?code=" + coinCode + "&quantity=" + quantity + "&totalPaid=" + total, function(data, status){
 					if(status = "success"){
-						alert("Wallet Successfully Updated - New coin added to your wallet!\Coin: " + coinCode + "\nQuantity: " + quantity + "\nTotal Paid: " + totalPaid);					
+						alert("Wallet Successfully Updated - New coin added to your wallet!\Coin: " + coinCode + "\nQuantity: " + quantity + "\nTotal Paid: " + total);					
 						buildWalletTable();
 						buildSellDropDown();
 					}else{
 						alert("Could not save your BUY ORDER!");
 					}		
-				});
+				});			
 			
-			}else{
-				alert("Coin does not exist in wallet! Cannot be sold!");
-			}
 			
 		}
 	
-	 });
+	});
 
 	
 }
