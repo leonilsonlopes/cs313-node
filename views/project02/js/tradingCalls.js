@@ -185,6 +185,8 @@ function updateWallet(coinCode, quantity, totalPaid, operation){
 		var id = data.id + "";
 		var currentQuantity = Number(data.quantity);
 		var currentTotalPaid = Number(data.totalPaid).toFixed(2);
+		
+		console.log("### getWallet data: " + JSON.stringify(data));
 			
 		if(id != "undefined" && id != ""){
 			if(operation == "buy"){		
