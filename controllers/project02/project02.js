@@ -194,10 +194,10 @@ router.all('/get/wallet/coin', function(req, res){
 		
 	var code = (req.query.code) + "";
 	var params = [code];
-	var sql = "SELECT c.code, c.name, w.quantity, w.paid_value FROM wallet w INNER JOIN currency c ON c.id = w.currency_code AND c.code = $1";
+	var sql = "SELECT c.code, c.name, w.quantity, w.paid_value, w.id FROM wallet w INNER JOIN currency c ON c.id = w.currency_code AND c.code = $1";
 	
 	if(code == "" || code == "undefined"){
-		sql = "SELECT c.code, c.name, w.quantity, w.paid_value FROM wallet w INNER JOIN currency c ON c.id = w.currency_code";
+		sql = "SELECT c.code, c.name, w.quantity, w.paid_value, w.id FROM wallet w INNER JOIN currency c ON c.id = w.currency_code";
 		params = "";
 	}
 	
