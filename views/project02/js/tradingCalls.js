@@ -22,11 +22,13 @@ function buildBuyDropDown(){
 
 
 
-function buildBuySelectedCoin(selected){
+function buildBuySelectedCoin(){
 	
 		$('#buyDropDownList li > a').click(function(e){
 			alert("selected: " + this.innerHTML);
 		});
+		
+		/**
 		
 		selected = selected.split(" - ");
 		var code = selected[0];
@@ -49,7 +51,7 @@ function buildBuySelectedCoin(selected){
 					
 			});
 
-
+**/
 		
 
 
