@@ -28,8 +28,8 @@ function buildBuySelectedCoin(selected){
 		var code = selected[0];
 		var name = selected[1];
 		
-		document.getElementById('btnBuyCoin').value = "Buy " + code;
-
+		$('#selectedCoinToBuy').val(code);
+		
 		var t = $('#tableSelectedBuyCoin').DataTable();
 		t.clear();
 			
@@ -48,10 +48,10 @@ function buildBuySelectedCoin(selected){
 					
 			});
 
+}
+
+function buyCoin(coinCode){
+
 
 
 }
-
-
-
-

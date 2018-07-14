@@ -151,6 +151,40 @@ router.all('/isCoinRecorded', function(req, res){
 //--------------------- END CURRENCY TABLE OPERATIONS ----------------------------
 
 
+//--------------------- START TRADING TABLE OPERATIONS ----------------------------
+
+router.all('/post/buyorder/:code', function(req, res){  
+
+	alert("from ws: " + req.query.code);
+
+	/**
+	var code = (req.query.code).toUpperCase();
+	var name = (req.query.name);
+	var price = (req.query.price);
+	var quantity = (req.query.quantity);
+	var totalPaid = (req.query.totalPaid);
+	
+	var sql = "INSERT INTO buy_order(code, name, price, quantity, total) VALUES($1, :$2, :$3, :$4, :$5)";
+	var params = [code, name, price, quantity, totalPaid];	
+		
+	pool.query(sql, params, function(err, result) {
+		// If an error occurred...
+		if (err) {
+			console.log("Error in query: ")
+			console.log(err);
+			res.send(err);
+		}
+		
+		res.send(result);
+		
+	});
+	**/
+
+});
+
+
+//--------------------- END TRADING TABLE OPERATIONS ----------------------------
+
 router.all('/getAllBuyOrders', function(req, res){  
 	res.send("getAllBuyOrders");
 	//res.render('week09_ponder/postalCalculator');
@@ -171,10 +205,7 @@ router.all('/updateWallet', function(req, res){
 	//res.render('week09_ponder/postalCalculator');
 });
 
-router.all('/saveBuyOrder', function(req, res){  
-	res.send("saveBuyOrder");
-	//res.render('week09_ponder/postalCalculator');
-});
+
 
 router.all('/saveSellOrder', function(req, res){  
 	res.send("saveSellOrder");
