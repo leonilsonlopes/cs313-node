@@ -182,14 +182,12 @@ function updateWallet(coinCode, quantity, totalPaid, operation){
 	//Check if coin is already present in wallet
 	$.get(SERVICE + "/get/wallet/coin?code=" + coinCode, function(data, status){
 		
-				
-		var isCoinInWallet = JSON.stringify(data);		
-		if(isCoinInWallet != "[]"){
-			if(operation == "buy"){
-				
-				var id = data.id;
-				var currentQuantity = Number(data.quantity);
-				var currentTotalPaid = Number(data.totalPaid).toFixed(2);
+		var id = data.id + "";
+		var currentQuantity = Number(data.quantity);
+		var currentTotalPaid = Number(data.totalPaid).toFixed(2);
+			
+		if(id != "undefined" && id != ""){
+			if(operation == "buy"){		
 				
 				console.log("### get coin in wallet - id: " + id + " | currentQuantity: " + currentQuantity + " | currentTotalPaid: " + currentTotalPaid);
 				
