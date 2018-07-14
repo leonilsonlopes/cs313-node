@@ -240,9 +240,9 @@ router.all('/patch/wallet/coin', function(req, res){
  
 	var id = (req.query.id).toUpperCase();
 	var quantity = (req.query.quantity);
-	var totalPaid = (req.query.totalPaid);
+	var totalPaid = (req.query.totalPaid).toString();
 	
-	console.log("### patch wallet - id: " + id + " | quantity: " + quantity + " | " + totalPaid);
+	console.log("### patch wallet - id: " + id + " | quantity: " + quantity + " | totalPaid: " + totalPaid);
 	
 	var sql = "UPDATE wallet SET quantity=$2, paid_value=$3 WHERE currency_code = $1";
 	var params = [id, quantity, totalPaid];	
