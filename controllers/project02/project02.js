@@ -198,6 +198,7 @@ router.all('/get/wallet/coin', function(req, res){
 	
 	if(code == "" || code == "undefined"){
 		sql = "SELECT c.code, c.name, w.quantity, w.paid_value FROM wallet w INNER JOIN currency c ON c.id = w.currency_code";
+		params = "";
 	}
 	
 	console.log("### get/wallet/coin - SQL defined: " + sql);
