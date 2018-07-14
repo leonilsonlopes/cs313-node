@@ -244,7 +244,7 @@ router.all('/patch/wallet/coin', function(req, res){
 	
 	console.log("### patch wallet - id: " + id + " | quantity: " + quantity + " | " + totalPaid);
 	
-	var sql = "UPDATE wallet SET quantity=$2, paid_value=$3 WHERE id = $1";
+	var sql = "UPDATE wallet SET quantity=$2, paid_value=$3 WHERE currency_code = $1";
 	var params = [id, quantity, totalPaid];	
 		
 	pool.query(sql, params, function(err, result) {
