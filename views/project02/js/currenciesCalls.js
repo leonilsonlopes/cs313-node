@@ -167,7 +167,7 @@ function deleteCurrencyTable(code){
 					});
 				
 				}else{
-					alert("Coin" + code + " is present in your wallet. It cannot be deleted!");
+					alert("Coin " + code + " is present in your wallet. It cannot be deleted!");
 				}
 				
 			});

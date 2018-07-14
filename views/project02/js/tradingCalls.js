@@ -38,7 +38,7 @@ function buildBuySelectedCoin(selected){
 			t.row.add([
 					code, 
 					name,
-					"$" + data.price_usd,
+					"$" + (Number(data.price_usd)).toFixed(2),
 					data.percent_change_1h + "%",
 					data.percent_change_24h + "%",
 					data.percent_change_7d + "%",
@@ -123,7 +123,7 @@ function buildSellSelectedCoin(selected){
 			t.row.add([
 					code, 
 					name,
-					"$" + data.price_usd,
+					"$" + (Number(data.price_usd)).toFixed(2),
 					data.percent_change_1h + "%",
 					data.percent_change_24h + "%",
 					data.percent_change_7d + "%",
