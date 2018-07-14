@@ -27,6 +27,8 @@ function buildBuySelectedCoin(selected){
 		selected = selected.split(" - ");
 		var code = selected[0];
 		var name = selected[1];
+		
+		$('#btnBuyCoin').val("Buy " + code);
 
 		var t = $('#tableSelectedBuyCoin').DataTable();
 		t.clear();
@@ -41,7 +43,7 @@ function buildBuySelectedCoin(selected){
 						data.percent_change_24h + "%",
 						data.percent_change_7d + "%",
 						//(d.getMonth()+1) + '/' + d.getDate() + '/' + d.getFullYear()
-						(d.last_updated)
+						(data.last_updated)
 					]).draw(false);
 					
 			});
