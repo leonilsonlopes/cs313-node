@@ -70,7 +70,7 @@ function buyCoin(coinCode, quantity){
 			
 			console.log("### ticker: " + JSON.stringify(data));
 			
-			$.post(SERVICE + "/post/buyorder/coin?code=" + coinCode + "&?name=" + data.name + "&?price=" + currentPrice + "&?quantity=" + quantity + "&?totalPaid=" + totalPaid, function(data, status){
+			$.post(SERVICE + "/post/buyorder/coin?code=" + coinCode + "&name=" + data.name + "&price=" + currentPrice + "&quantity=" + quantity + "&totalPaid=" + totalPaid, function(data, status){
 				if(status != "success"){
 					alert("Could not save your BUY ORDER!");
 				}
