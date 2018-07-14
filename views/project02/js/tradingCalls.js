@@ -36,11 +36,12 @@ function buildBuySelectedCoin(selected){
 				t.row.add([
 						code, 
 						name,
-						data.price_usd,
-						data.percent_change_1h,
-						data.percent_change_24h,
-						data.percent_change_7d,
-						(d.getMonth()+1) + '/' + d.getDate() + '/' + d.getFullYear()
+						"$" + data.price_usd,
+						data.percent_change_1h + "%",
+						data.percent_change_24h + "%",
+						data.percent_change_7d + "%",
+						//(d.getMonth()+1) + '/' + d.getDate() + '/' + d.getFullYear()
+						(d.getMonth()+1)
 					]).draw(false);
 					
 			});
