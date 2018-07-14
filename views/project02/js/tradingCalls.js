@@ -177,7 +177,7 @@ function updateWallet(coinCode, quantity, totalPaid, operation){
 	var coinInWallet = isCoinInWallet(coinCode);
 	
 	//Check if coin is already present in wallet
-	$.get(SERVICE + "/get/wallet/coin?code=" + code, function(data, status){
+	$.get(SERVICE + "/get/wallet/coin?code=" + coinCode, function(data, status){
 		
 		var isCoinInWallet = JSON.stringify(data);		
 		if(isCoinInWallet != "[]"){
