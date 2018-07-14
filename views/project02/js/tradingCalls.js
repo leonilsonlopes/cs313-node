@@ -192,7 +192,7 @@ function updateWallet(coinCode, quantity, totalPaid, operation){
 				
 				$.get(SERVICE + "/patch/wallet/coin?id=" + id + "&quantity=" + (quantity + currentQuantity) + "&totalPaid=" + (totalPaid + currentTotalPaid) , function(data, status){
 					if(status = "success"){
-						alert("Wallet Successfully Updated!\Coin: " + coinCode + "\nQuantity: " + quantity + "\nTotal Paid: " + totalPaid);					
+						alert("Wallet Successfully Updated! Existing coin updated.\Coin: " + coinCode + "\nQuantity: " + quantity + "\nTotal Paid: " + totalPaid);					
 						buildWalletTable();
 					}else{
 						alert("Could not save your BUY ORDER!");
@@ -210,7 +210,7 @@ function updateWallet(coinCode, quantity, totalPaid, operation){
 		
 				$.get(SERVICE + "/post/wallet/coin?code=" + coinCode + "&quantity=" + quantity + "&totalPaid=" + totalPaid, function(data, status){
 					if(status = "success"){
-						alert("Wallet Successfully Updated!\Coin: " + coinCode + "\nQuantity: " + quantity + "\nTotal Paid: " + totalPaid);					
+						alert("Wallet Successfully Updated - New coin added to your wallet!\Coin: " + coinCode + "\nQuantity: " + quantity + "\nTotal Paid: " + totalPaid);					
 						buildWalletTable();
 					}else{
 						alert("Could not save your BUY ORDER!");
