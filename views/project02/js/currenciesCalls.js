@@ -68,7 +68,7 @@ function saveCurrencyTable(code){
 		if(result == "[]"){
 			
 			$.get(SERVICE + "tickerPrice?ticker=" + code, function(data, status){
-				
+				alert("data: " + JSON.stringify(data));
 				if(data == "NOT FOUND"){
 					alert("Coin code \"" + code + "\" does not exist! Please refer to https://coinmarketcap.com/ for valid crypto coins.");
 				}else{
@@ -113,6 +113,7 @@ function updateCurrencyTable(code, name){
 				if(status == "success"){
 					location.reload();
 					alert("Coin " + code + " successfully updated");
+					buildPriceTable();
 				}else{
 					alert("Coin " + code + " | " + name + " could not be updated!");
 				}
