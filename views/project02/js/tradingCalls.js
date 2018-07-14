@@ -188,13 +188,14 @@ function updateWallet(coinCode, quantity, totalPaid, operation){
 			if(operation == "buy"){	
 
 				var id = data[0].id + "";
-				var currentQuantity = Number(data[0].quantity);
+				var currentQuantity = (Number(data[0].quantity);
+				var newQuantity = currentQuantity + quantity;
 				var currentTotalPaid = (Number(data[0].paid_value).toFixed(2);
 				var newTotalPaid = totalPaid + currentTotalPaid;
 				
-				console.log("### get coin in wallet - id: " + id + " | currentQuantity: " + currentQuantity + " | newTotalPaid: " + newTotalPaid);
+				console.log("### get coin in wallet - id: " + id + " | newQuantity: " + newQuantity + " | newTotalPaid: " + newTotalPaid);
 				
-				$.get(SERVICE + "/patch/wallet/coin?id=" + id + "&quantity=" + (quantity + currentQuantity) + "&totalPaid=" + newTotalPaid , function(data, status){
+				$.get(SERVICE + "/patch/wallet/coin?id=" + id + "&newQuantity=" + newQuantity + "&totalPaid=" + newTotalPaid, function(data, status){
 					if(status = "success"){
 						alert("Wallet Successfully Updated! Existing coin updated in your wallet.\nCoin: " + coinCode + "\nQuantity: " + quantity + "\nTotal Paid: " + totalPaid);					
 						buildWalletTable();
