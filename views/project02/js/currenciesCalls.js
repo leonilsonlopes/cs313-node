@@ -30,6 +30,9 @@ $(document).ready(function() {
 	//Build Buy DropDown list
 	buildBuyDropDown();
 	
+	//Build Sell DropDown list
+	buildSellDropDown();
+	
 	//Build Buy Order History table
 	buildBuyOrderHistory();
 	
@@ -86,6 +89,7 @@ function saveCurrencyTable(code){
 							$('#currencies').DataTable().row.add([code, name]).draw(false);					 
 							alert("Coin " + code + " | " + name + " successfully saved");
 							buildPriceTable();
+							buildBuyDropDown();
 						}else{
 							alert("Coin " + code + " | " + name + " could not be saved!");
 						}

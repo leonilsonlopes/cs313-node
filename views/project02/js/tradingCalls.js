@@ -235,6 +235,7 @@ function updateWallet(coinCode, quantity, totalPaid, operation){
 					if(status = "success"){
 						alert("Wallet Successfully Updated - New coin added to your wallet!\Coin: " + coinCode + "\nQuantity: " + quantity + "\nTotal Paid: " + totalPaid);					
 						buildWalletTable();
+						buildSellDropDown();
 					}else{
 						alert("Could not save your BUY ORDER!");
 					}		
