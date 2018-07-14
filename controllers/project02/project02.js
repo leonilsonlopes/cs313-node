@@ -151,11 +151,9 @@ router.all('/isCoinRecorded', function(req, res){
 //--------------------- END CURRENCY TABLE OPERATIONS ----------------------------
 
 
-//--------------------- START TRADING TABLE OPERATIONS ----------------------------
+//--------------------- START TRADING TABLES OPERATIONS ----------------------------
 
 router.all('/post/buyorder/coin', function(req, res){  
-
-	console.log("#### from ws: " + JSON.stringify(req.query));
 
 	var code = (req.query.code).toUpperCase();
 	var name = (req.query.name);
@@ -179,19 +177,6 @@ router.all('/post/buyorder/coin', function(req, res){
 	});
 
 
-});
-
-
-//--------------------- END TRADING TABLE OPERATIONS ----------------------------
-
-router.all('/getAllBuyOrders', function(req, res){  
-	res.send("getAllBuyOrders");
-	//res.render('week09_ponder/postalCalculator');
-});
-
-router.all('/getAllSellOrders', function(req, res){  
-	res.send("getAllSellOrders");
-	//res.render('week09_ponder/postalCalculator');
 });
 
 router.all('/getListFromWallet', function(req, res){  
@@ -220,6 +205,54 @@ router.all('/getCoinFromWallet', function(req, res){
 	res.send("getCoinFromWallet");
 	//res.render('week09_ponder/postalCalculator');
 });
+
+
+//--------------------- END TRADING TABLES OPERATIONS ----------------------------
+
+//--------------------- START HISTORY TABLES OPERATIONS ----------------------------
+
+router.all('/get/buyorder', function(req, res){  
+
+	var sql = "SELECT * FROM buy_order";
+	var params = '';	
+	
+	
+	pool.query(sql, params, function(err, result) {
+		// If an error occurred...
+		if (err) {
+			console.log("Error in query: ")
+			console.log(err);
+			res.send(err);
+		}	
+		
+		res.send(result.rows);
+	});
+});
+
+router.all('/getAllSellOrders', function(req, res){  
+	var sql = "SELECT * FROM sell_order";
+	var params = '';	
+	
+	
+	pool.query(sql, params, function(err, result) {
+		// If an error occurred...
+		if (err) {
+			console.log("Error in query: ")
+			console.log(err);
+			res.send(err);
+		}	
+		
+		res.send(result.rows);
+	});
+});
+
+//--------------------- END HISTORY TABLES OPERATIONS ----------------------------
+
+
+
+
+
+
 
 
 

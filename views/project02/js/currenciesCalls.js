@@ -30,6 +30,9 @@ $(document).ready(function() {
 	//Build Buy DropDown list
 	buildBuyDropDown();
 	
+	//Build Buy Order History table
+	buildBuyOrderHistory();
+	
 	
 } );
 

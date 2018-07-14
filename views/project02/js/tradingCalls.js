@@ -19,7 +19,34 @@ function buildBuyDropDown(){
 
 }
 
+function buildBuyOrderHistory(){
+	
+	$.get(SERVICE + "/get/buyorder", function(data, status){
+				
 
+		var t = $('#tableShowBuyOrders').DataTable();
+		t.clear();
+		$.each(data, function (i, item) {
+			
+			var code = data[i].code;
+			var name = data[i].name;
+			var price = data[i].price;
+			var quantity = data[i].quantity;
+			var total = data[i].total;
+			
+			t.row.add([
+						code, 
+						name,
+						price,
+						quantity,
+						total
+					]).draw(false);			
+
+		});
+
+		
+    });
+}
 
 function buildBuySelectedCoin(selected){
 	
@@ -67,12 +94,13 @@ function buyCoin(coinCode, quantity){
 	$.get(SERVICE + "tickerPrice?ticker=" + coinCode, function(data, status){
 			var currentPrice = Number(data.price_usd).toFixed(2);
 			var totalPaid = (currentPrice * quantity).toFixed(2);
+			var name = data.name;
 			
-			console.log("### ticker: " + JSON.stringify(data));
-			
-			$.post(SERVICE + "/post/buyorder/coin?code=" + coinCode + "&name=" + data.name + "&price=" + currentPrice + "&quantity=" + quantity + "&totalPaid=" + totalPaid, function(data, status){
+
+			$.post(SERVICE + "/post/buyorder/coin?code=" + coinCode + "&name=" + name + "&price=" + currentPrice + "&quantity=" + quantity + "&totalPaid=" + totalPaid, function(data, status){
 				if(status = "success"){
-					alert("Buy Order Successfully saved!\nTicker: " + coinCode + "\Name: " + data.name + "\nPaid Price: " + currentPrice + "\nQuantity: " + quantity + "\nTotal Paid: " + totalPaid);
+					alert("Buy Order Successfully saved!\nTicker: " + coinCode + "\nName: " + name + "\nPaid Price: " + currentPrice + "\nQuantity: " + quantity + "\nTotal Paid: " + totalPaid);
+					buildBuyOrderHistory();
 				}else{
 					alert("Could not save your BUY ORDER!");
 				}
