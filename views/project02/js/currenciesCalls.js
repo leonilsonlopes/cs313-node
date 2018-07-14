@@ -66,14 +66,26 @@ function saveCurrencyTable(code, name){
 		var result = JSON.stringify(data);
 		
 		if(result == "[]"){
-			$.post(SERVICE + "saveCoinInCurrency?code=" + code + "&name=" + name, function(data, status){				
-				if(status == "success"){
-					 $('#currencies').DataTable().row.add([code, name]).draw(false);					 
-					 alert("Coin " + code + " | " + name + " successfully saved");
+			
+			$.get(SERVICE + "tickerPrice?ticker=" + code, function(data, status){
+				
+				if(data == "NOT FOUND"){
+					alert("Coin code \"" + code + "\" does not exist! Please refer to https://coinmarketcap.com/ for valid crypto coins.");
 				}else{
-					alert("Coin " + code + " | " + name + " could not be saved!");
+					$.post(SERVICE + "saveCoinInCurrency?code=" + code + "&name=" + name, function(data, status){				
+						if(status == "success"){
+							$('#currencies').DataTable().row.add([code, name]).draw(false);					 
+							alert("Coin " + code + " | " + name + " successfully saved");
+							buildPriceTable();
+						}else{
+							alert("Coin " + code + " | " + name + " could not be saved!");
+						}
+					});
 				}
-			});
+					
+			});			
+			
+			
 			
 		}else{			
 			alert("Code \"" + code + "\" already exists!" );

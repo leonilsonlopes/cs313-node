@@ -8,6 +8,7 @@ function buildPriceTable(){
 				
 
 		var t = $('#priceCurrencies').DataTable();
+		t.clear();
 		$.each(data, function (i, item) {
 			
 			var code = data[i].code;

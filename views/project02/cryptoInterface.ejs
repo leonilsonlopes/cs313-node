@@ -137,15 +137,17 @@
 				<label for="code">Coin Code:</label>
 				<input type="text" class="form-control" name="code" id="currencyCode">
 			</div>
+			<!--
 			<br/>
 			<div class="w-25" class="form-group">
 				<label for="name">Coin Name:</label>
 				<input type="text" class="form-control" name="name" id="currencyName">
 			</div>
+			-->
 			<br/>
 			<input type="hidden" name="clicked" value="1"/>
 			<button onclick="saveCurrencyTable(document.getElementById('currencyCode').value, document.getElementById('currencyName').value)" class="btn btn-success" value="addCoin" name="btnSaveCoin">Add Coin</button>
-			<button onclick="updateCurrencyTable(document.getElementById('currencyCode').value, document.getElementById('currencyName').value)" class="btn btn-primary" value="updateCoin" name="btnUpdateCoin">Update Coin</button>
+			<!--<button onclick="updateCurrencyTable(document.getElementById('currencyCode').value, document.getElementById('currencyName').value)" class="btn btn-primary" value="updateCoin" name="btnUpdateCoin">Update Coin</button>-->
 			<button onclick="deleteCurrencyTable(document.getElementById('currencyCode').value)" class="btn btn-danger" value="deleteCoin" name="btnDeleteCoin">Delete Coin</button>
 
 				 

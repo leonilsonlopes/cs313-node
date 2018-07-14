@@ -29,6 +29,8 @@ router.all('/tickerPrice', function(req, res){
 		for (var i=0; i < body.length; i++) {
 			if(body[i].symbol == ticker){
 				res.send(body[i]);
+			}else{
+				res.send("NOT FOUND");
 			}
 		}
 		
