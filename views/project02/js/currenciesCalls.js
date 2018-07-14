@@ -31,11 +31,6 @@ $(document).ready(function() {
 	buildBuyDropDown();
 	
 	
-		$('#buyDropDownList li').click(function(e){
-			alert("selected: " + this.innerHTML);
-		});
-
-	
 } );
 
 

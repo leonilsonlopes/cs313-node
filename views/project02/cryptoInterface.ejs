@@ -295,23 +295,6 @@
 		</table>	
 		
 				
-		<?php 
-		
-			if($_POST['btnBuyCoin'] != ""){				
-				
-				$quantity = round(floatval($_POST['qtty']),4);
-				$coinInfo = getCoinInfoRaw($_POST['btnBuyCoin']);				
-				$lastPrice = round(floatval($coinInfo['price_usd']),4);
-				
-
-				if($quantity > 0){					
-					saveBuyOrder($_POST['btnBuyCoin'], $lastPrice, $quantity);						
-				}else{
-					showAlert("cannot be empty or 0", "Quantity ", "danger");
-				}			
-			}
-							
-		?>
 						
 				<div class="input-group mb-3">
 						<div class="input-group-prepend">

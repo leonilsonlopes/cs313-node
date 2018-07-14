@@ -31,7 +31,8 @@ function buildBuySelectedCoin(selected){
 		var t = $('#tableSelectedBuyCoin').DataTable();
 
 			
-			$.get(SERVICE + "tickerPrice?ticker=" + code, function(data, status){			
+			$.get(SERVICE + "tickerPrice?ticker=" + code, function(data, status){
+					alert("ticker: " + JSON.stringify(data));
 				var d = new Date(data.last_updated);
 				t.row.add([
 						code, 
