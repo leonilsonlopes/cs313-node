@@ -153,7 +153,7 @@ router.all('/isCoinRecorded', function(req, res){
 
 //--------------------- START TRADING TABLE OPERATIONS ----------------------------
 
-router.all('/post/buyorder/?code', function(req, res){  
+router.all('/post/buyorder/coin', function(req, res){  
 
 	console.log("#### from ws: " + req.query.code);
 
