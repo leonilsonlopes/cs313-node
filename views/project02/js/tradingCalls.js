@@ -180,7 +180,7 @@ function sellCoin(coinCode, quantity){
 			
 					$.get(SERVICE + "/get/wallet/coin?code=" + coinCode, function(data, status){
 						
-						var priceWallet = data[0].price_wallet;
+						var priceWallet = Number(data[0].paid_value);
 						var resultUsd = (totalPaid - (priceWallet * quantity)).toFixed(2);
 						var percentResult = ((totalPaid / (priceWallet * quantity)) - 1) * 100;
 										
