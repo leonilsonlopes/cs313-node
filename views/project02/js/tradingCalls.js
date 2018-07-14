@@ -41,7 +41,7 @@ function buildBuySelectedCoin(selected){
 						data.percent_change_24h + "%",
 						data.percent_change_7d + "%",
 						//(d.getMonth()+1) + '/' + d.getDate() + '/' + d.getFullYear()
-						(d.getMonth()+1)
+						(d.last_updated)
 					]).draw(false);
 					
 			});
