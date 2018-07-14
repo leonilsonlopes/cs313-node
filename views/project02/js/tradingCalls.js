@@ -60,7 +60,7 @@ function buyCoin(coinCode, quantity){
 		}
 		
 	}catch(er){
-		alert("Insert a valid number higher than 0");
+		alert("Quantity must be a valid number higher than 0!");
 		return;
 	}
 	
