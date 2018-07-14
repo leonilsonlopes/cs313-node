@@ -7,9 +7,7 @@ function buildBuyDropDown(){
 		$.each(data, function (i, item) {
 			
 			var code = data[i].code;
-			var name = data[i].name;
-
-			alert("dropdown: " + document.getElementById('buyDropDownList').value);
+			var name = data[i].name;			
 			
 			$('#buyDropDownList').append("<div class='dropdown-divider'></div><option class='dropdown-item' onclick='buildBuySelectedCoin(\"" + document.getElementById('buyDropDownList').value + "\")'>" + code + ' - ' + name + '</option>');
 			
@@ -24,6 +22,7 @@ function buildBuyDropDown(){
 
 function buildBuySelectedCoin(selected){
 	
+		alert("dropdown: " + document.getElementById('buyDropDownList').value);
 		alert("Selected: " + selected);
 		
 		selected = selected.split(" - ");
