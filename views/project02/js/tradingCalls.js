@@ -188,9 +188,9 @@ function updateWallet(coinCode, quantity, totalPaid, operation){
 			if(operation == "buy"){	
 
 				var id = data[0].id + "";
-				var currentQuantity = (Number(data[0].quantity);
+				var currentQuantity = Number(data[0].quantity);
 				var newQuantity = currentQuantity + quantity;
-				var currentTotalPaid = (Number(data[0].paid_value).toFixed(2);
+				var currentTotalPaid = (Number(data[0].paid_value)).toFixed(2);
 				var newTotalPaid = totalPaid + currentTotalPaid;
 				
 				console.log("### get coin in wallet - id: " + id + " | newQuantity: " + newQuantity + " | newTotalPaid: " + newTotalPaid);
