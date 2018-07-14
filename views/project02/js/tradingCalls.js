@@ -19,14 +19,14 @@ function buildBuyDropDown(){
 
 }
 
-
+		$('#buyDropDownList li > a').click(function(e){
+			alert("selected: " + this.innerHTML);
+		});
 
 
 function buildBuySelectedCoin(){
 	
-		$('#buyDropDownList li > a').click(function(e){
-			alert("selected: " + this.innerHTML);
-		});
+
 		
 		/**
 		
