@@ -9,6 +9,8 @@ function buildBuyDropDown(){
 			var code = data[i].code;
 			var name = data[i].name;
 
+			alert("dropdown: " + document.getElementById('buyDropDownList').value);
+			
 			$('#buyDropDownList').append("<div class='dropdown-divider'></div><option class='dropdown-item' onclick='buildBuySelectedCoin(\"" + document.getElementById('buyDropDownList').value + "\")'>" + code + ' - ' + name + '</option>');
 			
 
