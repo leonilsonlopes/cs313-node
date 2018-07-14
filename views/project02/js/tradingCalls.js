@@ -130,7 +130,7 @@ function buildWalletTable(){
 			
 			$.get(SERVICE + "tickerPrice?ticker=" + code, function(data, status){
 				var currentPrice = Number(data.price_usd).toFixed(2);				
-				var totalCurrentPrice = currentPrice * quantity;
+				var totalCurrentPrice = (currentPrice * quantity).toFixed(2);
 				var percentResult = (((totalCurrentPrice / totalPaidValue) - 1)*100).toFixed(2);
 				
 				t.row.add([
@@ -174,6 +174,9 @@ function isCoinInWallet(code){
 
 function updateWallet(coinCode, quantity, totalPaid, operation){
 	
+	quantity = Number(quantity);
+	totalPaid = Number(totalPaid).toFixed(2);
+	
 	var coinInWallet = isCoinInWallet(coinCode);
 	
 	//Check if coin is already present in wallet
@@ -181,7 +184,25 @@ function updateWallet(coinCode, quantity, totalPaid, operation){
 		
 		var isCoinInWallet = JSON.stringify(data);		
 		if(isCoinInWallet != "[]"){
-			console.log("### existing coin: " + JSON.stringify(data));
+			if(operation == "buy"){
+				
+				var id = data.id;
+				var currentQuantity = Number(data.quantity);
+				var currentTotalPaid = Number(data.totalPaid).toFixed(2);
+				
+				$.get(SERVICE + "/patch/wallet/coin?id=" + id + "&quantity=" + (quantity + currentQuantity) "&totalPaid=" + (totalPaid + currentTotalPaid) , function(data, status){
+					if(status = "success"){
+						alert("Wallet Successfully Updated!\Coin: " + coinCode + "\nQuantity: " + quantity + "\nTotal Paid: " + totalPaid);					
+						buildWalletTable();
+					}else{
+						alert("Could not save your BUY ORDER!");
+					}		
+				});
+				
+			}else{
+				
+				
+			}
 			
 		}else{
 			

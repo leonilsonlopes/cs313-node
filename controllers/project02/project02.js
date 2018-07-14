@@ -236,6 +236,28 @@ router.all('/post/wallet/coin', function(req, res){
 	});
 });
 
+router.all('/patch/wallet/coin', function(req, res){ 
+ 
+	var id = (req.query.id).toUpperCase();
+	var quantity = (req.query.quantity);
+	var totalPaid = (req.query.totalPaid);
+	
+	var sql = "UPDATE wallet SET quantity=$2, paid_value=$3 WHERE id = $1";
+	var params = [id, quantity, totalPaid];	
+		
+	pool.query(sql, params, function(err, result) {
+		// If an error occurred...
+		if (err) {
+			console.log("Error in query: ")
+			console.log(err);
+			res.send(err);
+		}
+		
+		res.send(result);
+		
+	});
+});
+
 
 
 //--------------------- END TRADING TABLES OPERATIONS ----------------------------
