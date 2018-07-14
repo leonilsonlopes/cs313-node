@@ -29,7 +29,7 @@ function buildBuySelectedCoin(selected){
 		var name = selected[1];
 
 		var t = $('#tableSelectedBuyCoin').DataTable();
-		t.remove();
+		t.clear();
 			
 			$.get(SERVICE + "tickerPrice?ticker=" + code, function(data, status){
 				var d = new Date(data.last_updated);
