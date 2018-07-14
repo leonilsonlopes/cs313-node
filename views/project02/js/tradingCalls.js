@@ -2,6 +2,8 @@ var SERVICE = "https://peaceful-lowlands-49839.herokuapp.com/project02/";
 
 function buildBuyDropDown(){
 	
+	$('#buyDropDownList').empty();
+	
 	$.get(SERVICE + "getListOfCurrencies", function(data, status){
 				
 		$.each(data, function (i, item) {
@@ -84,6 +86,8 @@ function buyCoin(coinCode, quantity){
 }
 
 function buildSellDropDown(){
+	
+	$('#sellDropDownList').empty();
 	
 	$.get(SERVICE + "/get/wallet/coin", function(data, status){
 				
@@ -174,29 +178,12 @@ function buildWalletTable(){
 }
 
 
-function isCoinInWallet(code){
-	
-	var ret = false;
-
-	$.get(SERVICE + "/get/wallet/coin?code=" + code, function(data, status){
-		var result = JSON.stringify(data);		
-		if(!result == "[]"){
-			ret = true;			
-		}
-		
-    });
-	
-	return ret;
-	
-}
-
 function updateWallet(coinCode, quantity, totalPaid, operation){
 	
 	quantity = Number(quantity);
 	totalPaid = Number(totalPaid);
 	
-	var coinInWallet = isCoinInWallet(coinCode);
-	
+
 	//Check if coin is already present in wallet
 	$.get(SERVICE + "/get/wallet/coin?code=" + coinCode, function(data, status){
 		

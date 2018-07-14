@@ -147,15 +147,29 @@ function deleteCurrencyTable(code){
 		if(result == "[]"){
 			alert("Coin " + code + " does not exist!");
 			
-		}else{			
-			$.post(SERVICE + "deleteCoinFromCurrency?code=" + code, function(data, status){					
-				if(status == "success"){
-					$('#currencies').DataTable().row('.selected').remove().draw( false );					
-					alert("Coin " + code + " successfully deleted");
-					buildPriceTable();
+		}else{	
+
+			$.get(SERVICE + "/get/wallet/coin?code=" + coinCode, function(data, status){
+				
+				var isCoinInWallet = JSON.stringify(data);
+			
+				if(isCoinInWallet == "[]"){
+		
+					$.post(SERVICE + "deleteCoinFromCurrency?code=" + code, function(data, status){					
+						if(status == "success"){
+							$('#currencies').DataTable().row('.selected').remove().draw( false );					
+							alert("Coin " + code + " successfully deleted");
+							buildPriceTable();
+							buildBuyDropDown();
+						}else{
+							alert("Coin " + code + " could not be deleted!");
+						}
+					});
+				
 				}else{
-					alert("Coin " + code + " could not be deleted!");
+					alert("Coin" + code + " is present in your wallet. It cannot be deleted!");
 				}
+				
 			});
 		}
 		
