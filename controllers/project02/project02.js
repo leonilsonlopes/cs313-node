@@ -194,10 +194,10 @@ router.all('/get/wallet/coin', function(req, res){
 		
 	var code = (req.query.code) + "";
 	var params = [code];
-	var sql = "SELECT c.code, c.name, w.quantity, w.paid_value FROM wallet w INNER JOIN currency c ON c.id = w.currency_id AND c.code = $1";
+	var sql = "SELECT c.code, c.name, w.quantity, w.paid_value FROM wallet w INNER JOIN currency c ON c.id = w.currency_code AND c.code = $1";
 	
 	if(code == "" || code == "undefined"){
-		sql = "SELECT c.code, c.name, w.quantity, w.paid_value FROM wallet w INNER JOIN currency c ON c.id = w.currency_id";
+		sql = "SELECT c.code, c.name, w.quantity, w.paid_value FROM wallet w INNER JOIN currency c ON c.id = w.currency_code";
 	}
 	
 	console.log("### get/wallet/coin - SQL defined: " + sql);
@@ -219,7 +219,7 @@ router.all('/post/wallet/coin', function(req, res){
 	var quantity = (req.query.quantity);
 	var totalPaid = (req.query.totalPaid);
 	
-	var sql = "INSERT INTO wallet(currency_id, quantity, paid_value) VALUES((SELECT id FROM currency WHERE code = $1), $2, $3)";
+	var sql = "INSERT INTO wallet(currency_code, quantity, paid_value) VALUES((SELECT id FROM currency WHERE code = $1), $2, $3)";
 	var params = [code, quantity, totalPaid];	
 		
 	pool.query(sql, params, function(err, result) {
