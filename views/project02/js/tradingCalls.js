@@ -123,7 +123,7 @@ function buildSellSelectedCoin(selected){
 			t.row.add([
 					code, 
 					name,
-					"$" + (Number(data.price_usd)).toFixed(2),
+					"$" +  (Number(data.price_usd)).toFixed(2),
 					data.percent_change_1h + "%",
 					data.percent_change_24h + "%",
 					data.percent_change_7d + "%",
