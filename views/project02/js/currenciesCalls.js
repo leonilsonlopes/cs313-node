@@ -33,6 +33,9 @@ $(document).ready(function() {
 	//Build Buy Order History table
 	buildBuyOrderHistory();
 	
+	//Build wallet table;
+	buildWalletTable;
+	
 	
 } );
 
@@ -62,17 +65,15 @@ function saveCurrencyTable(code){
 	
 	code = code.toUpperCase();
 	
-	console.log("### code received: " + code);
 	
 	$.get(SERVICE + "isCoinRecorded?code=" + code, function(data, status){
 		var result = JSON.stringify(data);
 		
-		console.log("### isCoinRecorded: " + result);
 		
 		if(result == "[]"){
-			
+
 			$.get(SERVICE + "tickerPrice?ticker=" + code, function(data, status){
-				console.log("### data: " + JSON.stringify(data));
+	
 				if(data == "NOT FOUND"){
 					alert("Coin code \"" + code + "\" does not exist! Please refer to https://coinmarketcap.com/ for valid crypto coins.");
 				}else{

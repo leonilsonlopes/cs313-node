@@ -96,12 +96,13 @@ function buyCoin(coinCode, quantity){
 	$.get(SERVICE + "tickerPrice?ticker=" + coinCode, function(data, status){
 			var currentPrice = Number(data.price_usd).toFixed(2);
 			var totalPaid = (currentPrice * quantity).toFixed(2);
-			var name = data.name;
+			var name = data.name;	
 			
 
 			$.post(SERVICE + "/post/buyorder/coin?code=" + coinCode + "&name=" + name + "&price=" + currentPrice + "&quantity=" + quantity + "&totalPaid=" + totalPaid, function(data, status){
 				if(status = "success"){
 					alert("Buy Order Successfully saved!\nTicker: " + coinCode + "\nName: " + name + "\nPaid Price: " + currentPrice + "\nQuantity: " + quantity + "\nTotal Paid: " + totalPaid);
+					updateWallet(coinCode, quantity, totalPaid, "buy");
 					buildBuyOrderHistory();
 				}else{
 					alert("Could not save your BUY ORDER!");
@@ -111,5 +112,89 @@ function buyCoin(coinCode, quantity){
 	});
 
 	
+}
 
+function buildWalletTable(){
+	
+	$.get(SERVICE + "/get/wallet/coin", function(data, status){
+				
+
+		var t = $('#wallet').DataTable();
+		t.clear();
+		$.each(data, function (i, item) {
+			
+			var code = data[i].code;		
+			var name = data[i].name;
+			var quantity = Number(data[i].quantity);
+			var totalPaidValue = Number(data[i].paid_value).toFixed(2);
+			
+			$.get(SERVICE + "tickerPrice?ticker=" + code, function(data, status){
+				var currentPrice = Number(data.price_usd).toFixed(2);				
+				var totalCurrentPrice = currentPrice * quantity;
+				var percentResult = ((totalCurrentPrice / totalPaidValue) - 1)*100;
+				
+				t.row.add([
+						code, 
+						name,
+						quantity,
+						totalPaidValue,
+						totalCurrentPrice,
+						percentResult
+					]).draw(false);	
+				
+			});			
+			
+					
+
+		});
+
+		
+    });
+	
+	
+}
+
+
+function isCoinInWallet(code){
+	
+	var ret = false;
+
+	$.get(SERVICE + "/get/wallet/coin?code=" + code, function(data, status){
+		var result = JSON.stringify(data);
+		
+		if(!result == "[]"){
+			ret = true;			
+		}
+		
+    });
+	
+	return ret;
+	
+}
+
+function updateWallet(coinCode, quantity, totalPaid, operation){
+	
+	var coinInWallet = isCoinInWallet(coinCode);
+	
+	if(coinInWallet){
+		
+	}else{
+		
+		if(operation == "buy"){
+		
+			$.get(SERVICE + "/post/wallet/coin?code=" + coinCode + "&quantity=" + quantity + "&totalPaid=" + totalPaid, function(data, status){
+				if(status = "success"){
+						alert("Wallet Successfully Updated!\Coin: " + coinCode + "\nQuantity: " + quantity + "\nTotal Paid: " + totalPaid);					
+						buildWalletTable();
+				}else{
+						alert("Could not save your BUY ORDER!");
+				}		
+			});
+			
+		}else{
+			alert("Coin does not exist in wallet! Cannot be sold!");
+		}
+	}
+		
+	
 }

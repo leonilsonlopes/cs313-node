@@ -183,16 +183,6 @@ router.all('/post/buyorder/coin', function(req, res){
 
 });
 
-router.all('/getListFromWallet', function(req, res){  
-	res.send("getListFromWallet");
-	//res.render('week09_ponder/postalCalculator');
-});
-
-router.all('/updateWallet', function(req, res){  
-	res.send("updateWallet");
-	//res.render('week09_ponder/postalCalculator');
-});
-
 
 
 router.all('/saveSellOrder', function(req, res){  
@@ -200,15 +190,51 @@ router.all('/saveSellOrder', function(req, res){
 	//res.render('week09_ponder/postalCalculator');
 });
 
-router.all('/isCoinInWallet', function(req, res){  
-	res.send("isCoinInWallet");
-	//res.render('week09_ponder/postalCalculator');
+router.all('/get/wallet/coin', function(req, res){ 
+		
+	var code = (req.query.code) + "";
+	var params = [code];
+	var sql = "SELECT c.code, c.name, w.quantity, w.paid_value FROM wallet w INNER JOIN currency c ON c.id = w.currency_id AND c.code = $1";
+	
+	if(code == "" || code == "undefined"){
+		sql = "SELECT c.code, c.name, w.quantity, w.paid_value FROM wallet w INNER JOIN currency c ON c.id = w.currency_id";
+	}
+	
+	console.log("### get/wallet/coin - SQL defined: " + sql);
+		
+	pool.query(sql, params, function(err, result) {
+		// If an error occurred...
+		if (err) {
+			console.log("Error in query: ")
+			console.log(err);
+			res.send(err);
+		}	
+		res.send(result.rows);
+	});
 });
 
-router.all('/getCoinFromWallet', function(req, res){  
-	res.send("getCoinFromWallet");
-	//res.render('week09_ponder/postalCalculator');
+router.all('/post/wallet/coin', function(req, res){ 
+ 
+	var code = (req.query.code).toUpperCase();
+	var quantity = (req.query.quantity);
+	var totalPaid = (req.query.totalPaid);
+	
+	var sql = "INSERT INTO wallet(currency_id, quantity, paid_value) VALUES((SELECT id FROM currency WHERE code = $1), $2, $3)";
+	var params = [code, quantity, totalPaid];	
+		
+	pool.query(sql, params, function(err, result) {
+		// If an error occurred...
+		if (err) {
+			console.log("Error in query: ")
+			console.log(err);
+			res.send(err);
+		}
+		
+		res.send(result);
+		
+	});
 });
+
 
 
 //--------------------- END TRADING TABLES OPERATIONS ----------------------------
