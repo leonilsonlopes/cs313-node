@@ -191,7 +191,7 @@ function updateWallet(coinCode, quantity, totalPaid, operation){
 				var currentQuantity = Number(data.quantity);
 				var currentTotalPaid = Number(data.totalPaid).toFixed(2);
 				
-				console.log("### get coin in wallet - id: " + id + " | currentQuantity: " + currentyQuantity + " | currentTotalPaid: " + currentTotalPaid);
+				console.log("### get coin in wallet - id: " + id + " | currentQuantity: " + currentQuantity + " | currentTotalPaid: " + currentTotalPaid);
 				
 				$.get(SERVICE + "/patch/wallet/coin?id=" + id + "&quantity=" + (quantity + currentQuantity) + "&totalPaid=" + (totalPaid + currentTotalPaid) , function(data, status){
 					if(status = "success"){
