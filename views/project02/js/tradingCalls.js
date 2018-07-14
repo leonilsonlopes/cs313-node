@@ -64,7 +64,7 @@ function buyCoin(coinCode, quantity){
 		return;
 	}
 	
-	$.get(SERVICE + "tickerPrice?ticker=" + code, function(data, status){
+	$.get(SERVICE + "tickerPrice?ticker=" + coinCode, function(data, status){
 			var currentPrice = Number(data.price_usd);
 			var totalPaid = currentPrice * quantity;
 			
