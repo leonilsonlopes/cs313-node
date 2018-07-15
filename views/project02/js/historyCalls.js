@@ -52,12 +52,12 @@ function buildSellOrderHistory(){
 			t.row.add([
 						code, 
 						name,
-						priceWallet,
-						priceSell,
+						"$" + priceWallet,
+						"$" + priceSell,
 						quantity,
-						total,
-						resultUsd,
-						percentResult,
+						"$" + total,
+						"$" + resultUsd,
+						percentResult + "%",
 						date
 					]).draw(false);			
 

@@ -186,6 +186,8 @@ function sellCoin(coinCode, quantity){
 							priceWallet = priceWallet/(currentQuantity - quantity);
 						}
 						
+						priceWallet = priceWallet.toFixed(2);
+						
 						var resultUsd = (totalPaid - (priceWallet * quantity)).toFixed(2);
 						var percentResult = (((totalPaid / (priceWallet * quantity)) - 1) * 100).toFixed(2);
 										
@@ -193,7 +195,7 @@ function sellCoin(coinCode, quantity){
 							if(status = "success"){
 								alert("Sell Order Successfully saved!\nTicker: " + coinCode + "\nName: " + name + "\nPrice Wallet: " + priceWallet + "\nPrice Sell: " + priceSell + "\nQuantity: " + quantity + "\nTotal Sell: " + totalPaid + "\nResult USD: $" + resultUsd + "\nPercent Result: " + percentResult + "%");
 								updateWallet(coinCode, quantity, totalPaid, "sell");
-								buildBuyOrderHistory();
+								buildSellOrderHistory();
 							}else{
 								alert("Could not save your SELL ORDER!");
 							}
