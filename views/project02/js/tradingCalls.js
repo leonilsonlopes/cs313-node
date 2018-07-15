@@ -179,7 +179,7 @@ function sellCoin(coinCode, quantity){
 					var totalPaid = (priceSell * quantity);
 					var name = data.name;	
 					
-					alert("### tickerPrice data: " + JSON.stringify(data) + "\n priceSell: " + priceSell);
+					alert("### tickerPrice data: " + JSON.stringify(data) + "\n priceSell: " + priceSell + "\n totalPaid: " + totalPaid + "\nquantity: " + quantity);
 			
 					$.get(SERVICE + "/get/wallet/coin?code=" + coinCode, function(data, status){
 						
@@ -187,7 +187,7 @@ function sellCoin(coinCode, quantity){
 						var resultUsd = (totalPaid - (priceWallet * quantity)).toFixed(2);
 						var percentResult = (((totalPaid / (priceWallet * quantity)) - 1) * 100).toFixed(2);
 										
-						$.post(SERVICE + "/post/sellorder/coin?code=" + coinCode + "&name=" + name + "&price_wallet=" + priceWallet + "&price_sell" + priceSell + "&quantity=" + quantity + "&total=" + totalPaid + "&result=" + resultUsd + "&percent_result=" + percentResult, function(data, status){
+						$.post(SERVICE + "/post/sellorder/coin?code=" + coinCode + "&name=" + name + "&price_wallet=" + priceWallet + "&price_sell=" + priceSell + "&quantity=" + quantity + "&total=" + totalPaid + "&result=" + resultUsd + "&percent_result=" + percentResult, function(data, status){
 							if(status = "success"){
 								alert("Sell Order Successfully saved!\nTicker: " + coinCode + "\nName: " + name + "\nPrice Wallet: " + priceWallet + "\nPrice Sell: " + priceSell + "\nQuantity: " + quantity + "\nTotal Sell: " + totalPaid + "\nResult USD: $" + resultUsd + "\nPercent Result: " + percentResult + "%");
 								updateWallet(coinCode, quantity, totalPaid, "sell");
