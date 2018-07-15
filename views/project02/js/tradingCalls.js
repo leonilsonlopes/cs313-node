@@ -183,7 +183,11 @@ function sellCoin(coinCode, quantity){
 			
 					$.get(SERVICE + "/get/wallet/coin?code=" + coinCode, function(data, status){
 						
-						var priceWallet = ((Number(data[0].paid_value))/(currentQuantity - quantity)).toFixed(2);
+						var priceWallet = (Number(data[0].paid_value));
+						if((currentQuantity - quantity) > 1){
+							priceWallet = priceWallet/(currentQuantity - quantity);
+						}
+						
 						var resultUsd = (totalPaid - (priceWallet * quantity)).toFixed(2);
 						var percentResult = (((totalPaid / (priceWallet * quantity)) - 1) * 100).toFixed(2);
 										

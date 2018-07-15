@@ -193,8 +193,8 @@ router.all('/post/sellorder/coin', function(req, res){
 	var priceSell = req.query.price_sell;
 	var quantity = req.query.quantity;
 	var total = req.query.total
-	var resultUsd = req.query.result_usd;
-	var percentResult = req.query.result_percent;
+	var resultUsd = req.query.result;
+	var percentResult = req.query.percent_result;
 	
 	var sql = "INSERT INTO sell_order(code, name, price_wallet, price_sell, quantity, total, result, percent_result) VALUES($1, $2, $3, $4, $5, $6, $7, $8)";
 	var params = [code, name, priceWallet, priceSell, quantity, total, resultUsd, percentResult];	
