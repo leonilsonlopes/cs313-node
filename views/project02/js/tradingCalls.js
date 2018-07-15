@@ -173,16 +173,17 @@ function sellCoin(coinCode, quantity){
 			}else{
 				
 				$.get(SERVICE + "tickerPrice?ticker=" + coinCode, function(data, status){
-					
-					alert("### tickerPrice data: " + JSON.stringify(data));
+								
 					
 					var priceSell = Number(data.price_usd);
 					var totalPaid = (priceSell * quantity);
 					var name = data.name;	
+					
+					alert("### tickerPrice data: " + JSON.stringify(data) + "\n priceSell: " + priceSell);
 			
 					$.get(SERVICE + "/get/wallet/coin?code=" + coinCode, function(data, status){
 						
-						var priceWallet = (Number(data[0].paid_value)).toFixed(2);
+						var priceWallet = ((Number(data[0].paid_value))/(currentQuantity - quantity)).toFixed(2);
 						var resultUsd = (totalPaid - (priceWallet * quantity)).toFixed(2);
 						var percentResult = (((totalPaid / (priceWallet * quantity)) - 1) * 100).toFixed(2);
 										
