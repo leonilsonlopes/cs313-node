@@ -46,7 +46,7 @@ function buildSellOrderHistory(){
 			var quantity = data[i].quantity;
 			var total = data[i].total
 			var resultUsd = data[i].result;
-			var percentResult = data[i].result_percent;
+			var percentResult = data[i].percent_result;
 			var date = data[i].date;
 			
 			t.row.add([
@@ -56,8 +56,8 @@ function buildSellOrderHistory(){
 						priceSell,
 						quantity,
 						total,
-						result,
-						percent_result,
+						resultUsd,
+						percentResult,
 						date
 					]).draw(false);			
 

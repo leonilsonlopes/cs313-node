@@ -178,8 +178,6 @@ function sellCoin(coinCode, quantity){
 					var priceSell = Number(data.price_usd);
 					var totalPaid = (priceSell * quantity);
 					var name = data.name;	
-					
-					alert("### tickerPrice data: " + JSON.stringify(data) + "\n priceSell: " + priceSell + "\n totalPaid: " + totalPaid + "\nquantity: " + quantity);
 			
 					$.get(SERVICE + "/get/wallet/coin?code=" + coinCode, function(data, status){
 						
